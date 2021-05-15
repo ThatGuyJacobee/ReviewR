@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  IgnorableNamespaces="uap mp">
+
+  <Identity
+    Name="296cc8e6-bed5-4723-9be4-be0de38ff70b"
+    Publisher="CN=Jacob"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="296cc8e6-bed5-4723-9be4-be0de38ff70b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>ReviewR</DisplayName>
+    <PublisherDisplayName>Jacob</PublisherDisplayName>
+    <Logo>Assets\AppIcon\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="ReviewR.App">
+      <uap:VisualElements
+        DisplayName="ReviewR"
+        Square150x150Logo="Assets\AppIcon\Square150x150Logo.png"
+        Square44x44Logo="Assets\AppIcon\Square44x44Logo.png"
+        Description="ReviewR is an application which helps with game recommendations as well as incorporates reviews to create a system which allows users to easily find and review games."
+        BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\AppIcon\Wide310x150Logo.png" Square71x71Logo="Assets\AppIcon\SmallTile.png" Square310x310Logo="Assets\AppIcon\LargeTile.png"/>
+        <uap:SplashScreen Image="Assets\AppIcon\SplashScreen.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

@@ -8,19 +8,28 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <Button x:Name="Test" Content="Next" Margin="0,780,0,0" Height="79" Width="199" FontSize="36" VerticalAlignment="Top" Click="Test_Click" HorizontalAlignment="Center" FontWeight="Bold" Visibility="Visible"/>
-        <TextBox x:Name="username_entry" HorizontalAlignment="Center" Text="Enter username..." TextWrapping="Wrap" VerticalAlignment="Top" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="0,518,0,0"/>
-        <TextBlock x:Name="enter_username" HorizontalAlignment="Center" Margin="0,434,0,0" Text="Username:" TextWrapping="Wrap" VerticalAlignment="Top" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold"/>
-        <TextBox x:Name="password_entry" HorizontalAlignment="Center" Margin="0,686,0,0" Text="Enter password..." TextWrapping="Wrap" VerticalAlignment="Top" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5"/>
-        <TextBlock x:Name="enter_password" HorizontalAlignment="Center" Margin="0,603,0,0" Text="Password:" TextWrapping="Wrap" VerticalAlignment="Top" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold"/>
-        <Image x:Name="reviewr_logo" Margin="0,44,0,612" Source="Assets/EliteGaming-Logo.png" Width="424" HorizontalAlignment="Center"/>
-        <Button x:Name="google_signin" Margin="0,895,0,0" VerticalAlignment="Top" Height="103" Width="411" RequestedTheme="Default" HorizontalAlignment="Center">
-            <StackPanel>
-                <Image Source="Assets/g-logo.png" Width="80" Height="80" Margin="0,0,275,0"/>
-                <TextBlock Text="SIGN IN WITH GOOGLE" Margin="100,-50,0,20" FontSize="24" FontWeight="Bold" FontFamily="Roboto Medium"/>
-            </StackPanel>
-        </Button>
+    <Grid Background="DarkGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid VerticalAlignment="Center" Background="Black" Margin="0,0,1152,0" Height="1080">
+            <Image x:Name="reviewr_logo" Source="Assets/ReviewR-Logo.png" Height="617" Width="617" Margin="75,108,76,355"/>
+            <TextBlock x:Name="reviewr_text" HorizontalAlignment="Center" Margin="0,730,0,0" Text="ReviewR" TextWrapping="Wrap" VerticalAlignment="Top" Height="134" Width="512" FontSize="100" TextAlignment="Center" FontWeight="Bold"/>
+        </Grid>
 
+        <Grid Margin="768,0,0,0">
+            <Button x:Name="Test" Content="Next" Margin="485,590,0,0" Height="79" Width="199" FontSize="36" VerticalAlignment="Top" Click="Test_Click" FontWeight="Bold" Visibility="Visible"/>
+            <TextBox x:Name="username_entry" HorizontalAlignment="Left" Text="Enter username..." TextWrapping="Wrap" VerticalAlignment="Top" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="431,328,0,0"/>
+            <TextBlock x:Name="enter_username" HorizontalAlignment="Left" Margin="457,244,0,0" Text="Username:" TextWrapping="Wrap" VerticalAlignment="Top" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold"/>
+            <TextBox x:Name="password_entry" HorizontalAlignment="Left" Margin="431,496,0,0" Text="Enter password..." TextWrapping="Wrap" VerticalAlignment="Top" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5"/>
+            <TextBlock x:Name="enter_password" HorizontalAlignment="Left" Margin="457,413,0,0" Text="Password:" TextWrapping="Wrap" VerticalAlignment="Top" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold"/>
+            <Button x:Name="google_signin" VerticalAlignment="Top" Height="103" Width="411" RequestedTheme="Default" Margin="379,704,0,0">
+                <StackPanel>
+                    <Image Source="Assets/g-logo.png" Width="80" Height="80" Margin="0,0,275,0"/>
+                    <TextBlock Text="SIGN IN WITH GOOGLE" Margin="100,-50,0,20" FontSize="24" FontWeight="Bold" FontFamily="Roboto Medium"/>
+                </StackPanel>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

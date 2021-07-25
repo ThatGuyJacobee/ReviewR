@@ -183,8 +183,8 @@
     <Content Include="Assets\AppIcon\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\AppIcon\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\AppIcon\Wide310x150Logo.scale-400.png" />
-    <Content Include="Assets\EliteGaming-Logo.png" />
     <Content Include="Assets\g-logo.png" />
+    <Content Include="Assets\ReviewR-Logo.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

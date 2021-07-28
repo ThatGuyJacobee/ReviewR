@@ -20,26 +20,17 @@ namespace ReviewR
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class LoginPage : Page
     {
-        public MainPage()
+        public LoginPage()
         {
             this.InitializeComponent();
         }
 
-		private void Test_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        private async void register_account_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void TextBlock_SelectionChanged_1()
-        {
-
+            ContentDialog registerdialog = new RegisterDialog();
+            await registerdialog.ShowAsync();
         }
     }
 }

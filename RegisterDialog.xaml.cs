@@ -13,18 +13,24 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+// The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace ReviewR
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class BlankPage1 : Page
+    public sealed partial class RegisterDialog : ContentDialog
     {
-        public BlankPage1()
+        public RegisterDialog()
         {
             this.InitializeComponent();
+        }
+
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+        }
+
+        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+
         }
     }
 }

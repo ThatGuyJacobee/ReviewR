@@ -1,0 +1,33 @@
+﻿<ContentDialog 
+    x:Class="ReviewR.RegisterDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ReviewR"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Create an Account"
+    PrimaryButtonText="Return to Login"
+    SecondaryButtonText="Confirm Signup"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid>
+        <TextBlock x:Name="requirement_description_title" HorizontalAlignment="Left" Text="Password Requirements:" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <RichTextBlock x:Name="requirement_description" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,24,0,0" Height="59" Width="270">
+            <Paragraph Margin="2,0,0,0">
+                - Minimum 5 characters length
+            </Paragraph>
+            <Paragraph Margin="2,0,0,0">
+                - A number or special character used
+            </Paragraph>
+            <Paragraph Margin="2,0,0,0">
+                - An uppercase and a lowercase letter
+            </Paragraph>
+        </RichTextBlock>
+
+        <TextBox x:Name="new_username" HorizontalAlignment="Center" VerticalAlignment="Center" Width="270" PlaceholderText="Enter an Email"/>
+        <PasswordBox x:Name="new_password" HorizontalAlignment="Center" VerticalAlignment="Top" Width="270" PlaceholderText="Enter a Password" Margin="0,140,0,0"/>
+        <PasswordBox x:Name="new_password_check" HorizontalAlignment="Center" Margin="0,187,0,0" VerticalAlignment="Top" Width="270" PlaceholderText="Re-enter Password"/>
+    </Grid>
+</ContentDialog>

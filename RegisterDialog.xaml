@@ -14,20 +14,31 @@
 
     <Grid>
         <TextBlock x:Name="requirement_description_title" HorizontalAlignment="Left" Text="Password Requirements:" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
-        <RichTextBlock x:Name="requirement_description" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,24,0,0" Height="59" Width="270">
+        <RichTextBlock x:Name="requirement_description" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,24,0,0" Height="59" Width="472">
             <Paragraph Margin="2,0,0,0">
                 - Minimum 5 characters length
             </Paragraph>
             <Paragraph Margin="2,0,0,0">
-                - A number or special character used
+                - A number and a  special character used (e.g. 1, 2, $, *, +)
             </Paragraph>
             <Paragraph Margin="2,0,0,0">
                 - An uppercase and a lowercase letter
             </Paragraph>
         </RichTextBlock>
 
-        <TextBox x:Name="new_username" HorizontalAlignment="Center" VerticalAlignment="Center" Width="270" PlaceholderText="Enter an Email"/>
-        <PasswordBox x:Name="new_password" HorizontalAlignment="Center" VerticalAlignment="Top" Width="270" PlaceholderText="Enter a Password" Margin="0,140,0,0"/>
-        <PasswordBox x:Name="new_password_check" HorizontalAlignment="Center" Margin="0,187,0,0" VerticalAlignment="Top" Width="270" PlaceholderText="Re-enter Password"/>
+        <TextBox x:Name="new_email" HorizontalAlignment="Left" VerticalAlignment="Center" Width="430" PlaceholderText="Enter an Email..." TextChanged="new_email_TextChanged"/>
+        <Image x:Name="new_email_neutralimg" Height="31" Width="33" Margin="436,0,0,0" VerticalAlignment="Center" Source="Assets/Neutral-Symbol.png" HorizontalAlignment="Left" Visibility="Visible"/>
+        <Image x:Name="new_email_warningimg" Height="29" Margin="435,0,4,0" VerticalAlignment="Center" Source="Assets/Warning-Symbol.png" HorizontalAlignment="Right" Visibility="Collapsed"/>
+        <Image x:Name="new_email_tickimg" Height="37" Width="37" Margin="433,0,3,0" VerticalAlignment="Center" Source="Assets/Tick-Symbol.png" HorizontalAlignment="Right" Visibility="Collapsed"/>
+
+        <PasswordBox x:Name="new_password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="430" PlaceholderText="Enter a Password..." Margin="0,140,0,0" PasswordChanged="new_password_PasswordChanged"/>
+        <Image x:Name="new_password_neutralimg" Height="31" Width="33" Margin="436,141,0,0" VerticalAlignment="Top" Source="Assets/Neutral-Symbol.png" HorizontalAlignment="Left" Visibility="Visible"/>
+        <Image x:Name="new_password_warningimg" Height="29" Margin="0,142,4,0" VerticalAlignment="Top" Source="Assets/Warning-Symbol.png" HorizontalAlignment="Right" Visibility="Collapsed"/>
+        <Image x:Name="new_password_tickimg" Height="37" Width="37" Margin="0,138,3,0" VerticalAlignment="Top" Source="Assets/Tick-Symbol.png" HorizontalAlignment="Right" Visibility="Collapsed"/>
+
+        <PasswordBox x:Name="new_password_check" HorizontalAlignment="Left" Margin="0,187,0,0" VerticalAlignment="Top" Width="430" PlaceholderText="Re-enter Password..." PasswordChanged="new_password_check_PasswordChanged"/>
+        <Image x:Name="new_password_check_neutralimg" Height="31" Width="33" Margin="436,188,0,0" VerticalAlignment="Top" Source="Assets/Neutral-Symbol.png" HorizontalAlignment="Left" Visibility="Visible"/>
+        <Image x:Name="new_password_check_warningimg" Height="29" Margin="0,189,5,0" VerticalAlignment="Top" Source="Assets/Warning-Symbol.png" HorizontalAlignment="Right" Visibility="Collapsed"/>
+        <Image x:Name="new_password_check_tickimg" Height="37" Width="37" Margin="0,185,3,0" VerticalAlignment="Top" Source="Assets/Tick-Symbol.png" HorizontalAlignment="Right" Visibility="Collapsed"/>
     </Grid>
 </ContentDialog>

@@ -29,6 +29,7 @@ namespace ReviewR
 
         private async void register_account_Click(object sender, RoutedEventArgs e)
         {
+            //When the Register Account button is clicked, display the Register Content Dialog
             ContentDialog registerdialog = new RegisterDialog();
             await registerdialog.ShowAsync();
         }

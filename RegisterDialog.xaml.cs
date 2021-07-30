@@ -26,11 +26,17 @@ namespace ReviewR
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            //Closes prompt back to Login Screen
+            var CloseDialog = register_contentdialog;
+
+            CloseDialog.Hide();
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            //Submits the given Register details into the database for storage
 
+            //Closes Register Dialog and displays an Successfully Registered Dialog 
         }
 
         private void new_email_TextChanged(object sender, TextChangedEventArgs e)
@@ -43,13 +49,13 @@ namespace ReviewR
                 new_email_tickimg.Visibility = Visibility.Visible;
             }
 
-            if (string.IsNullOrEmpty(EmailBoxText)) {
+            else if (string.IsNullOrEmpty(EmailBoxText)) {
                 new_email_warningimg.Visibility = Visibility.Collapsed;
                 new_email_tickimg.Visibility = Visibility.Collapsed;
                 new_email_neutralimg.Visibility = Visibility.Visible;
             }
 
-            else if (!EmailBoxText.Contains("@")) {
+            else {
                 new_email_neutralimg.Visibility = Visibility.Collapsed;
                 new_email_tickimg.Visibility = Visibility.Collapsed;
                 new_email_warningimg.Visibility = Visibility.Visible;
@@ -71,13 +77,13 @@ namespace ReviewR
                 new_password_tickimg.Visibility = Visibility.Visible;
             }
 
-            if (string.IsNullOrEmpty(TextBoxText)) {
+            else if (string.IsNullOrEmpty(TextBoxText)) {
                 new_password_warningimg.Visibility = Visibility.Collapsed;
                 new_password_tickimg.Visibility = Visibility.Collapsed;
                 new_password_neutralimg.Visibility = Visibility.Visible;
             }
 
-            else if (!NumberChar.Any(TextBoxText.Contains) || (!SpecialChar.Any(TextBoxText.Contains) || (TextBoxText.Length <= 4))) {
+            else {
                 new_password_neutralimg.Visibility = Visibility.Collapsed;
                 new_password_tickimg.Visibility = Visibility.Collapsed;
                 new_password_warningimg.Visibility = Visibility.Visible;
@@ -89,20 +95,20 @@ namespace ReviewR
             var Password = new_password.Password;
             var PasswordCheck = new_password_check.Password;
 
-            if (Password == PasswordCheck) {
+            if ((Password == PasswordCheck) && (!string.IsNullOrEmpty(PasswordCheck))) {
                 new_password_check_neutralimg.Visibility = Visibility.Collapsed;
                 new_password_check_warningimg.Visibility = Visibility.Collapsed;
                 new_password_check_tickimg.Visibility = Visibility.Visible;
             }
 
-            if (string.IsNullOrEmpty(PasswordCheck))
+            else if (string.IsNullOrEmpty(PasswordCheck))
             {
                 new_password_check_warningimg.Visibility = Visibility.Collapsed;
                 new_password_check_tickimg.Visibility = Visibility.Collapsed;
                 new_password_check_neutralimg.Visibility = Visibility.Visible;
             }
 
-            else if (Password != PasswordCheck) {
+            else {
                 new_password_check_neutralimg.Visibility = Visibility.Collapsed;
                 new_password_check_tickimg.Visibility = Visibility.Collapsed;
                 new_password_check_warningimg.Visibility = Visibility.Visible;

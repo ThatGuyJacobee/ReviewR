@@ -19,17 +19,20 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="leftgrid" Grid.Column="0" Background="Black" HorizontalAlignment="Center">
+        <Grid x:Name="leftgrid" Grid.Column="0" Background="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image x:Name="reviewr_logo" Source="Assets/ReviewR-Logo.png" Height="617" Width="617" Margin="75,108,76,355"/>
             <TextBlock x:Name="reviewr_text" HorizontalAlignment="Center" Margin="0,730,0,0" Text="ReviewR" TextWrapping="Wrap" VerticalAlignment="Top" Height="134" Width="512" FontSize="100" TextAlignment="Center" FontWeight="Bold"/>
+            <Image x:Name="db_status_tick" Source="Assets/Tick-Symbol.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14,10,0,0" Height="64" Width="64" Visibility="Collapsed" />
+            <Image x:Name="db_status_warning" Source="Assets/Warning-Symbol.png" Margin="10,10,687,1006" Visibility="Collapsed"/>
+            <TextBlock x:Name="database_status" HorizontalAlignment="Left" Margin="88,10,0,0" Text="db_status" TextWrapping="Wrap" VerticalAlignment="Top" Height="66" Width="668" FontSize="44" SelectionChanged="database_status_SelectionChanged"/>
         </Grid>
 
         <Grid x:Name="rightgrid" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock x:Name="reviewr_description" Margin="161,50,162,884" Text="Free to use Game Review and Recommendation System" TextWrapping="Wrap" Height="146" Width="831" FontSize="48" TextAlignment="Center" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center"/>
-            <Button x:Name="login_next" Content="Next" Margin="476,598,477,390" Height="79" Width="199" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center"/>
-            <TextBox x:Name="email_entry" PlaceholderText="Enter Email..." TextWrapping="Wrap" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="423,326,424,697" HorizontalAlignment="Center"/>
+            <Button x:Name="login_next" Content="Next" Margin="476,598,477,390" Height="79" Width="199" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center" Click="login_next_Click"/>
+            <TextBox x:Name="email_entry" PlaceholderText="Enter Email..." TextWrapping="Wrap" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="423,326,424,697" HorizontalAlignment="Center" TextChanged="email_entry_TextChanged"/>
             <TextBlock x:Name="enter_email" Margin="450,222,450,776" Text="Email:" TextWrapping="Wrap" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <PasswordBox x:Name="password_entry" PlaceholderText="Enter Password..." Margin="423,512,422,511" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center"/>
+            <PasswordBox x:Name="password_entry" PlaceholderText="Enter Password..." Margin="423,512,422,511" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center" PasswordChanged="password_entry_PasswordChanged"/>
             <TextBlock x:Name="enter_password" Margin="450,410,449,580" Text="Password:" TextWrapping="Wrap" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"/>
             <Button x:Name="google_signin" VerticalAlignment="Stretch" Height="103" Width="411" RequestedTheme="Default" Margin="370,748,371,229" HorizontalAlignment="Center">
                 <StackPanel>

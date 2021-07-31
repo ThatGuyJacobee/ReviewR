@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Data.SqlClient;
 
 namespace ReviewR
 {
@@ -22,6 +23,11 @@ namespace ReviewR
     /// </summary>
     sealed partial class App : Application
     {
+        //Create a global method which can be inherited by any class to create a connection to the database
+        private string connectionString = "Data Source=LAPTOP-E5I3QMPO;Initial Catalog=ReviewR;Integrated Security=True";
+
+        public string ConnectionString { get => connectionString; set => connectionString = value; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().

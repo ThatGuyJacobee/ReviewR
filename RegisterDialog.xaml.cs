@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MySql.Data.MySqlClient;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -19,6 +20,11 @@ namespace ReviewR
 {
     public sealed partial class RegisterDialog : ContentDialog
     {
+        //Create a global method which can be inherited by any class to create a connection to the database
+        private string connectionString = "server=127.0.0.1;database=reviewr;uid=root;pwd=;SSL-mode=none;";
+
+        public string ConnectionString { get => connectionString; set => connectionString = value; }
+
         public RegisterDialog()
         {
             this.InitializeComponent();
@@ -34,9 +40,15 @@ namespace ReviewR
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            //Submits the given Register details into the database for storage
-
-            //Closes Register Dialog and displays an Successfully Registered Dialog 
+            using (MySqlConnection MySQLCon = new MySqlConnection(ConnectionString))
+            using (MySqlCommand cmd = new MySqlCommand("INSERT INTO user_data (email, password)" +
+                "WHERE Email=@email AND Password=@pass;", MySQLCon))
+            {
+                //Submits the given Register details into the database for storage
+                string email = new_email.Text;
+                string pass = new_password.Password;
+                //Closes Register Dialog and displays an Successfully Registered Dialog
+            }
         }
 
         private void new_email_TextChanged(object sender, TextChangedEventArgs e)

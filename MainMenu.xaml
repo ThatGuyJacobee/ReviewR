@@ -9,54 +9,20 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="canvasgrid" Background="Black">
-        <NavigationView x:Name="NavView"
-        ItemInvoked="NavView_ItemInvoked"
-        Loaded="NavView_Loaded"
-        PaneDisplayMode="LeftCompact">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-            <NavigationView.MenuItems>
-                <NavigationViewItem x:Uid="HomeNavItem" Content="Main Menu" Tag="home">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE10F;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItemSeparator/>
-                <NavigationViewItemHeader Content="Main Features:"/>
-                <NavigationViewItem x:Uid="Reviewsys" Icon="OutlineStar" Content="Review System" Tag="apps"/>
-                <NavigationViewItem x:Uid="Recommendsys" Icon="Library" Content="Recommendation System" Tag="games"/>
-                <NavigationViewItem x:Uid="Searchfeature" Icon="Zoom" Content="Search Feature" Tag="music"/>
-                <NavigationViewItemSeparator/>
-                <NavigationViewItemHeader Content="Social Features:"/>
-                <NavigationViewItem x:Uid="Profilepages" Icon="Contact" Content="Profile Pages" Tag="apps"/>
-                <NavigationViewItem x:Uid="Gamehubs" Icon="Filter" Content="Game Hubs" Tag="apps"/>
-            </NavigationView.MenuItems>
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="welcomeback_text" Grid.Row="0" Text="Welcome back, &lt;$Username&gt;!" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+            </Grid>
 
-            <Frame x:Name="ContentFrame">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition/>
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
+            <Grid Grid.Row="1" Background="#D55E5E">
+                <ProgressRing HorizontalAlignment="Left" Margin="1471,415,0,0" VerticalAlignment="Top" Height="368" Width="368"/>
 
-                <Grid x:Name="CanvasGrid">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="250"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Row="0" Background="Black">
-                        <TextBlock x:Name="welcomeback_text" Grid.Row="0" Text="Welcome back, &lt;$Username&gt;!" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
-                    </Grid>
-
-                    <Grid Grid.Row="1" Background="#D55E5E">
-                        <Frame Background="Black" Margin="30,357,1455,30"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="86,314,0,0" Text="Current top rated games:" TextWrapping="Wrap" VerticalAlignment="Top" Height="42" Width="291" FontWeight="Bold" FontSize="24"/>
-                        <ProgressRing HorizontalAlignment="Left" Margin="1471,415,0,0" VerticalAlignment="Top" Height="368" Width="368"/>
-
-                    </Grid>
-                </Grid>
-            </Frame>
-        </NavigationView>
-
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

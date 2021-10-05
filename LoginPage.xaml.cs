@@ -122,7 +122,7 @@ namespace ReviewR
 
             if (loginSuccessful)
             {
-                this.Frame.Navigate(typeof(MainMenu), null);
+                this.Frame.Navigate(typeof(NavigationBar), null);
             }
             else
             {

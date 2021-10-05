@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using MySql.Data.MySqlClient;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -21,9 +20,9 @@ namespace ReviewR
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainMenu : Page
+    public sealed partial class RecommendationSystem : Page
     {
-        public MainMenu()
+        public RecommendationSystem()
         {
             this.InitializeComponent();
         }

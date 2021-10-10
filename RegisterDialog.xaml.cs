@@ -49,8 +49,8 @@ namespace ReviewR
                 cmd.Connection = conn;
                 cmd.Connection.Open(); //Opens MySql connection
 
-                int login = cmd.ExecuteNonQuery(); //Executes a read command for the table
-                if (login==1)
+                MySqlDataReader login = cmd.ExecuteReader(); //Executes a read command for the table
+                if (login.Read())
                 {
                     conn.Close();
                     return true;
@@ -73,12 +73,12 @@ namespace ReviewR
 
             bool registerSuccess = DataInsertion(email, pass); //Run the DataValidation method
 
-            if (email.Contains("@") && NumberChar.Any(pass.Contains) && SpecialChar.Any(pass.Contains) && (pass.Length >= 5)) {
-                return;
+            if (registerSuccess) {
+                Console.WriteLine("added");
             }
 
             else {
-                return;
+                Console.WriteLine("not added");
             }
             //Submits the given Register details into the database for storage
 

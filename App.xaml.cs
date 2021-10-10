@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace ReviewR
 {
@@ -24,9 +24,9 @@ namespace ReviewR
     sealed partial class App : Application
     {
         //Create a global method which can be inherited by any class to create a connection to the database
-        private string connectionString = "Data Source=LAPTOP-E5I3QMPO;Initial Catalog=ReviewR;Integrated Security=True";
+        private static string connectionString = "server=127.0.0.1;database=reviewr;uid=root;pwd=;SSL-mode=none;";
 
-        public string ConnectionString { get => connectionString; set => connectionString = value; }
+        public static string ConnectionString { get => connectionString; set => connectionString = value; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code

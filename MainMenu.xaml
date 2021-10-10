@@ -12,7 +12,7 @@
         <Grid x:Name="CanvasGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Background="Black">
@@ -20,7 +20,7 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <ProgressRing HorizontalAlignment="Left" Margin="1471,415,0,0" VerticalAlignment="Top" Height="368" Width="368"/>
+                <ProgressRing HorizontalAlignment="Left" Margin="1552,462,0,0" VerticalAlignment="Top" Height="368" Width="368"/>
 
             </Grid>
         </Grid>

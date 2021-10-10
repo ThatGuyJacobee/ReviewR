@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-//using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -24,15 +23,13 @@ namespace ReviewR
     /// </summary>
     public sealed partial class LoginPage : Page
     {
-        //Create a global method which can be inherited by any class to create a connection to the database
-        private string connectionString = "server=127.0.0.1;database=reviewr;uid=root;pwd=;SSL-mode=none;";
-
-        public string ConnectionString { get => connectionString; set => connectionString = value; }
+        //Uses the static Connection String that was set in the Main App Class (private)
+        private static string ConnectionString = App.ConnectionString;
 
         public LoginPage()
         {
             this.InitializeComponent();
-            //Waits till page is fully loaded
+            //Waits till page is fully loaded before running the event
             this.Loaded += Page_Loaded;
         }
 
@@ -79,21 +76,21 @@ namespace ReviewR
 
         }
 
-        private bool DataValidation(string email, string pass)
+        private bool DataValidation(string email, string pass) //Method for database validation
         {
-            using (MySqlConnection conn = new MySqlConnection(ConnectionString))
+            using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
             using (MySqlCommand cmd = new MySqlCommand("SELECT " +
                 "Email, Password " +
                 "FROM user_data " +
-                "WHERE Email=@email AND Password=@pass;", conn))
+                "WHERE Email=@email AND Password=@pass;", conn)) //Selects the email and password rows from user_data
             {
 
-                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
                 cmd.Parameters.AddWithValue("@pass", pass);
                 cmd.Connection = conn;
                 cmd.Connection.Open();
 
-                MySqlDataReader login = cmd.ExecuteReader();
+                MySqlDataReader login = cmd.ExecuteReader(); //Executes a read command for the table
                 if (login.Read())
                 {
                     conn.Close();
@@ -107,26 +104,28 @@ namespace ReviewR
             }
         }
 
-        private void login_next_Click(object sender, RoutedEventArgs e)
+        private void login_next_Click(object sender, RoutedEventArgs e) //Method ran on login button press
         {
-            string email = email_entry.Text;
+            string email = email_entry.Text; //Inputs set as variables
             string pass = password_entry.Password;
 
-            if (email == "" || pass == "")
+            if (email == "" || pass == "") //If either are empty display an error
             {
-                login_status.Text = "Login cannot be empty!";
+                login_status.Visibility = Visibility.Visible;
+                login_status.Text = "Error: Details cannot be empty";
                 return;
             }
 
-            bool loginSuccessful = DataValidation(email, pass);
+            bool loginSuccessful = DataValidation(email, pass); //Run the DataValidation method
 
             if (loginSuccessful)
             {
-                this.Frame.Navigate(typeof(NavigationBar), null);
+                this.Frame.Navigate(typeof(NavigationBar), null); //If input compares identically to database, proceed to main menu
             }
             else
             {
-                login_status.Text = "Login failed.";
+                login_status.Visibility = Visibility.Visible; //Otherwise display an error
+                login_status.Text = "Error: Incorrect details";
             }
         }
 

@@ -41,7 +41,7 @@
                 </StackPanel>
             </Button>
             <Button x:Name="register_account" Content="Register Account" Margin="0,886,0,91" Width="411" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center" Click="register_account_Click"/>
-            <TextBlock x:Name="login_status" HorizontalAlignment="Left" Margin="59,334,0,0" Text="Login Status" TextWrapping="Wrap" VerticalAlignment="Top" Height="92" Width="218" FontSize="36"/>
+            <TextBlock x:Name="login_status" HorizontalAlignment="Left" Margin="371,697,0,0" Text="login_status" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" Width="414" FontSize="24" TextAlignment="Center" Visibility="Collapsed"/>
         </Grid>
     </Grid>
 </Page>

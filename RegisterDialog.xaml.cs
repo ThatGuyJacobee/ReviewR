@@ -36,16 +36,16 @@ namespace ReviewR
             CloseDialog.Hide();
         }
 
-        private bool DataInsertion(string email, string pass) //Method for database validation
+        private bool DataInsertion(string email, string password) //Method for database validation
         {
             using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO user_data(email,password) WHERE email=@email AND password=@pass"; //Selects the user_data table to insert email and password into
+                cmd.CommandText = "INSERT INTO user_data (email, password) VALUES (@email, @password)"; //Selects the user_data table to insert email and password into
                 cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
-                cmd.Parameters.AddWithValue("@pass", pass);
+                cmd.Parameters.AddWithValue("@password", password);
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -55,12 +55,12 @@ namespace ReviewR
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             string email = new_email.Text; //Inputs set as variables
-            string pass = new_password_check.Password;
+            string password = new_password_check.Password;
 
             var NumberChar = new[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }; //Array variable for all the numbers
             var SpecialChar = new[] { '!', '#', '$', '%', '&', '(', ')', '*', '+', '-', '_', '.', '/', ':', ';', '<', '>', '=', '?', '[', ']', '~' }; //Array variable of all the special characters
 
-            bool registerSuccess = DataInsertion(email, pass); //Run the DataValidation method
+            bool registerSuccess = DataInsertion(email, password); //Run the DataValidation method
 
             if (registerSuccess) {
                 Console.WriteLine("added");

@@ -65,27 +65,27 @@ namespace ReviewR
             switch (item.Tag)
             {
                 case "home":
-                    ContentFrame.Navigate(typeof(MainMenu));
+                    ContentFrame.Navigate(typeof(MainMenu), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
                     break;
 
                 case "revsys":
-                    ContentFrame.Navigate(typeof(ReviewSystem));
+                    ContentFrame.Navigate(typeof(ReviewSystem), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
                     break;
 
                 case "recsys":
-                    ContentFrame.Navigate(typeof(RecommendationSystem));
+                    ContentFrame.Navigate(typeof(RecommendationSystem), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
                     break;
 
                 case "search":
-                    ContentFrame.Navigate(typeof(SearchFeature));
+                    ContentFrame.Navigate(typeof(SearchFeature), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
                     break;
 
                 case "profile":
-                    ContentFrame.Navigate(typeof(ProfilePages));
+                    ContentFrame.Navigate(typeof(ProfilePages), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
                     break;
 
                 case "ghubs":
-                    ContentFrame.Navigate(typeof(GameHubs));
+                    ContentFrame.Navigate(typeof(GameHubs), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
                     break;
             }
         }

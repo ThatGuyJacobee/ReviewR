@@ -120,7 +120,7 @@ namespace ReviewR
 
             if (loginSuccessful)
             {
-                this.Frame.Navigate(typeof(NavigationBar), null); //If input compares identically to database, proceed to main menu
+                this.Frame.Navigate(typeof(NavigationBar), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo()); //If input compares identically to database, proceed to main menu
             }
             else
             {

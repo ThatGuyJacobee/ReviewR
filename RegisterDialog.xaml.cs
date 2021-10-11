@@ -38,26 +38,18 @@ namespace ReviewR
 
         private bool DataInsertion(string email, string pass) //Method for database validation
         {
-            try
+            using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
             {
-                using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
-                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO " +
-                    "user_data (email, password) " + //Selects the user_data table to insert email and password into
-                    "WHERE Email=@email AND Password=@pass;", conn))
-                {
-                    cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
-                    cmd.Parameters.AddWithValue("@pass", pass);
-                    cmd.Connection = conn;
-                    cmd.Connection.Open(); //Opens MySql connection
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
 
-                    cmd.ExecuteNonQuery();
-                    return true;
-                }
+                cmd.CommandText = "INSERT INTO user_data(email,password) WHERE email=@email AND password=@pass"; //Selects the user_data table to insert email and password into
+                cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
+                cmd.Parameters.AddWithValue("@pass", pass);
+                cmd.ExecuteNonQuery();
+                return true;
             }
-            catch(MySqlException) //https://www.w3schools.com/sql/sql_autoincrement.asp //https://stackoverflow.com/questions/28308190/an-exception-of-type-mysql-data-mysqlclient-mysqlexception-occurred-in-mysql-d
-            {
-                return false;
-            }
+
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

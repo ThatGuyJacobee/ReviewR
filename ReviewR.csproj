@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Review\CreateReview.xaml.cs">
+      <DependentUpon>CreateReview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameHubs.xaml.cs">
       <DependentUpon>GameHubs.xaml</DependentUpon>
     </Compile>
@@ -135,13 +138,13 @@
       <DependentUpon>ProfilePages.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecommendationSystem.xaml.cs">
+    <Compile Include="Recommendation\RecommendationSystem.xaml.cs">
       <DependentUpon>RecommendationSystem.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegisterDialog.xaml.cs">
       <DependentUpon>RegisterDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReviewSystem.xaml.cs">
+    <Compile Include="Review\ReviewSystem.xaml.cs">
       <DependentUpon>ReviewSystem.xaml</DependentUpon>
     </Compile>
     <Compile Include="SearchFeature.xaml.cs">
@@ -221,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Review\CreateReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GameHubs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -241,7 +248,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RecommendationSystem.xaml">
+    <Page Include="Recommendation\RecommendationSystem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,7 +256,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ReviewSystem.xaml">
+    <Page Include="Review\ReviewSystem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

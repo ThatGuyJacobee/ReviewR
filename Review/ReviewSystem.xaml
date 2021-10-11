@@ -20,9 +20,9 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <Button x:Name="createnew_next" Content="Create a Review" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1594,25,0,726"/>
-                <TextBox x:Name="searchfeature" PlaceholderText="Enter a query to search for a review..." TextWrapping="Wrap" Width="1095" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Left" Margin="30,32,0,733"/>
-                <Button x:Name="createnew_next_Copy" Content="Add Filters" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1262,25,0,726"/>
+                <Button x:Name="createnew_next" Content="Create a Review" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1594,25,0,726" Click="createnew_next_Click"/>
+                <TextBox x:Name="searchfeature" PlaceholderText="Enter a query to search for a review..." TextWrapping="Wrap" Width="1155" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Left" Margin="30,25,0,726"/>
+                <Button x:Name="createnew_next_Copy" Content="Add Filters" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1240,25,0,726"/>
             </Grid>
         </Grid>
     </Grid>

@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="ReviewR.CreateReview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ReviewR"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#D55E5E">
+        <TextBlock x:Name="createreview_title" HorizontalAlignment="Left" Margin="131,57,0,0" Text="Create a Review" TextWrapping="Wrap" VerticalAlignment="Top" Height="226" Width="1162" FontSize="150" TextAlignment="Center" FontWeight="Bold"/>
+
+        <TextBlock x:Name="gameselect_text" Margin="155,293,0,718" Text="Game Select:" TextWrapping="Wrap" Height="69" Width="294" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Left"/>
+        <AutoSuggestBox x:Name="revgame_entry" HorizontalAlignment="Left" Margin="155,374,0,0" Height="100" Width="915" BorderThickness="5,5,5,5" PlaceholderText="Select a game..." Opacity="0.5" FontSize="36" FontWeight="Bold"/>
+
+        <TextBlock x:Name="gametitle_text" Margin="155,496,0,515" Text="Review Title:" TextWrapping="Wrap" Height="69" Width="294" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Left"/>
+        <TextBox x:Name="revtitle_entry" PlaceholderText="Add a review title..." Width="915" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="155,574,0,406" TextChanged="revtitle_entry_TextChanged" HorizontalAlignment="Left"/>
+
+        <TextBlock x:Name="gamedescription_text" Margin="155,705,0,306" Text="Description:" TextWrapping="Wrap" Height="69" Width="274" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Left"/>
+        <TextBox x:Name="revdesc_entry" PlaceholderText="Write up a description..." TextWrapping="Wrap" Width="961" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="155,786,0,100" TextChanged="revdesc_entry_TextChanged" HorizontalAlignment="Left"/>
+    </Grid>
+</Page>

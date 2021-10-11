@@ -36,7 +36,7 @@ namespace ReviewR
             CloseDialog.Hide();
         }
 
-        private bool DataInsertion(string email, string password) //Method for database validation
+        private bool DataInsertion(string email, string passwordcheck) //Method for database validation
         {
             using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
             {
@@ -45,34 +45,42 @@ namespace ReviewR
 
                 cmd.CommandText = "INSERT INTO user_data (email, password) VALUES (@email, @password)"; //Selects the user_data table to insert email and password into
                 cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@password", passwordcheck);
                 cmd.ExecuteNonQuery();
                 return true;
             }
 
         }
 
-        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             string email = new_email.Text; //Inputs set as variables
-            string password = new_password_check.Password;
+            string password = new_password.Password;
+            string passwordcheck = new_password_check.Password;
 
-            var NumberChar = new[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }; //Array variable for all the numbers
-            var SpecialChar = new[] { '!', '#', '$', '%', '&', '(', ')', '*', '+', '-', '_', '.', '/', ':', ';', '<', '>', '=', '?', '[', ']', '~' }; //Array variable of all the special characters
-
-            bool registerSuccess = DataInsertion(email, password); //Run the DataValidation method
+            bool registerSuccess = DataInsertion(email, passwordcheck); //Run the DataValidation method
 
             if (registerSuccess) {
-                Console.WriteLine("added");
+                ContentDialog successdialog = new ContentDialog();
+                successdialog.Title = "Success!";
+                successdialog.Content = "Your account has been successfully created!\nPlease login with these credentials.";
+                successdialog.CloseButtonText = "Approve";
+                successdialog.DefaultButton = ContentDialogButton.Close;
+
+                register_contentdialog.Hide();
+                await successdialog.ShowAsync();
             }
 
             else {
-                Console.WriteLine("not added");
+                ContentDialog errordialog = new ContentDialog();
+                errordialog.Title = "Error!";
+                errordialog.Content = "There was an error in processing your account.\nIf the issue persists contact support.";
+                errordialog.CloseButtonText = "Approve";
+                errordialog.DefaultButton = ContentDialogButton.Close;
+
+                register_contentdialog.Hide();
+                await errordialog.ShowAsync();
             }
-            //Submits the given Register details into the database for storage
-
-
-                //Closes Register Dialog and displays an Successfully Registered Dialog
         }
 
         private void new_email_TextChanged(object sender, TextChangedEventArgs e) //Method which runs every time the new_email input text changes

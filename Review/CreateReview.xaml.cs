@@ -33,6 +33,11 @@ namespace ReviewR
 
         }
 
+        private void revgame_entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
         private void revdesc_entry_TextChanged(object sender, TextChangedEventArgs e)
         {
 

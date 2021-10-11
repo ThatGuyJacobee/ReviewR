@@ -43,38 +43,50 @@ namespace ReviewR
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO user_data (email, password) VALUES (@email, @password)"; //Selects the user_data table to insert email and password into
+                //Selects the user_data table to insert email and password into
+                cmd.CommandText = "INSERT INTO user_data (email, password) VALUES (@email, @password)";
                 cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
                 cmd.Parameters.AddWithValue("@password", passwordcheck);
-                cmd.ExecuteNonQuery();
-                return true;
-            }
 
+                var NumberChar = new[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }; //Array variable for all the numbers
+                var SpecialChar = new[] { '!', '#', '$', '%', '&', '(', ')', '*', '+', '-', '_', '.', '/', ':', ';', '<', '>', '=', '?', '[', ']', '~' }; //Array variable of all the special characters
+                string password = new_password.Password; //Variable set here as it's not used in the button method
+
+                //If statement performs a server-side (pre-insert) validation to ensure data matches requirements
+                if (email.Contains("@") && NumberChar.Any(password.Contains) && SpecialChar.Any(password.Contains) && password.Length >= 5 && (password == passwordcheck) && !string.IsNullOrEmpty(passwordcheck))
+                {
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
         private async void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             string email = new_email.Text; //Inputs set as variables
-            string password = new_password.Password;
             string passwordcheck = new_password_check.Password;
 
             bool registerSuccess = DataInsertion(email, passwordcheck); //Run the DataValidation method
 
-            if (registerSuccess) {
+            if (registerSuccess) { //If it was true, then a success content dialog is displayed after the register is closed
                 ContentDialog successdialog = new ContentDialog();
                 successdialog.Title = "Success!";
                 successdialog.Content = "Your account has been successfully created!\nPlease login with these credentials.";
                 successdialog.CloseButtonText = "Approve";
                 successdialog.DefaultButton = ContentDialogButton.Close;
 
-                register_contentdialog.Hide();
-                await successdialog.ShowAsync();
+                register_contentdialog.Hide(); //Close the register dialog (limitation 1 at a time)
+                await successdialog.ShowAsync(); //Displays it until the close button is pressed
             }
 
-            else {
+            else { //Otherwise the error content dialog is displayed after register is forcefully closed
                 ContentDialog errordialog = new ContentDialog();
                 errordialog.Title = "Error!";
-                errordialog.Content = "There was an error in processing your account.\nIf the issue persists contact support.";
+                errordialog.Content = "Validation not passed.\nMake sure all inputs are approved.";
                 errordialog.CloseButtonText = "Approve";
                 errordialog.DefaultButton = ContentDialogButton.Close;
 

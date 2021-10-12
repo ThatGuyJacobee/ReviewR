@@ -56,10 +56,12 @@ namespace ReviewR
                 if (email.Contains("@") && NumberChar.Any(password.Contains) && SpecialChar.Any(password.Contains) && password.Length >= 5 && (password == passwordcheck) && !string.IsNullOrEmpty(passwordcheck))
                 {
                     cmd.ExecuteNonQuery();
+                    conn.Close();
                     return true;
                 }
                 else
                 {
+                    conn.Close();
                     return false;
                 }
             }

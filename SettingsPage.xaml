@@ -8,7 +8,21 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="canvasgrid" Background="Black">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="settings_text" Grid.Row="0" Text="Settings &amp; Preferences" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#D55E5E">
+                <TextBlock x:Name="reviewr_text" Text="&lt;$username&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="0,51,0,645" HorizontalAlignment="Center"/>
+
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

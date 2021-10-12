@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MySql.Data.MySqlClient;
+using System.Diagnostics; //Debug
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +26,8 @@ namespace ReviewR
     {
         //Uses the static Connection String that was set in the Main App Class (private)
         private static string ConnectionString = App.ConnectionString;
+
+        private static int GlobalUserID = App.GlobalUserID;
 
         public LoginPage()
         {
@@ -79,27 +82,28 @@ namespace ReviewR
         private bool DataValidation(string email, string pass) //Method for database validation
         {
             using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
-            using (MySqlCommand cmd = new MySqlCommand("SELECT " +
-                "Email, Password " +
-                "FROM user_data " +
-                "WHERE Email=@email AND Password=@pass;", conn)) //Selects the email and password rows from user_data
             {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
 
+                cmd.CommandText = "SELECT UserID, Email, Password FROM user_data WHERE Email=@email AND Password=@pass"; //Selects the email and password rows from user_data
                 cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
                 cmd.Parameters.AddWithValue("@pass", pass);
                 cmd.Connection = conn;
-                long LastUserID = cmd.LastInsertedId; //Database returns the last inserted UserID back to use as global variable https://stackoverflow.com/questions/405910/get-the-id-of-inserted-row-using-c-sharp
-                cmd.Connection.Open();
 
                 MySqlDataReader login = cmd.ExecuteReader(); //Executes a read command for the table
                 if (login.Read())
                 {
-                    conn.Close();
+                    Debug.WriteLine(GlobalUserID);
+                    int UserID = Convert.ToInt32(login["UserID"]);
+                    GlobalUserID = UserID;
+                    conn.Close(); //Close connection
+                    Debug.WriteLine(GlobalUserID);
                     return true;
                 }
                 else
                 {
-                    conn.Close();
+                    conn.Close(); //Close connection
                     return false;
                 }
             }
@@ -121,9 +125,6 @@ namespace ReviewR
 
             if (loginSuccessful)
             {
-                private int LastUserID;
-                public int GlobalUserID { set {LastUserID} }
-
                 this.Frame.Navigate(typeof(NavigationBar), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo()); //If input compares identically to database, proceed to main menu
             }
             else

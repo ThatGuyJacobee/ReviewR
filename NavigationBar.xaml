@@ -12,7 +12,8 @@
         <NavigationView x:Name="NavView"
         ItemInvoked="NavView_ItemInvoked"
         Loaded="NavView_Loaded"
-        PaneDisplayMode="LeftCompact">
+        PaneDisplayMode="LeftCompact"
+        IsSettingsVisible="True">
 
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Uid="HomeNavItem" Content="Main Menu" Tag="home">

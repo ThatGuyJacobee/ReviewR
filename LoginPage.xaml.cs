@@ -88,6 +88,7 @@ namespace ReviewR
                 cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
                 cmd.Parameters.AddWithValue("@pass", pass);
                 cmd.Connection = conn;
+                long LastUserID = cmd.LastInsertedId; //Database returns the last inserted UserID back to use as global variable https://stackoverflow.com/questions/405910/get-the-id-of-inserted-row-using-c-sharp
                 cmd.Connection.Open();
 
                 MySqlDataReader login = cmd.ExecuteReader(); //Executes a read command for the table
@@ -120,6 +121,9 @@ namespace ReviewR
 
             if (loginSuccessful)
             {
+                private int LastUserID;
+                public int GlobalUserID { set {LastUserID} }
+
                 this.Frame.Navigate(typeof(NavigationBar), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo()); //If input compares identically to database, proceed to main menu
             }
             else

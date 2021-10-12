@@ -50,7 +50,7 @@ namespace ReviewR
         {
             if (args.IsSettingsInvoked)
             {
-                //ContentFrame.Navigate(typeof(SettingsPage));
+                ContentFrame.Navigate(typeof(SettingsPage));
             }
             else
             {

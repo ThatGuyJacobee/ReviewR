@@ -1,0 +1,29 @@
+﻿<ContentDialog
+    x:Name="username_contentdialog"
+    x:Class="ReviewR.UsernameDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ReviewR"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Create your username!"
+    SecondaryButtonText="Confirm Username"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid>
+        <TextBlock x:Name="username_explanation" HorizontalAlignment="Left" Text="Since this is your first time logging in with your new account, please create a username by which we should call you. You can always change it in the settings in the future." TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Normal" FontSize="16"/>
+        <TextBlock x:Name="username_requirement" HorizontalAlignment="Left" Text="Note: Must be smaller than 15 characters." TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Normal" FontSize="16" Margin="0,72,0,0"/>
+
+        <Image x:Name="username_neutralimg" Height="31" Width="33" Margin="195,110,0,0" VerticalAlignment="Center" Source="Assets/Neutral-Symbol.png" HorizontalAlignment="Left" Visibility="Visible"/>
+        <Image x:Name="username_warningimg" Height="29" Margin="195,110,0,0" VerticalAlignment="Center" Source="Assets/Warning-Symbol.png" HorizontalAlignment="Left" Visibility="Collapsed"/>
+        <Image x:Name="username_tickimg" Height="31" Width="31" Margin="195,110,0,0" VerticalAlignment="Top" Source="Assets/Tick-Symbol.png" HorizontalAlignment="Left" Visibility="Collapsed"/>
+
+        <TextBox x:Name="new_username" HorizontalAlignment="Left" VerticalAlignment="Top" Width="175" PlaceholderText="Enter username..." Margin="0,110,0,0" TextChanged="new_username_TextChanged"/>
+        <TextBox x:Name="new_username_check" HorizontalAlignment="Left" VerticalAlignment="Top" Width="175" PlaceholderText="Re-enter username..." Margin="303,110,0,0" TextChanged="new_username_check_TextChanged"/>
+
+        <Image x:Name="new_username_neutralimg" Height="31" Width="33" Margin="0,110,195,0" VerticalAlignment="Top" Source="Assets/Neutral-Symbol.png" HorizontalAlignment="Right" Visibility="Visible"/>
+        <Image x:Name="new_username_warningimg" Height="29" Margin="0,110,195,0" VerticalAlignment="Center" Source="Assets/Warning-Symbol.png" HorizontalAlignment="Right" Visibility="Collapsed"/>
+        <Image x:Name="new_username_tickimg" Height="31" Width="31" Margin="0,110,195,0" VerticalAlignment="Top" Source="Assets/Tick-Symbol.png" HorizontalAlignment="Right" Visibility="Collapsed"/>
+    </Grid>
+</ContentDialog>

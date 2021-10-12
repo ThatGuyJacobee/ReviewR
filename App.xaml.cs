@@ -28,10 +28,11 @@ namespace ReviewR
 
         public static string ConnectionString { get => connectionString; set => connectionString = value; }
 
+        //Create a global method which can be inherited for all functions the user performs after being logged in successfully (default will be 0 / null)
+        private static int GUserID = 0;
 
-        private static int GUserID = 0; //Create a global method which can be inherited for all functions the user performs after being logged in successfully
-
-        public static int GlobalUserID { get => GUserID; set => GUserID = value; } //Value can be set after successful login to match who just logged in
+        //Value can be set after successful login to match who just logged in
+        public static int GlobalUserID { get => GUserID; set => GUserID = value; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code

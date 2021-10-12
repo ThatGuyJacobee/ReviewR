@@ -27,6 +27,7 @@ namespace ReviewR
         //Uses the static Connection String that was set in the Main App Class (private)
         private static string ConnectionString = App.ConnectionString;
 
+        //Uses the private GUserID within the Main App Class
         private static int GlobalUserID = App.GlobalUserID;
 
         public LoginPage()
@@ -94,11 +95,11 @@ namespace ReviewR
                 MySqlDataReader login = cmd.ExecuteReader(); //Executes a read command for the table
                 if (login.Read())
                 {
-                    Debug.WriteLine(GlobalUserID);
-                    int UserID = Convert.ToInt32(login["UserID"]);
-                    GlobalUserID = UserID;
+                    Debug.WriteLine("Pre-login, UserID:" + GlobalUserID); //Temporarily debugging
+                    int UserID = Convert.ToInt32(login["UserID"]); //Converts into plain text
+                    GlobalUserID = UserID; //Sets the selected UserID as the global one for the session
                     conn.Close(); //Close connection
-                    Debug.WriteLine(GlobalUserID);
+                    Debug.WriteLine("Post-login, UserID:" + GlobalUserID); //Temporary debugging
                     return true;
                 }
                 else

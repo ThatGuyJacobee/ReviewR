@@ -20,9 +20,10 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <Button x:Name="createnew_next" Content="Create a Review" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1594,25,0,726" Click="createnew_next_Click"/>
+                <Button x:Name="createnew_next" Content="Create a Review" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1575,25,0,726" Click="createnew_next_Click"/>
                 <TextBox x:Name="searchfeature" PlaceholderText="Enter a query to search for a review..." TextWrapping="Wrap" Width="1155" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Left" Margin="30,25,0,726"/>
-                <Button x:Name="createnew_next_Copy" Content="Add Filters" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1240,25,0,726"/>
+                <Button x:Name="createnew_next_Copy" Content="Add Filters" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1225,25,0,726"/>
+                <ListView x:Name="search_view" Margin="30,140,735,30" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark"/>
             </Grid>
         </Grid>
     </Grid>

@@ -22,9 +22,35 @@ namespace ReviewR
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        private List<GameReview> listOfReview = new List<GameReview>();
+
         public SettingsPage()
         {
             this.InitializeComponent();
+
+            listOfReview.Add(new GameReview { Name = "COD", Age = 20 });
+            listOfReview.Add(new GameReview { Name = "Battlefield", Age = 21 });
+            listOfReview.Add(new GameReview { Name = "CS:GO", Age = 19 });
+            listOfReview.Add(new GameReview { Name = "Destiny", Age = 18 });
+            listOfReview.Add(new GameReview { Name = "Rocket League", Age = 20 });
+            listOfReview.Add(new GameReview { Name = "ETS2", Age = 20 });
+            listOfReview.Add(new GameReview { Name = "Space Engineers", Age = 21 });
+            listOfReview.Add(new GameReview { Name = "Cyberpunk", Age = 20 });
+            listOfReview.Add(new GameReview { Name = "Forza Horizon 4", Age = 23 });
+            listOfReview.Add(new GameReview { Name = "Minecraft", Age = 20 });
+
+            myreviews_list.ItemsSource = listOfReview;
+        }
+
+        public class GameReview
+        {
+            public string Name { get; set; }
+            public int Age { get; set; }
+        }
+
+        private void myreviews_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

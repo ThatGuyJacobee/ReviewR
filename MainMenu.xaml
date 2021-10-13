@@ -21,7 +21,14 @@
 
             <Grid Grid.Row="1" Background="#D55E5E">
                 <ProgressRing HorizontalAlignment="Left" Margin="1552,462,0,0" VerticalAlignment="Top" Height="368" Width="368"/>
+                <Image x:Name="reviewr_logo" Source="/Assets/ReviewR-Logo.png" Height="617" Width="617" Margin="1304,158,-1,55"/>
+                <TextBlock x:Name="reviewr_text" HorizontalAlignment="Left" Margin="1337,25,0,0" Text="ReviewR" TextWrapping="Wrap" VerticalAlignment="Top" Height="134" Width="512" FontSize="100" TextAlignment="Center" FontWeight="Bold"/>
 
+                <TextBlock x:Name="updates_text" Margin="25,25,1326,0" Text="News/Updates:" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" FontSize="75" TextAlignment="Center" FontWeight="Bold"/>
+                <ListView x:Name="myreviews_list" Margin="25,158,1322,80" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
+
+                <ProgressBar Margin="0,780,0,0" VerticalAlignment="Top" Height="50" ValueChanged="ProgressBar_ValueChanged"/>
+                <Button x:Name="guide_text" Content="How to use the app?" Margin="760,586,760,124" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
             </Grid>
         </Grid>
     </Grid>

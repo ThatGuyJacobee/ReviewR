@@ -66,5 +66,10 @@ namespace ReviewR
                 await usernamedialog.ShowAsync();
             }
         }
+
+        private void ProgressBar_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+
+        }
     }
 }

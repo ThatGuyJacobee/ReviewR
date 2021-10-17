@@ -27,8 +27,6 @@ namespace ReviewR
         //Uses the static Connection String that was set in the Main App Class (private)
         private static string ConnectionString = App.ConnectionString;
 
-        private static int GlobalUserID = App.GlobalUserID;
-
         public MainMenu()
         {
             this.InitializeComponent();
@@ -46,16 +44,26 @@ namespace ReviewR
                 cmd.CommandText = "SELECT UserID, Username FROM user_data WHERE UserID=@UserID AND Username IS NULL"; //Selects the UserID to search and Username to retrieve
                 cmd.Parameters.AddWithValue("@UserID", userid); //Sets them as variables
                 cmd.Connection = conn;
-
                 cmd.ExecuteNonQuery();
-                conn.Close();
-                return true;
+
+                MySqlDataReader usernameval = cmd.ExecuteReader();
+                if (usernameval.Read())
+                {
+                    conn.Close();
+                    return true;
+                }
+
+                else
+                {
+                    conn.Close();
+                    return false;
+                }
             }
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            string userid = GlobalUserID.ToString();
+            string userid = App.GlobalUserID.ToString();
 
             bool NoUsername = UsernameValidation(userid); //Run the DataValidation method
 
@@ -64,6 +72,10 @@ namespace ReviewR
                 //When no username is present, open the dialog to get the user to create one
                 ContentDialog usernamedialog = new UsernameDialog();
                 await usernamedialog.ShowAsync();
+            }
+            else
+            {
+                return;
             }
         }
 

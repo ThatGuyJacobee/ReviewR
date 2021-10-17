@@ -24,12 +24,10 @@ namespace ReviewR
         //Uses the static Connection String that was set in the Main App Class (private)
         private static string ConnectionString = App.ConnectionString;
 
-        private static int GlobalUserID = App.GlobalUserID;
-
         public UsernameDialog()
         {
             this.InitializeComponent();
-            Debug.WriteLine(GlobalUserID);
+            Debug.WriteLine("Username Dialog UserID:" + App.GlobalUserID);
         }
 
         private bool UsernameInsertion(string userid, string username) //Method for database validation
@@ -40,7 +38,7 @@ namespace ReviewR
                 MySqlCommand cmd = conn.CreateCommand();
 
                 //Selects the user_data table to insert email and password into
-                cmd.CommandText = "INSERT INTO user_data (Username) VALUES (@Username) WHERE UserID=@UserID";
+                cmd.CommandText = "UPDATE user_data SET Username=@Username WHERE UserID=@UserID";
                 cmd.Parameters.AddWithValue("@UserID", userid); //Sets them as variables
                 cmd.Parameters.AddWithValue("@Username", username);
 
@@ -63,7 +61,7 @@ namespace ReviewR
         {
             string username = new_username.Text;
             string usernamecheck = new_username_check.Text;
-            string userid = GlobalUserID.ToString();
+            string userid = App.GlobalUserID.ToString();
 
             bool UsernameSuccess = UsernameInsertion(userid, username); //Run the DataValidation method
 

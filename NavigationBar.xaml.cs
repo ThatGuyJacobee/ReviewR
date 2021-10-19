@@ -31,9 +31,9 @@ namespace ReviewR
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
             // you can also add items in code behind
-            NavView.MenuItems.Add(new NavigationViewItemSeparator());
-            NavView.MenuItems.Add(new NavigationViewItem()
-            { Content = "My content", Icon = new SymbolIcon(Symbol.Folder), Tag = "content" });
+            //NavView.MenuItems.Add(new NavigationViewItemSeparator());
+            //NavView.MenuItems.Add(new NavigationViewItem()
+            //{ Content = "My content", Icon = new SymbolIcon(Symbol.Folder), Tag = "content" });
 
             // set the initial SelectedItem 
             foreach (NavigationViewItemBase item in NavView.MenuItems)
@@ -86,6 +86,15 @@ namespace ReviewR
 
                 case "ghubs":
                     ContentFrame.Navigate(typeof(GameHubs), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+                    break;
+
+                case "gethelp":
+                    ContentFrame.Navigate(typeof(GetHelp), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+                    break;
+
+                case "logout":
+                    this.Frame.Navigate(typeof(LoginPage), null); //Navigates the entire page rather than just the Content Frame of the navbar
+                    App.GlobalUserID = 0; //Sets the GlobalUserID to default 0
                     break;
             }
         }

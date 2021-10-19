@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GetHelp.xaml.cs">
+      <DependentUpon>GetHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Review\CreateReview.xaml.cs">
       <DependentUpon>CreateReview.xaml</DependentUpon>
     </Compile>
@@ -230,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GetHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Review\CreateReview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

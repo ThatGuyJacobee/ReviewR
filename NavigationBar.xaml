@@ -13,7 +13,9 @@
         ItemInvoked="NavView_ItemInvoked"
         Loaded="NavView_Loaded"
         PaneDisplayMode="LeftCompact"
-        IsSettingsVisible="True">
+        IsSettingsVisible="True"
+        IsBackButtonVisible="Auto"
+        IsBackEnabled="True">
 
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Uid="HomeNavItem" Content="Main Menu" Tag="home">
@@ -30,6 +32,10 @@
                 <NavigationViewItemHeader Content="Social Features:"/>
                 <NavigationViewItem x:Uid="Profilepages" Icon="Contact" Content="Profile Pages" Tag="profile"/>
                 <NavigationViewItem x:Uid="Gamehubs" Icon="Filter" Content="Game Hubs" Tag="ghubs"/>
+                <NavigationViewItemSeparator/>
+                <NavigationViewItemHeader Content="Additional Features:"/>
+                <NavigationViewItem x:Uid="Gethelp" Icon="Help" Content="Get Help" Tag="gethelp"/>
+                <NavigationViewItem x:Uid="Logout" Icon="ClosePane" Content="Log Out" Tag="logout"/>
             </NavigationView.MenuItems>
 
             <Frame x:Name="ContentFrame">

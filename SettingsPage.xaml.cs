@@ -27,6 +27,8 @@ namespace ReviewR
         public SettingsPage()
         {
             this.InitializeComponent();
+            //Waits till page is fully loaded before running the event
+            this.Loaded += Page_Loaded;
 
             listOfReview.Add(new GameReview { Name = "COD", Age = 20 });
             listOfReview.Add(new GameReview { Name = "Battlefield", Age = 21 });
@@ -48,7 +50,13 @@ namespace ReviewR
             public int Age { get; set; }
         }
 
-        private void myreviews_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            username_text.Text = App.GlobalUsername;
+        }
+
+
+            private void myreviews_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

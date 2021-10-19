@@ -84,7 +84,7 @@ namespace ReviewR
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "SELECT UserID, Email, Password FROM user_data WHERE Email=@email AND Password=@pass"; //Selects the email and password rows from user_data
+                cmd.CommandText = "SELECT UserID, Username, Email, Password FROM user_data WHERE Email=@email AND Password=@pass"; //Selects the email and password rows from user_data
                 cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
                 cmd.Parameters.AddWithValue("@pass", pass);
                 cmd.Connection = conn;
@@ -93,8 +93,8 @@ namespace ReviewR
                 if (login.Read())
                 {
                     Debug.WriteLine("Pre-login (Default) UserID:" + App.GlobalUserID); //Temporarily debugging
-                    int UserID = Convert.ToInt32(login["UserID"]); //Converts into plain text
-                    App.GlobalUserID = UserID; //Sets the selected UserID as the global one for the session
+                    App.GlobalUserID = Convert.ToInt32(login["UserID"]); //Converts into integer and sets the selected UserID as the global one for the session
+                    App.GlobalUsername = Convert.ToString(login["Username"]); //Converts into string and sets the appropirate Username as the global variable for the session
                     conn.Close(); //Close connection
                     Debug.WriteLine("Post-login UserID:" + App.GlobalUserID); //Temporary debugging
                     return true;

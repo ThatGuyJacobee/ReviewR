@@ -63,7 +63,10 @@ namespace ReviewR
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            string userid = App.GlobalUserID.ToString();
+            welcomeback_text.Text = "Welcome back, " + App.GlobalUsername + "!";
+
+            //Checks if Username Dialog should occur
+            string userid = App.GlobalUserID.ToString(); //Converts int to a string
 
             bool NoUsername = UsernameValidation(userid); //Run the DataValidation method
 

@@ -26,7 +26,7 @@
                 <TextBlock x:Name="account_created" Text="Account Created:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1461,632,0,132" HorizontalAlignment="Left"/>
                 <TextBlock x:Name="account_created_date" Text="-Date-" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1587,704,0,60" HorizontalAlignment="Left"/>
 
-                <TextBlock x:Name="reviewr_text" Text="&lt;$username&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="631,25,631,671"/>
+                <TextBlock x:Name="username_text" Text="&lt;$username&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="631,25,631,671"/>
                 <TextBlock x:Name="myreviews_text" Text="My Reviews:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="158,213,0,551" HorizontalAlignment="Left"/>
                 <ListView x:Name="myreviews_list" Margin="57,306,1370,44" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
 

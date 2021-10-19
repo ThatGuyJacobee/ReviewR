@@ -91,7 +91,7 @@ namespace ReviewR
         {
             string Username = new_username.Text;
 
-            if (Username.Length <= 15)
+            if (Username.Length <= 15 && (!string.IsNullOrEmpty(Username)))
             {
                 username_neutralimg.Visibility = Visibility.Collapsed;
                 username_warningimg.Visibility = Visibility.Collapsed;
@@ -115,9 +115,10 @@ namespace ReviewR
 
         private void new_username_check_TextChanged(object sender, TextChangedEventArgs e)
         {
+            string Username = new_username.Text;
             string UsernameCheck = new_username_check.Text;
 
-            if (UsernameCheck.Length <= 15)
+            if ((Username == UsernameCheck) && (!string.IsNullOrEmpty(UsernameCheck)) && UsernameCheck.Length <= 15)
             {
                 new_username_neutralimg.Visibility = Visibility.Collapsed;
                 new_username_warningimg.Visibility = Visibility.Collapsed;

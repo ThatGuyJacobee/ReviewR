@@ -34,6 +34,12 @@ namespace ReviewR
         //Value can be set after successful login to match who just logged in
         public static int GlobalUserID { get => GUserID; set => GUserID = value; }
 
+        //Create a global method which can be inherited for all functions the user performs after being logged in successfully (default will be 0 / null)
+        private static string GUsername = "";
+
+        //Value can be set after successful login to match who just logged in
+        public static string GlobalUsername { get => GUsername; set => GUsername = value; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().

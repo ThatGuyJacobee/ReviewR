@@ -95,6 +95,7 @@ namespace ReviewR
                 case "logout":
                     this.Frame.Navigate(typeof(LoginPage), null); //Navigates the entire page rather than just the Content Frame of the navbar
                     App.GlobalUserID = 0; //Sets the GlobalUserID to default 0
+                    App.GlobalUsername = ""; //Sets the GlobalUsername to default empty
                     break;
             }
         }

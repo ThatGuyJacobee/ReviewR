@@ -25,6 +25,12 @@ namespace ReviewR
         public GetHelp()
         {
             this.InitializeComponent();
+            this.Loaded += Page_Loaded;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            username_text.Text = "Hi again, " + App.GlobalUsername + "!";
         }
     }
 }

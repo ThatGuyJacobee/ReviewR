@@ -65,10 +65,12 @@ namespace ReviewR
         {
             welcomeback_text.Text = "Welcome back, " + App.GlobalUsername + "!";
 
+            Debug.WriteLine("Main Menu UserID:0"); //Temporary debugging
+
             //Checks if Username Dialog should occur
             string userid = App.GlobalUserID.ToString(); //Converts int to a string
 
-            bool NoUsername = UsernameValidation(userid); //Run the DataValidation method
+            bool NoUsername = UsernameValidation(userid); //Run the UsernameValidation method
 
             if (NoUsername)
             {

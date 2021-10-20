@@ -8,7 +8,22 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="canvasgrid" Background="Black">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="recommendationsysten_text" Grid.Row="0" Text="Recommendation System" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#D55E5E" Height="830" VerticalAlignment="Top">
+                <TextBlock x:Name="gethelp_description" Text="Hey username! As this is your first time here, you will be required to calibrate your preferences through an algorithm before you receive personalised recommendations." TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="68,194,67,412"/>
+                <Button x:Name="startrec_button" Content="Begin calibration activity" Width="650" FontSize="50" VerticalAlignment="Stretch" FontWeight="Bold" Margin="0,467,0,222" HorizontalAlignment="Center"/>
+
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

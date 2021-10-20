@@ -8,7 +8,27 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="canvasgrid" Background="Black">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="help_text" Grid.Row="0" Text="Get Help &amp; Support" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#D55E5E">
+                <TextBlock x:Name="gethelp_description" Text="Please select the correct option below to receive the relevant support. If you query relates to something other than those, please contact an administrator who will be able to tailor your support." TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="67,219,68,387"/>
+
+                <TextBlock x:Name="username_text" Text="Hi again, &lt;$username&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="42,25,41,671"/>
+
+                <Button x:Name="compromisedacc_button" Content="Report compromised account" Margin="986,635,400,75" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
+                <Button x:Name="contact_button" Content="Contact an Administrator" Margin="986,491,400,219" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
+                <Button x:Name="report_button" Content="Report a post or user" Margin="399,635,987,75" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
+                <Button x:Name="guide_button" Content="Guides &amp; tutorials" Margin="399,491,987,219" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

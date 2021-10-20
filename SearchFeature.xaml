@@ -8,7 +8,22 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="canvasgrid" Background="Black">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="searchfeature_text" Grid.Row="0" Text="Search Feature" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#D55E5E" Height="830" VerticalAlignment="Top">
+                <TextBox x:Name="search_box" PlaceholderText="Enter a query to search across the application and online..." TextWrapping="Wrap" Width="1396" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Left" Margin="94,59,0,691"/>
+                <ListView x:Name="myreviews_list" Margin="94,167,94,52" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
+                <Button x:Name="addfilters_button" Content="Add Filters" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1525,59,0,692"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

@@ -12,12 +12,14 @@
         <TextBlock x:Name="createreview_title" HorizontalAlignment="Left" Margin="131,57,0,0" Text="Create a Review" TextWrapping="Wrap" VerticalAlignment="Top" Height="226" Width="1162" FontSize="150" TextAlignment="Center" FontWeight="Bold"/>
 
         <TextBlock x:Name="gameselect_text" HorizontalAlignment="Left" Margin="155,305,0,0" Text="Game Select:" TextWrapping="Wrap" VerticalAlignment="Top" Height="69" Width="298" FontSize="48" FontWeight="Bold"/>
-        <TextBox x:Name="revtitle_entry" PlaceholderText="Pick a game..." Width="961" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="155,385,0,595" HorizontalAlignment="Left" TextChanged="revtitle_entry_TextChanged"/>
+        <TextBox x:Name="revgame_entry" PlaceholderText="Pick a game..." Width="961" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="155,385,0,595" HorizontalAlignment="Left" TextChanged="revtitle_entry_TextChanged"/>
 
         <TextBlock x:Name="gametitle_text" HorizontalAlignment="Left" Margin="155,508,0,0" Text="Review Title:" TextWrapping="Wrap" VerticalAlignment="Top" Height="69" Width="298" FontSize="48" FontWeight="Bold"/>
-        <TextBox x:Name="revgame_entry" PlaceholderText="Add a review title..." Width="961" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="155,584,0,396" HorizontalAlignment="Left" TextChanged="revgame_entry_TextChanged"/>
+        <TextBox x:Name="revtitle_entry" PlaceholderText="Add a review title..." Width="961" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="155,584,0,396" HorizontalAlignment="Left" TextChanged="revgame_entry_TextChanged"/>
 
         <TextBlock x:Name="gamedescription_text" HorizontalAlignment="Left" Margin="155,711,0,0" Text="Description:" TextWrapping="Wrap" VerticalAlignment="Top" Height="69" Width="298" FontSize="48" FontWeight="Bold"/>
         <TextBox x:Name="revdesc_entry" PlaceholderText="Write up a description..." TextWrapping="Wrap" Width="961" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="155,786,0,100" HorizontalAlignment="Left" TextChanged="revdesc_entry_TextChanged"/>
+
+        <Button x:Name="rev_submit" Content="Submit Review" Margin="1362,873,0,0" FontSize="36" FontWeight="Bold" Visibility="Visible" VerticalAlignment="Top" Height="107" Width="328"/>
     </Grid>
 </Page>

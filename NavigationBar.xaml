@@ -33,7 +33,7 @@
                 <NavigationViewItem x:Uid="Profilepages" Icon="Contact" Content="Profile Pages" Tag="profile"/>
                 <NavigationViewItem x:Uid="Gamehubs" Icon="Filter" Content="Game Hubs" Tag="ghubs"/>
                 <NavigationViewItemSeparator/>
-                <NavigationViewItemHeader Content="Additional Features:"/>
+                <NavigationViewItemHeader Content="Miscellaneous Features:"/>
                 <NavigationViewItem x:Uid="Gethelp" Icon="Help" Content="Get Help" Tag="gethelp"/>
                 <NavigationViewItem x:Uid="Logout" Icon="ClosePane" Content="Log Out" Tag="logout"/>
             </NavigationView.MenuItems>

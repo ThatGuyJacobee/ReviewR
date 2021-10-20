@@ -42,8 +42,10 @@ namespace ReviewR
                 cmd.Parameters.AddWithValue("@UserID", userid); //Sets them as variables
                 cmd.Parameters.AddWithValue("@Username", username);
 
+                string usernamecheck = new_username_check.Text;
+
                 //If statement performs a server-side (pre-insert) validation to ensure data matches requirements
-                if (username.Length <= 15 && (!string.IsNullOrEmpty(username)))
+                if (username.Length <= 15 && (!string.IsNullOrEmpty(username)) && (username == usernamecheck))
                 {
                     cmd.ExecuteNonQuery();
                     conn.Close();
@@ -60,10 +62,9 @@ namespace ReviewR
         private async void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             string username = new_username.Text;
-            string usernamecheck = new_username_check.Text;
             string userid = App.GlobalUserID.ToString();
 
-            bool UsernameSuccess = UsernameInsertion(userid, username); //Run the DataValidation method
+            bool UsernameSuccess = UsernameInsertion(userid, username); //Run the UsernameInsertion method
 
             if (UsernameSuccess) {
                 ContentDialog successdialog = new ContentDialog();

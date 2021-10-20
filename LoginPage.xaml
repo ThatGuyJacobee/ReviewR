@@ -16,7 +16,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid x:Name="leftgrid" Grid.Column="0" Background="Black" HorizontalAlignment="Center" VerticalAlignment="Center">

@@ -122,6 +122,9 @@
     <Compile Include="GetHelp.xaml.cs">
       <DependentUpon>GetHelp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recommendation\RecSysCalibration.xaml.cs">
+      <DependentUpon>RecSysCalibration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Review\CreateReview.xaml.cs">
       <DependentUpon>CreateReview.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="GetHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recommendation\RecSysCalibration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

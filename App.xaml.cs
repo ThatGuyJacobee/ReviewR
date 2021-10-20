@@ -15,6 +15,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MySql.Data.MySqlClient;
+using Windows.Web.Http;
+using System.Threading.Tasks;
+using Windows.Storage.Streams;
+using System.Diagnostics; //Debug
+
 
 namespace ReviewR
 {
@@ -40,6 +45,35 @@ namespace ReviewR
         //Value can be set after successful login to match who just logged in
         public static string GlobalUsername { get => GUsername; set => GUsername = value; }
 
+        private async Task TryPostJsonAsync() //Used MS docs as reference and adjusted for my use - https://docs.microsoft.com/en-us/windows/uwp/networking/httpclient#post-json-data-over-http
+        {
+            try
+            {
+                // Construct the HttpClient and Uri. This endpoint is for test purposes only.
+                HttpClient httpClient = new HttpClient();
+                Uri uri = new Uri("https://id.twitch.tv/oauth2/token?client_id=lcygp51ma1kkvf7ix71xlct0szpuqj&client_secret=m49i9n3p9roas71ij6zpps0ac50jnr&grant_type=client_credentials");
+
+                // Construct the JSON to post.
+                HttpStringContent content = new HttpStringContent(
+                    "https://id.twitch.tv/oauth2/token?client_id=lcygp51ma1kkvf7ix71xlct0szpuqj&client_secret=m49i9n3p9roas71ij6zpps0ac50jnr&grant_type=client_credentials");
+
+                // Post the JSON and wait for a response.
+                HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(
+                    uri,
+                    content);
+
+                // Make sure the post succeeded, and write out the response.
+                httpResponseMessage.EnsureSuccessStatusCode();
+                var httpResponseBody = await httpResponseMessage.Content.ReadAsStringAsync();
+                Debug.WriteLine(httpResponseBody);
+            }
+            catch (Exception ex)
+            {
+                // Write out any exceptions.
+                Debug.WriteLine(ex);
+            }
+        }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -47,6 +81,7 @@ namespace ReviewR
         public App()
         {
             this.InitializeComponent();
+            TryPostJsonAsync();
             this.Suspending += OnSuspending;
         }
 

@@ -12,7 +12,7 @@
         <Grid x:Name="CanvasGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Background="Black">
@@ -20,19 +20,19 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <TextBlock x:Name="account_lastlogon" Text="Last Log-On:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1514,441,0,323" HorizontalAlignment="Left"/>
-                <TextBlock x:Name="account_lastlogon_date" Text="-Date/Time-" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1518,513,0,251" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="account_lastlogon" Text="Last Log-On:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1409,297,0,467" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="account_lastlogon_date" Text="-Date/Time-" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1413,369,0,395" HorizontalAlignment="Left"/>
 
-                <TextBlock x:Name="account_created" Text="Account Created:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1461,632,0,132" HorizontalAlignment="Left"/>
-                <TextBlock x:Name="account_created_date" Text="-Date-" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1587,704,0,60" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="account_created" Text="Account Created:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1356,488,0,276" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="account_created_date" Text="-Date-" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1482,560,0,204" HorizontalAlignment="Left"/>
 
                 <TextBlock x:Name="username_text" Text="&lt;$username&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="631,25,631,671"/>
-                <TextBlock x:Name="myreviews_text" Text="My Reviews:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="158,213,0,551" HorizontalAlignment="Left"/>
-                <ListView x:Name="myreviews_list" Margin="57,306,1370,44" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
+                <TextBlock x:Name="myreviews_text" Text="My Reviews:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="176,162,0,602" HorizontalAlignment="Left"/>
+                <ListView x:Name="myreviews_list" Margin="78,255,1349,95" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
 
-                <Button x:Name="account_details" Content="Account Edit" Margin="760,321,760,389" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
-                <Button x:Name="account_logo" Content="Select Logo" Margin="760,474,760,237" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
-                <Button x:Name="account_bio" Content="Adjust profile" Margin="760,632,760,79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
+                <Button x:Name="account_details" Content="Account Edit" Margin="760,270,760,440" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
+                <Button x:Name="account_logo" Content="Select Logo" Margin="760,423,760,288" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
+                <Button x:Name="account_bio" Content="Adjust profile" Margin="760,581,760,130" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
             </Grid>
         </Grid>
     </Grid>

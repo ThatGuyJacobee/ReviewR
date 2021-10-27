@@ -65,7 +65,8 @@ namespace ReviewR
         {
             welcomeback_text.Text = "Welcome back, " + App.GlobalUsername + "!";
 
-            Debug.WriteLine("Main Menu UserID:0"); //Temporary debugging
+            Debug.WriteLine("Main Menu UserID:" + App.GlobalUserID); //Temporary debugging
+            Debug.WriteLine("Global Access IGDB API Token (Main Menu):" + App.GlobalAccessIGDB);
 
             //Checks if Username Dialog should occur
             string userid = App.GlobalUserID.ToString(); //Converts int to a string

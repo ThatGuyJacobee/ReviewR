@@ -19,7 +19,8 @@ using Windows.Web.Http;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using System.Diagnostics; //Debug
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ReviewR
 {
@@ -45,27 +46,46 @@ namespace ReviewR
         //Value can be set after successful login to match who just logged in
         public static string GlobalUsername { get => GUsername; set => GUsername = value; }
 
+        //Set the value for IGDB access token received from the POST return output
+        private static string GAccessIGDB = "";
+        public static string GlobalAccessIGDB { get => GAccessIGDB; set => GAccessIGDB = value; }
+
+        public class IGDBcredentials
+        {
+            public string access_token { get; set; }
+        }
+        
         private async Task TryPostJsonAsync() //Used MS docs as reference and adjusted for my use - https://docs.microsoft.com/en-us/windows/uwp/networking/httpclient#post-json-data-over-http
         {
             try
             {
-                // Construct the HttpClient and Uri. This endpoint is for test purposes only.
+                // Construct the HttpClient and Uri
                 HttpClient httpClient = new HttpClient();
                 Uri uri = new Uri("https://id.twitch.tv/oauth2/token?client_id=lcygp51ma1kkvf7ix71xlct0szpuqj&client_secret=m49i9n3p9roas71ij6zpps0ac50jnr&grant_type=client_credentials");
 
-                // Construct the JSON to post.
+                // Construct the JSON to post
                 HttpStringContent content = new HttpStringContent(
                     "https://id.twitch.tv/oauth2/token?client_id=lcygp51ma1kkvf7ix71xlct0szpuqj&client_secret=m49i9n3p9roas71ij6zpps0ac50jnr&grant_type=client_credentials");
 
-                // Post the JSON and wait for a response.
+                // Post the JSON and wait for a response
                 HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(
                     uri,
                     content);
 
-                // Make sure the post succeeded, and write out the response.
+                // Make sure the post succeeded, and write out the response
                 httpResponseMessage.EnsureSuccessStatusCode();
                 var httpResponseBody = await httpResponseMessage.Content.ReadAsStringAsync();
-                Debug.WriteLine(httpResponseBody);
+
+                //Deserialize JSON into an c# object
+                IGDBcredentials igdbcredentials = JsonSerializer.Deserialize<IGDBcredentials>(httpResponseBody);
+                
+                //Debug to ensure IGDB was successful
+                Debug.WriteLine("IGDB Verification: " + httpResponseBody);
+                Debug.WriteLine($"access_token: {igdbcredentials.access_token}");
+
+                //Set the access_token as a static string to be invoked and used across the application
+                GlobalAccessIGDB = igdbcredentials.access_token;
+                Debug.WriteLine("Global Access IGDB API Token:" + GlobalAccessIGDB);
             }
             catch (Exception ex)
             {

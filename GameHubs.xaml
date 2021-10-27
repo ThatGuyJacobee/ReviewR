@@ -8,7 +8,38 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="canvasgrid" Background="Black">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="gamehub_text" Grid.Row="0" Text="Game Hubs" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#D55E5E">
+                <TextBlock x:Name="username_text" Text="Hi again, &lt;$username&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="33,127,50,569"/>
+                <TextBlock x:Name="gamehub_description" Text="This is the game hubs area, where you can search for any game and receive information about communities, news, updates as well as game statistics. Use the search bar and/or the filters to find games." TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="58,321,77,285"/>
+                <Button x:Name="continue_button" Content="Continue" Margin="777,551,794,161" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Click="continue_button_Click"/>
+
+                <TextBox x:Name="gamehub_search" PlaceholderText="Enter a query to search a game hub..." TextWrapping="Wrap" Width="1514" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Left" Margin="30,25,0,726" Visibility="Collapsed" TextChanged="gamehub_search_TextChanged"/>
+                <Button x:Name="addfilters_button" Content="Add Filters" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1575,25,0,726" Visibility="Collapsed"/>
+                <ListView x:Name="gamehub_list" SelectionMode="None" IsItemClickEnabled="True" Margin="30,140,44,30" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark" Visibility="Collapsed">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding GameName}"></TextBlock>
+                                    <TextBlock Text="{Binding ReleaseDate}"></TextBlock>
+                                    <TextBlock Text="{Binding GameIcon}"></TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

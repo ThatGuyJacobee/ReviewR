@@ -33,13 +33,13 @@ namespace ReviewR
             this.InitializeComponent();
             this.Loaded += Page_Loaded;
 
-            ObservableCollection<GameObject> dataList = new ObservableCollection<GameObject>();
-            GameObject g1 = new GameObject() { GameName = "Cs", ReleaseDate = "idk", GameIcon = "test" };
+            ObservableCollection<GameListObject> dataList = new ObservableCollection<GameListObject>();
+            GameListObject g1 = new GameListObject() { GameName = "Cs", ReleaseDate = "idk", GameIcon = "test" };
             dataList.Add(g1);
             gamehub_list.ItemsSource = dataList;
         }
 
-        public class GameObject
+        public class GameListObject
         {
             public string GameName { get; set; }
             public string ReleaseDate { get; set; }
@@ -58,7 +58,7 @@ namespace ReviewR
         //On search box content change
         private async void gamehub_search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ObservableCollection<GameObject> dataList = new ObservableCollection<GameObject>();
+            ObservableCollection<GameListObject> dataList = new ObservableCollection<GameListObject>();
             gamehub_list.ItemsSource = dataList;
             dataList.Clear();
 
@@ -85,8 +85,8 @@ namespace ReviewR
                 //Debug.WriteLine("Request Headers: ");
 
                 // Construct the JSON to post
-                HttpStringContent content = new HttpStringContent(igbdrequeststring);
-                Debug.WriteLine("Request Contents: " + igbdrequeststring);
+                HttpStringContent content = new HttpStringContent($"search \"{SearchQuery}\"; fields name,release_dates.human;");
+                Debug.WriteLine("Request Contents: " + content);
 
                 // Post the JSON and wait for a response
                 HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(
@@ -97,6 +97,9 @@ namespace ReviewR
                 httpResponseMessage.EnsureSuccessStatusCode();
                 var httpResponseBody = await httpResponseMessage.Content.ReadAsStringAsync();
                 Debug.WriteLine("Request Response: " + httpResponseBody);
+
+                //Deserialise the return output into game id, game name and release date
+                GameListObject igdbcredentials = JsonSerializer.Deserialize<GameListObject>(httpResponseBody);
             }
             catch (Exception ex)
             {

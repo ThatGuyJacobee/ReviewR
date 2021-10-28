@@ -15,12 +15,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MySql.Data.MySqlClient;
-using Windows.Web.Http;
-using System.Threading.Tasks;
+using Windows.Web.Http; //For POST method
+using System.Threading.Tasks; //For POST method
 using Windows.Storage.Streams;
 using System.Diagnostics; //Debug
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using System.Text.Json; //Used for (de)serizalisation and JSON manipulation
 
 namespace ReviewR
 {
@@ -49,6 +48,9 @@ namespace ReviewR
         //Set the value for IGDB access token received from the POST return output
         private static string GAccessIGDB = "";
         public static string GlobalAccessIGDB { get => GAccessIGDB; set => GAccessIGDB = value; }
+
+        //Sets value for the Client ID when making an API request
+        public static string GlobalClientidIGDB = "lcygp51ma1kkvf7ix71xlct0szpuqj";
 
         public class IGDBcredentials
         {

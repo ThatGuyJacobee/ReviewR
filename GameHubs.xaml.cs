@@ -33,46 +33,60 @@ namespace ReviewR
             this.InitializeComponent();
             this.Loaded += Page_Loaded;
 
-            ObservableCollection<GameListObject> dataList = new ObservableCollection<GameListObject>();
-            GameListObject g1 = new GameListObject() { GameName = "Cs", ReleaseDate = "idk", GameIcon = "test" };
-            dataList.Add(g1);
-            gamehub_list.ItemsSource = dataList;
+            //ObservableCollection<GameListObject> dataList = new ObservableCollection<GameListObject>();
+            //GameListObject g1 = new GameListObject() { GameID = "Cs", GameName = "idk", ReleaseDate = "01/01/0001" };
+            //dataList.Add(g1);
+            //gamehub_list.ItemsSource = dataList;
         }
 
-        public class GameListObject
+        public partial class GameListObject
         {
+            [JsonPropertyName("id")]
+            public long GameID { get; set; }
+
+            [JsonPropertyName("name")]
             public string GameName { get; set; }
-            public string ReleaseDate { get; set; }
-            public string GameIcon { get; set; }
+
+            [JsonPropertyName("release_dates")]
+            public ObservableCollection<ReleaseDate> ReleaseDates { get; set; }
+        }
+
+        public partial class ReleaseDate
+        {
+            [JsonPropertyName("id")]
+            public long Id { get; set; }
+
+            [JsonPropertyName("human")]
+            public string Human { get; set; }
         }
 
         //Object for credentials that will be used for deserialization
-        public class IGDBCredentials
-        {
-            [JsonPropertyName("Client-ID")]
-            public string Client_ID { get; set; }
-            public string Authorization { get; set; }
-            public string fields { get; set; }
-        }
+        //public class IGDBCredentials
+        //{
+        //    [JsonPropertyName("Client-ID")]
+        //    public string Client_ID { get; set; }
+        //    public string Authorization { get; set; }
+        //    public string fields { get; set; }
+        //}
 
         //On search box content change
         private async void gamehub_search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ObservableCollection<GameListObject> dataList = new ObservableCollection<GameListObject>();
-            gamehub_list.ItemsSource = dataList;
-            dataList.Clear();
+            //ObservableCollection<GameListObject> dataList = new ObservableCollection<GameListObject>();
+            //gamehub_list.ItemsSource = dataList;
+            //dataList.Clear();
 
             var SearchQuery = gamehub_search.Text;
 
-            var idgbcredentials = new IGDBCredentials
-            {
-                Client_ID = $"{App.GlobalClientidIGDB}",
-                Authorization = $"Bearer {App.GlobalAccessIGDB}",
-                fields = $"search \"{SearchQuery}\"; fields name,release_date.human"
-            };
+            //var idgbcredentials = new IGDBCredentials
+            //{
+            //    Client_ID = $"{App.GlobalClientidIGDB}",
+            //    Authorization = $"Bearer {App.GlobalAccessIGDB}",
+            //    fields = $"search \"{SearchQuery}\"; fields name,release_date.human; limit 1"
+            //};
 
             //Serialization occurs which converts the credentials above into a JSON format for POST
-            string igbdrequeststring = JsonSerializer.Serialize(idgbcredentials);
+            //string igbdrequeststring = JsonSerializer.Serialize(idgbcredentials);
 
             try
             {
@@ -99,7 +113,28 @@ namespace ReviewR
                 Debug.WriteLine("Request Response: " + httpResponseBody);
 
                 //Deserialise the return output into game id, game name and release date
-                GameListObject igdbcredentials = JsonSerializer.Deserialize<GameListObject>(httpResponseBody);
+                List<GameListObject> gamelistobjects = JsonSerializer.Deserialize<List<GameListObject>>(httpResponseBody);
+
+                ObservableCollection<GameListObject> dataList = new ObservableCollection<GameListObject>(gamelistobjects);
+                ObservableCollection<GameListObject> GameList = new ObservableCollection<GameListObject>();
+
+                foreach (var item in dataList)
+                {
+                    Debug.WriteLine($"id: {item.GameID}");
+                    Debug.WriteLine($"name: {item.GameName}");
+
+                    GameListObject add = new GameListObject() { GameID = item.GameID, GameName = item.GameName };
+                    GameList.Add(add);
+
+                    if (item.ReleaseDates != null)
+                    {
+                        foreach (var date in item.ReleaseDates)
+                        {
+                            Debug.WriteLine($"releaseDate: {date.Human}");
+                        }
+                    }
+                }
+                gamehub_list.ItemsSource = GameList;
             }
             catch (Exception ex)
             {

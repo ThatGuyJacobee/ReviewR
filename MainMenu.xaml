@@ -24,8 +24,8 @@
                 <Image x:Name="reviewr_logo" Source="/Assets/ReviewR-Logo.png" Height="617" Width="617" Margin="652,10,651,203"/>
                 <TextBlock x:Name="reviewr_text" Margin="704,606,704,0" Text="ReviewR" TextWrapping="Wrap" VerticalAlignment="Top" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold"/>
 
-                <TextBlock x:Name="updates_text" Margin="-23,25,1288,0" Text="News/Updates:" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" FontSize="75" TextAlignment="Center" FontWeight="Bold"/>
-                <ListView x:Name="myreviews_list" Margin="25,158,1322,80" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
+                <TextBlock x:Name="newsupdates_text" Margin="-23,25,1288,0" Text="News/Updates:" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" FontSize="75" TextAlignment="Center" FontWeight="Bold"/>
+                <ListView x:Name="newsupdates_list" Margin="25,158,1322,80" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
 
                 <ProgressBar Margin="0,780,0,0" VerticalAlignment="Top" Height="50" ValueChanged="ProgressBar_ValueChanged"/>
                 <Button x:Name="guide_text" Content="How to use the app?" Margin="1367,319,102,391" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>

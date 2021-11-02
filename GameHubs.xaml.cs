@@ -142,9 +142,13 @@ namespace ReviewR
             }
         }
 
-        private void ItemClick() //When an item in List View is pressed
+        private void gamehub_list_ItemClick(object sender, ItemClickEventArgs e) //When an item in List View is pressed
         {
-
+            //ObservableCollection<GameListObject> GameList = new ObservableCollection<GameListObject>();
+            //GameList.
+            //Debug.WriteLine(ItemClick);
+            var clickedItem = e.ClickedItem as GameListObject;
+            Debug.WriteLine("Click Item text: " + clickedItem.GameID);
         }
 
         private void continue_button_Click(object sender, RoutedEventArgs e)

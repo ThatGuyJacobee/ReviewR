@@ -25,6 +25,13 @@ namespace ReviewR
         public GameHubPages()
         {
             this.InitializeComponent();
+            //Waits till page is fully loaded before running the event
+            this.Loaded += Page_Loaded;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            username_text.Text = GameHubs.GameSpecificGameName + " - ID " + GameHubs.GameSpecificGameID;
         }
     }
 }

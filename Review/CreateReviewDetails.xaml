@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="ReviewR.CreateReviewDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ReviewR"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="canvasgrid" Background="Black">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="createreview_text" Grid.Row="0" Text="Create a Review" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#D55E5E">
+                <TextBlock x:Name="step2_description" Text="Step 2: Create a compelling title!" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="533,79,536,658"/>
+                <TextBox x:Name="create_title" PlaceholderText="Create a title..." TextWrapping="Wrap" Width="837" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center" Margin="0,172,0,579"/>
+
+                <TextBlock x:Name="step3_description" Text="Step 3: Write a description!" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="533,282,536,455"/>
+                <TextBox x:Name="create_description" PlaceholderText="Wreite description.." TextWrapping="Wrap" Width="1444" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center" Margin="0,374,0,217"/>
+
+                <Button x:Name="continue_button" Content="Continue" Margin="786,641,785,71" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Click="continue_button_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

@@ -119,6 +119,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Review\CreateReviewPreview.xaml.cs">
+      <DependentUpon>CreateReviewPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Review\CreateReviewDetails.xaml.cs">
+      <DependentUpon>CreateReviewDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Review\CreateReviewSearch.xaml.cs">
+      <DependentUpon>CreateReviewSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameHubPages.xaml.cs">
       <DependentUpon>GameHubPages.xaml</DependentUpon>
     </Compile>
@@ -239,6 +248,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Review\CreateReviewPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Review\CreateReviewDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Review\CreateReviewSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GameHubPages.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

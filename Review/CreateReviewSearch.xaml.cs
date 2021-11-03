@@ -26,17 +26,11 @@ namespace ReviewR
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class GameHubs : Page
+    public sealed partial class CreateReviewSearch : Page
     {
-        public GameHubs()
+        public CreateReviewSearch()
         {
             this.InitializeComponent();
-            this.Loaded += Page_Loaded;
-
-            //ObservableCollection<GameListObject> dataList = new ObservableCollection<GameListObject>();
-            //GameListObject g1 = new GameListObject() { GameID = "Cs", GameName = "idk", ReleaseDate = "01/01/0001" };
-            //dataList.Add(g1);
-            //gamehub_list.ItemsSource = dataList;
         }
 
         public partial class GameListObject
@@ -60,33 +54,9 @@ namespace ReviewR
             public string Human { get; set; }
         }
 
-        //Object for credentials that will be used for deserialization
-        //public class IGDBCredentials
-        //{
-        //    [JsonPropertyName("Client-ID")]
-        //    public string Client_ID { get; set; }
-        //    public string Authorization { get; set; }
-        //    public string fields { get; set; }
-        //}
-
-        //On search box content change
-        private async void gamehub_search_TextChanged(object sender, TextChangedEventArgs e)
+        private async void createreview_search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //ObservableCollection<GameListObject> dataList = new ObservableCollection<GameListObject>();
-            //gamehub_list.ItemsSource = dataList;
-            //dataList.Clear();
-
-            var SearchQuery = gamehub_search.Text;
-
-            //var idgbcredentials = new IGDBCredentials
-            //{
-            //    Client_ID = $"{App.GlobalClientidIGDB}",
-            //    Authorization = $"Bearer {App.GlobalAccessIGDB}",
-            //    fields = $"search \"{SearchQuery}\"; fields name,release_date.human; limit 1"
-            //};
-
-            //Serialization occurs which converts the credentials above into a JSON format for POST
-            //string igbdrequeststring = JsonSerializer.Serialize(idgbcredentials);
+            var SearchQuery = createreview_search.Text;
 
             try
             {
@@ -140,7 +110,7 @@ namespace ReviewR
                     }
                 }
                 //Add all the items once all of the items are ready to be added
-                gamehub_list.ItemsSource = GameList;
+                createreview_list.ItemsSource = GameList;
             }
             catch (Exception ex)
             {
@@ -154,7 +124,7 @@ namespace ReviewR
         //Set the Game Name as above
         public static string GameSpecificGameName = "";
 
-        private void gamehub_list_ItemClick(object sender, ItemClickEventArgs e) //When an item in List View is pressed
+        private void createreview_list_ItemClick(object sender, ItemClickEventArgs e) //When an item in List View is pressed
         {
             var clickedItem = e.ClickedItem as GameListObject;
             Debug.WriteLine("Click Item text: " + clickedItem.GameID);
@@ -164,26 +134,7 @@ namespace ReviewR
             GameSpecificGameID = clickedItem.GameID;
             GameSpecificGameName = clickedItem.GameName;
 
-            this.Frame.Navigate(typeof(GameHubPages), null); //Switch to the game-specific page
-        }
-
-        private void continue_button_Click(object sender, RoutedEventArgs e)
-        {
-            //Sets the current elements to collapsed
-            username_text.Visibility = Visibility.Collapsed;
-            gamehub_description.Visibility = Visibility.Collapsed;
-            continue_button.Visibility = Visibility.Collapsed;
-
-            //Sets the game hub elements to visible
-            gamehub_search.Visibility = Visibility.Visible;
-            addfilters_button.Visibility = Visibility.Visible;
-            gamehub_list.Visibility = Visibility.Visible;
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            //Personalises the welcome message
-            username_text.Text = "Hi again, " + App.GlobalUsername + "!";
+            this.Frame.Navigate(typeof(CreateReviewDetails), null); //Switch to the game-specific page
         }
     }
 }

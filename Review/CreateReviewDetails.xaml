@@ -24,7 +24,7 @@
                 <TextBox x:Name="create_title" PlaceholderText="Create a title..." TextWrapping="Wrap" Width="837" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center" Margin="0,172,0,579"/>
 
                 <TextBlock x:Name="step3_description" Text="Step 3: Write a description!" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="533,282,536,455"/>
-                <TextBox x:Name="create_description" PlaceholderText="Wreite description.." TextWrapping="Wrap" Width="1444" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center" Margin="0,374,0,217"/>
+                <TextBox x:Name="create_description" PlaceholderText="Write description.." TextWrapping="Wrap" Width="1444" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center" Margin="0,374,0,217"/>
 
                 <Button x:Name="continue_button" Content="Continue" Margin="786,641,785,71" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Click="continue_button_Click"/>
             </Grid>

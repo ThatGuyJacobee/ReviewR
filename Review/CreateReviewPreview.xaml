@@ -16,12 +16,15 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Background="Black">
-                <TextBlock x:Name="createreview_text" Grid.Row="0" Text="Create a Review" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+                <TextBlock x:Name="createreview_text" Grid.Row="0" Text="Preview Your Review" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
             </Grid>
 
-            <Grid Grid.Row="1" Background="#D55E5E">
-                <TextBlock x:Name="preview_text" Text="Here's a preview of your review:" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="40,28,43,668"/>
-                <Button x:Name="submit_button" Content="Submit Review" Margin="777,551,794,161" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Click="continue_button_Click"/>
+            <Grid Grid.Row="1" Background="#D55E5E" Height="830" VerticalAlignment="Top">
+                <TextBlock x:Name="preview_username" Text="game_username" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1007,52,89,605"/>
+                <TextBlock x:Name="preview_gamename" Text="game_name" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="89,52,1007,605"/>
+                <TextBlock x:Name="preview_title" Text="game_title" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="68,244,67,488"/>
+                <TextBlock x:Name="preview_description" Text="game_description" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="68,391,67,215"/>
+                <Button x:Name="submit_button" Content="Submit Review" Margin="786,646,785,66" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Click="continue_button_Click"/>
             </Grid>
         </Grid>
     </Grid>

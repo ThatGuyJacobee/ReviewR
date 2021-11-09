@@ -157,8 +157,8 @@ namespace ReviewR
         private void gamehub_list_ItemClick(object sender, ItemClickEventArgs e) //When an item in List View is pressed
         {
             var clickedItem = e.ClickedItem as GameListObject;
-            Debug.WriteLine("Click Item text: " + clickedItem.GameID);
-            Debug.WriteLine("Click Item text: " + clickedItem.GameName);
+            Debug.WriteLine("Click Item GameID: " + clickedItem.GameID);
+            Debug.WriteLine("Click Item Game Name: " + clickedItem.GameName);
 
             //Set the GameID as a static long variable
             GameSpecificGameID = clickedItem.GameID;

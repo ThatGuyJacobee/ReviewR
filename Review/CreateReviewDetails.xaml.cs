@@ -27,9 +27,32 @@ namespace ReviewR
             this.InitializeComponent();
         }
 
-        private void continue_button_Click(object sender, RoutedEventArgs e)
+        public static string ReviewTitle = "";
+        public static string ReviewDescription = "";
+
+        private async void continue_button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateReviewPreview), null); //Switch to the review submit preview page
+            string Title = create_title.Text;
+            string Description = create_description.Text;
+
+            if (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Description) && Description.Length <= 2048)
+            {
+                this.Frame.Navigate(typeof(CreateReviewPreview), null); //Switch to the review submit preview page
+                ReviewTitle = Title;
+                ReviewDescription = Description;
+            }
+
+            else
+            {
+                //Display an content dialog which states the error - blackbox testing
+                ContentDialog errordialog = new ContentDialog();
+                errordialog.Title = "Error!";
+                errordialog.Content = "Validation not passed.\nMake sure NOT to include any inapprporiate words and keep the description below 2048 characters.";
+                errordialog.CloseButtonText = "Approve";
+                errordialog.DefaultButton = ContentDialogButton.Close;
+
+                await errordialog.ShowAsync(); //Display it until user presses the accept button
+            }
         }
     }
 }

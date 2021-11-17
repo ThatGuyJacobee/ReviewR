@@ -90,6 +90,7 @@ namespace ReviewR
                 successdialog.DefaultButton = ContentDialogButton.Close;
 
                 await successdialog.ShowAsync(); //Displays it until the close button is pressed
+                this.Frame.Navigate(typeof(ReviewSystem), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo()); //If successful navigate to the review landing page
             }
 
             else

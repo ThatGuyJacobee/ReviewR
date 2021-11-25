@@ -1,0 +1,18 @@
+﻿<ContentDialog
+    x:Class="ReviewR.NoConnection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ReviewR"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Application Error"
+    PrimaryButtonText="Relaunch ReviewR"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+
+    <Grid Height="107" VerticalAlignment="Top">
+        <TextBlock x:Name="error_title" HorizontalAlignment="Left" Text="App couldn't establish connection to the server." TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock x:Name="error_desc" HorizontalAlignment="Center" Text="Please ensure that you have an active internet connection, before relaunching the application. If you continue experiencing this submit a bug report." TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,31,0,0"/>
+        <TextBlock x:Name="error_code" HorizontalAlignment="Left" Text="[Error Code: NO_ACTIVE_CON]" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,87,0,0"/>
+    </Grid>
+</ContentDialog>

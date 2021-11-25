@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MySql.Data.MySqlClient;
 using System.Diagnostics; //Debug
+using Windows.ApplicationModel.Core;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -69,12 +70,13 @@ namespace ReviewR
             if (UsernameSuccess) {
                 ContentDialog successdialog = new ContentDialog();
                 successdialog.Title = "Success!";
-                successdialog.Content = "Your username has been updated!";
+                successdialog.Content = "Your username has been updated! You will have to relog after approving this message.";
                 successdialog.CloseButtonText = "Approve";
                 successdialog.DefaultButton = ContentDialogButton.Close;
 
                 username_contentdialog.Hide(); //Close the register dialog (limitation 1 at a time)
                 await successdialog.ShowAsync(); //Displays it until the close button is pressed
+
             }
             else {
                 ContentDialog errordialog = new ContentDialog();
@@ -85,6 +87,10 @@ namespace ReviewR
 
                 username_contentdialog.Hide();
                 await errordialog.ShowAsync();
+
+                //NEEDS EDITING
+                var AppRestart = CoreApplication.RequestRestartAsync("App restarted due to new username set.");
+                await AppRestart;
             }
         }
 

@@ -34,7 +34,7 @@ namespace ReviewR
             this.Loaded += Page_Loaded;
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             using (MySqlConnection MySQLCon = new MySqlConnection(ConnectionString))
             {
@@ -48,6 +48,9 @@ namespace ReviewR
                 {
                     db_status_warning.Visibility = Visibility.Visible;
                     database_status.Text = "Error: DB Connection Closed";
+                    //When the Register Account button is clicked, display the Register Content Dialog
+                    ContentDialog nocondialog = new NoConnection();
+                    await nocondialog.ShowAsync();
                 }
 
                 if (MySQLCon.State.ToString() == "Open") //If the connection status is open, then display success.

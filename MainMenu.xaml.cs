@@ -13,7 +13,12 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MySql.Data.MySqlClient;
+using Windows.Web.Http; //For POST method
+using System.Threading.Tasks; //For POST method
+using System.Collections.ObjectModel; //Used to notify listview values when objects are changed
 using System.Diagnostics; //Debug
+using System.Text.Json; //Used for (de)serizalisation and JSON manipulation
+using System.Text.Json.Serialization; //Used as serialization library
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 

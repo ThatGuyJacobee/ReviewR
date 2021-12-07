@@ -70,12 +70,15 @@ namespace ReviewR
             if (UsernameSuccess) {
                 ContentDialog successdialog = new ContentDialog();
                 successdialog.Title = "Success!";
-                successdialog.Content = "Your username has been updated! You will have to relog after approving this message.";
+                successdialog.Content = "Your username has been updated! The app will restart and you will have to relog after approving this message for security purposes.";
                 successdialog.CloseButtonText = "Approve";
                 successdialog.DefaultButton = ContentDialogButton.Close;
 
                 username_contentdialog.Hide(); //Close the register dialog (limitation 1 at a time)
                 await successdialog.ShowAsync(); //Displays it until the close button is pressed
+
+                //Added a parameter which runs on close button close to restart the app
+                successdialog.CloseButtonCommandParameter = await CoreApplication.RequestRestartAsync("App restarted to update username.");
 
             }
             else {
@@ -87,10 +90,6 @@ namespace ReviewR
 
                 username_contentdialog.Hide();
                 await errordialog.ShowAsync();
-
-                //NEEDS EDITING
-                var AppRestart = CoreApplication.RequestRestartAsync("App restarted due to new username set.");
-                await AppRestart;
             }
         }
 

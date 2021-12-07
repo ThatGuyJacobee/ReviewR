@@ -99,7 +99,7 @@ namespace ReviewR
                 //Debug.WriteLine("Request Headers: ");
 
                 // Construct the JSON to post
-                HttpStringContent content = new HttpStringContent($"search \"{SearchQuery}\"; fields name,release_dates.human;");
+                HttpStringContent content = new HttpStringContent($"search \"{SearchQuery}\"; fields name,release_dates.human,external_games.category;");
                 Debug.WriteLine("Request Contents: " + content);
 
                 // Post the JSON and wait for a response

@@ -26,8 +26,6 @@
 
                 <TextBlock x:Name="newsupdates_text" Margin="-23,25,1288,0" Text="News/Updates:" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" FontSize="75" TextAlignment="Center" FontWeight="Bold"/>
                 <ListView x:Name="newsupdates_list" Margin="25,158,1322,80" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
-
-                <ProgressBar Margin="0,780,0,0" VerticalAlignment="Top" Height="50" ValueChanged="ProgressBar_ValueChanged"/>
                 <Button x:Name="guide_text" Content="How to use the app?" Margin="1367,319,102,391" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
             </Grid>
         </Grid>

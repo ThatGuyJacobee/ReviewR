@@ -90,6 +90,10 @@ namespace ReviewR
 
                 username_contentdialog.Hide();
                 await errordialog.ShowAsync();
+
+                //Bug fix to ensure that the username dialog reappears after the user approves the error dialog to retry.
+                ContentDialog usernamedialog = new UsernameDialog();
+                errordialog.CloseButtonCommandParameter = await usernamedialog.ShowAsync();
             }
         }
 

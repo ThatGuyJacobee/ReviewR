@@ -20,15 +20,26 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <TextBlock x:Name="account_lastlogon" Text="Last Log-On:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1409,297,0,467" HorizontalAlignment="Left"/>
-                <TextBlock x:Name="account_lastlogon_date" Text="-Date/Time-" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1413,369,0,395" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="lastlogon_title" Text="Last Log-On:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1409,297,0,467" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="lastlogon_date" Text="-Date/Time-" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1413,369,0,395" HorizontalAlignment="Left"/>
 
-                <TextBlock x:Name="account_created" Text="Account Created:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1356,488,0,276" HorizontalAlignment="Left"/>
-                <TextBlock x:Name="account_created_date" Text="-Date-" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1482,560,0,204" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="accountcreated_title" Text="Account Created:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1356,488,0,276" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="accountcreated_date" Text="-Date-" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1482,560,0,204" HorizontalAlignment="Left"/>
 
-                <TextBlock x:Name="username_text" Text="&lt;$username&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="631,25,631,671"/>
-                <TextBlock x:Name="myreviews_text" Text="My Reviews:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="176,162,0,602" HorizontalAlignment="Left"/>
-                <ListView x:Name="myreviews_list" Margin="78,255,1349,95" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
+                <TextBlock x:Name="username_title" Text="&lt;$username&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="631,25,631,671"/>
+                <TextBlock x:Name="myreviews_title" Text="My Reviews:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="176,162,0,602" HorizontalAlignment="Left"/>
+                <ListView x:Name="myreviews_list" Margin="30,270,1294,30" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding GameName}" FontSize="26" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding GameTitle}" FontSize="20"></TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
                 <Button x:Name="account_details" Content="Account Edit" Margin="760,270,760,440" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
                 <Button x:Name="account_logo" Content="Select Logo" Margin="760,423,760,288" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>

@@ -126,6 +126,22 @@ namespace ReviewR
 
             if (loginSuccessful)
             {
+                //Each time on logon, update the last logon date and time for the user
+                using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    //Sets variables and SQL command
+                    cmd.CommandText = "UPDATE user_data SET lastlogon=@lastlogon WHERE UserID=@UserID";
+                    cmd.Parameters.AddWithValue("@UserID", App.GlobalUserID);
+                    cmd.Parameters.AddWithValue("@lastlogon", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+
+                //Navitage to the Main Menu class
                 this.Frame.Navigate(typeof(NavigationBar), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo()); //If input compares identically to database, proceed to main menu
             }
             else

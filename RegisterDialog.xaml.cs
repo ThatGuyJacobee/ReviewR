@@ -44,9 +44,10 @@ namespace ReviewR
                 MySqlCommand cmd = conn.CreateCommand();
 
                 //Selects the user_data table to insert email and password into
-                cmd.CommandText = "INSERT INTO user_data (email, password) VALUES (@email, @password)";
+                cmd.CommandText = "INSERT INTO user_data (email, password, creationdate) VALUES (@email, @password, @creationdate)";
                 cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
                 cmd.Parameters.AddWithValue("@password", passwordcheck);
+                cmd.Parameters.AddWithValue("@creationdate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //Variable to set the creation date alongside the account.
 
                 var NumberChar = new[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }; //Array variable for all the numbers
                 var SpecialChar = new[] { '!', '#', '$', '%', '&', '(', ')', '*', '+', '-', '_', '.', '/', ':', ';', '<', '>', '=', '?', '[', ']', '~' }; //Array variable of all the special characters

@@ -38,9 +38,9 @@ namespace ReviewR
             public string GameTitle { get; set; }
         }
 
-            private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            bool reviewFetchSuccessful = DataValidation(); //Run the DataValidation method
+            bool reviewFetchSuccessful = DataFetch(); //Run the DataValidation method
 
             if (reviewFetchSuccessful)
             {
@@ -53,7 +53,7 @@ namespace ReviewR
             }
         }
 
-            private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
         }
@@ -63,7 +63,7 @@ namespace ReviewR
             this.Frame.Navigate(typeof(CreateReview), null); //When button pressed, move to create review page
         }
 
-        private bool DataValidation() //Method for database validation
+        private bool DataFetch() //Method for database validation
         {
             using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
             {

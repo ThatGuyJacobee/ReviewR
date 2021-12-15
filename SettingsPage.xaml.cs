@@ -105,5 +105,12 @@ namespace ReviewR
         {
 
         }
+
+        private async void account_avatar_Click(object sender, RoutedEventArgs e)
+        {
+            //When the Register Account button is clicked, display the Register Content Dialog
+            ContentDialog uploaddialog = new UploadAvatar();
+            await uploaddialog.ShowAsync();
+        }
     }
 }

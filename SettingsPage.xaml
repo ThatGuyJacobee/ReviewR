@@ -42,7 +42,7 @@
                 </ListView>
 
                 <Button x:Name="account_details" Content="Account Edit" Margin="760,270,760,440" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
-                <Button x:Name="account_logo" Content="Select Logo" Margin="760,423,760,288" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
+                <Button x:Name="account_avatar" Content="Select Avatar" Margin="760,423,760,288" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Click="account_avatar_Click"/>
                 <Button x:Name="account_bio" Content="Adjust profile" Margin="760,581,760,130" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch"/>
             </Grid>
         </Grid>

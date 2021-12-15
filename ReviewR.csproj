@@ -177,6 +177,9 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UploadAvatar.xaml.cs">
+      <DependentUpon>UploadAvatar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsernameDialog.xaml.cs">
       <DependentUpon>UsernameDialog.xaml</DependentUpon>
     </Compile>
@@ -327,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UploadAvatar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

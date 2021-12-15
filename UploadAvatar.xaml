@@ -1,0 +1,23 @@
+﻿<ContentDialog
+    x:Class="ReviewR.UploadAvatar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ReviewR"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Change Avatar"
+    PrimaryButtonText="Cancel"
+    SecondaryButtonText="Submit"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="What do you want to do with your avatar?" VerticalAlignment="Top" Width="265"/>
+        <Button Content="Reset to default" Margin="0,28,0,0" VerticalAlignment="Top" Width="132" FontSize="11"/>
+        <Button Content="Upload custom image" Margin="151,28,0,0" VerticalAlignment="Top" Width="160" FontSize="11"/>
+        <Button Content="Use a URL link as image" Margin="329,28,0,0" VerticalAlignment="Top" Width="169" FontSize="11"/>
+        <Button Content="Upload avatar..." Click="FileNameButton_Click" Margin="301,148,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="uploadedimage_text" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Awaiting file upload..." VerticalAlignment="Top" Width="148" Margin="0,155,0,0"/>
+    </Grid>
+</ContentDialog>

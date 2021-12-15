@@ -35,8 +35,10 @@ namespace ReviewR
         public partial class ReviewObject
         {
             public int ReviewID { get; set; }
+            public int UserID { get; set; }
             public string GameName { get; set; }
             public string GameTitle { get; set; }
+            public string RevDesc { get; set; }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -71,7 +73,7 @@ namespace ReviewR
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "SELECT ReviewID, RevGame, RevTitle FROM review_data ORDER BY ReviewID DESC LIMIT 10"; //Selects the email and password rows from user_data
+                cmd.CommandText = "SELECT ReviewID, UserID, RevGame, RevTitle, RevDesc FROM review_data ORDER BY ReviewID DESC LIMIT 10"; //Selects the email and password rows from user_data
                 cmd.Connection = conn;
 
                 MySqlDataReader reviewfetch = cmd.ExecuteReader(); //Executes a read command for the table
@@ -83,13 +85,17 @@ namespace ReviewR
                     {
                         //Set results as variables
                         var ReviewID = Convert.ToInt32(reviewfetch["ReviewID"]);
+                        var UserID = Convert.ToInt32(reviewfetch["UserID"]);
                         var ReviewGame = Convert.ToString(reviewfetch["RevGame"]);
                         var ReviewTitle = Convert.ToString(reviewfetch["RevTitle"]);
+                        var ReviewDesc = Convert.ToString(reviewfetch["RevDesc"]);
                         Debug.WriteLine("Review ID: " + ReviewID);
+                        Debug.WriteLine("User ID: " + UserID);
                         Debug.WriteLine("Game Reviewed: " + ReviewGame);
                         Debug.WriteLine("Game Title: " + ReviewTitle);
+                        Debug.WriteLine("Review Description: " + ReviewDesc);
 
-                        ReviewObject add = new ReviewObject() { ReviewID = ReviewID, GameName = ReviewGame, GameTitle = ReviewTitle };
+                        ReviewObject add = new ReviewObject() { ReviewID = ReviewID, UserID = UserID, GameName = ReviewGame, GameTitle = ReviewTitle, RevDesc = ReviewDesc };
                         ReviewList.Add(add); //Adds item to the temporary list
                     }
                     
@@ -125,7 +131,7 @@ namespace ReviewR
                     notfound_text.Visibility = Visibility.Collapsed;
                     var sqlsearch = rev_search.Text;
 
-                    cmd.CommandText = "SELECT ReviewID, RevGame, RevTitle FROM review_data WHERE RevGame LIKE '%"+ sqlsearch +"%' OR RevTitle LIKE '%"+ sqlsearch +"%' ORDER BY ReviewID DESC LIMIT 10"; //Selects the email and password rows from user_data
+                    cmd.CommandText = "SELECT ReviewID, UserID, RevGame, RevTitle, RevDesc FROM review_data WHERE RevGame LIKE '%"+ sqlsearch +"%' OR RevTitle LIKE '%"+ sqlsearch +"%' ORDER BY ReviewID DESC LIMIT 10"; //Selects the email and password rows from user_data
                     cmd.Connection = conn;
 
                     MySqlDataReader reviewfetch = cmd.ExecuteReader(); //Executes a read command for the table
@@ -137,13 +143,17 @@ namespace ReviewR
                         {
                             //Set results as variables
                             var ReviewID = Convert.ToInt32(reviewfetch["ReviewID"]);
+                            var UserID = Convert.ToInt32(reviewfetch["UserID"]);
                             var ReviewGame = Convert.ToString(reviewfetch["RevGame"]);
                             var ReviewTitle = Convert.ToString(reviewfetch["RevTitle"]);
+                            var ReviewDesc = Convert.ToString(reviewfetch["RevDesc"]);
                             Debug.WriteLine("Review ID: " + ReviewID);
+                            Debug.WriteLine("User ID: " + UserID);
                             Debug.WriteLine("Game Reviewed: " + ReviewGame);
                             Debug.WriteLine("Game Title: " + ReviewTitle);
+                            Debug.WriteLine("Review Description: " + ReviewDesc);
 
-                            ReviewObject add = new ReviewObject() { ReviewID = ReviewID, GameName = ReviewGame, GameTitle = ReviewTitle };
+                            ReviewObject add = new ReviewObject() { ReviewID = ReviewID, UserID = UserID, GameName = ReviewGame, GameTitle = ReviewTitle, RevDesc = ReviewDesc };
                             ReviewList.Add(add); //Adds item to the temporary list
                         }
 
@@ -166,10 +176,16 @@ namespace ReviewR
         public static int ReviewSpecificID = 0;
 
         //Set the Game Name as above
+        public static int ReviewSpecificUserID = 0;
+
+        //Set the Game Name as above
         public static string ReviewSpecificGameName = "";
 
         //Set the Game Name as above
         public static string ReviewSpecificGameTitle = "";
+
+        //Set the Game Name as above
+        public static string ReviewSpecificDescription = "";
 
         private void reviewsearch_list_ItemClick(object sender, ItemClickEventArgs e) //When an item in List View is pressed
         {
@@ -179,8 +195,10 @@ namespace ReviewR
 
             //Set the GameID as a static long variable
             ReviewSpecificID = clickedItem.ReviewID;
+            ReviewSpecificUserID = clickedItem.UserID;
             ReviewSpecificGameName = clickedItem.GameName;
             ReviewSpecificGameTitle = clickedItem.GameTitle;
+            ReviewSpecificDescription = clickedItem.RevDesc;
 
             this.Frame.Navigate(typeof(ReviewSpecificPages), null); //Switch to the game-specific page
         }

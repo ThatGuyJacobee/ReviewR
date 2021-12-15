@@ -8,7 +8,23 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="canvasgrid" Background="Black">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="reviewspecific_text" Grid.Row="0" Text="Review-Specific Page" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#D55E5E">
+                <TextBlock x:Name="usernamereview_text" Text="&lt;$ReviewData&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="42,10,41,686"/>
+                <TextBlock x:Name="reviewedgame_text" Text="&lt;$ReviewedGame&gt;" TextWrapping="Wrap" Height="134" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="42,175,41,521"/>
+                <TextBlock x:Name="reviewtitle_text" Text="&lt;$ReviewTitle&gt;" TextWrapping="Wrap" FontSize="65" TextAlignment="Center" FontWeight="Bold" Margin="42,309,41,345"/>
+                <TextBlock x:Name="reviewdescription_text" Text="&lt;$ReviewDescription&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="42,481,41,41"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

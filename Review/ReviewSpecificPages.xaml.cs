@@ -25,6 +25,16 @@ namespace ReviewR
         public ReviewSpecificPages()
         {
             this.InitializeComponent();
+            //Waits till page is fully loaded before running the event
+            this.Loaded += Page_Loaded;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            usernamereview_text.Text = "Review ID: " + ReviewSystem.ReviewSpecificID;
+            reviewedgame_text.Text = ReviewSystem.ReviewSpecificGameName;
+            reviewtitle_text.Text = ReviewSystem.ReviewSpecificGameTitle;
+            reviewdescription_text.Text = ReviewSystem.ReviewSpecificDescription;
         }
     }
 }

@@ -28,7 +28,7 @@
 
                 <TextBlock x:Name="username_title" Text="&lt;$username&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="631,25,631,671"/>
                 <TextBlock x:Name="myreviews_title" Text="My Reviews:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="176,162,0,602" HorizontalAlignment="Left"/>
-                <ListView x:Name="myreviews_list" Margin="30,270,1294,30" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark">
+                <ListView x:Name="myreviews_list" SelectionMode="None" IsItemClickEnabled="False" Margin="30,270,1294,30" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>

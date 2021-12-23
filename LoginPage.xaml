@@ -34,7 +34,7 @@
             <TextBlock x:Name="enter_email" Margin="450,222,450,776" Text="Email:" TextWrapping="Wrap" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"/>
             <PasswordBox x:Name="password_entry" PlaceholderText="Enter Password..." Margin="423,512,422,511" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center" PasswordChanged="password_entry_PasswordChanged"/>
             <TextBlock x:Name="enter_password" Margin="450,410,449,580" Text="Password:" TextWrapping="Wrap" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <Button x:Name="google_signin" VerticalAlignment="Stretch" Height="103" Width="411" RequestedTheme="Default" Margin="370,748,371,229" HorizontalAlignment="Center">
+            <Button x:Name="google_signin" VerticalAlignment="Stretch" Height="103" Width="411" RequestedTheme="Default" Margin="370,748,371,229" HorizontalAlignment="Center" Click="google_signin_Click">
                 <StackPanel>
                     <Image Source="Assets/g-logo.png" Width="80" Height="80" Margin="0,0,275,0"/>
                     <TextBlock Text="SIGN IN WITH GOOGLE" Margin="100,-50,0,20" FontSize="24" FontWeight="Bold" FontFamily="Roboto Medium"/>

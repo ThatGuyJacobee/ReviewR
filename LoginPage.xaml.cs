@@ -23,6 +23,7 @@ using Windows.Data.Json;
 using Windows.Storage.Streams;
 using System.Text.Json; //Used for (de)serizalisation and JSON manipulation
 using System.Text.Json.Serialization; //Used as serialization library
+using System.Net.Mail; //Used to send emails
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -119,7 +120,32 @@ namespace ReviewR
             }
         }
 
-        private void login_next_Click(object sender, RoutedEventArgs e) //Method ran on login button press
+        private bool DatabaseAccountWrongSignin(string email) //Method for database validation
+        {
+            using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "SELECT UserID, Username, Email, Password FROM user_data WHERE Email=@email AND AuthSub IS NOT NULL"; //Selects the email and password rows from user_data
+                cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
+                cmd.Connection = conn;
+
+                MySqlDataReader login = cmd.ExecuteReader(); //Executes a read command for the table
+                if (login.Read())
+                {
+                    conn.Close(); //Close connection
+                    return true;
+                }
+                else
+                {
+                    conn.Close(); //Close connection
+                    return false;
+                }
+            }
+        }
+
+        private async void login_next_Click(object sender, RoutedEventArgs e) //Method ran on login button press
         {
             string email = email_entry.Text; //Inputs set as variables
             string pass = password_entry.Password;
@@ -131,32 +157,57 @@ namespace ReviewR
                 return;
             }
 
-            bool loginSuccessful = DataValidation(email, pass); //Run the DataValidation method
+            bool databaseWrongSignIn = DatabaseAccountWrongSignin(email);
 
-            if (loginSuccessful)
+            if (!databaseWrongSignIn)
             {
-                //Each time on logon, update the last logon date and time for the user
-                using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+                try
                 {
-                    conn.Open();
-                    MySqlCommand cmd = conn.CreateCommand();
+                    bool loginSuccessful = DataValidation(email, pass); //Run the DataValidation method
 
-                    //Sets variables and SQL command
-                    cmd.CommandText = "UPDATE user_data SET lastlogon=@lastlogon WHERE UserID=@UserID";
-                    cmd.Parameters.AddWithValue("@UserID", App.GlobalUserID);
-                    cmd.Parameters.AddWithValue("@lastlogon", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    if (loginSuccessful)
+                    {
+                        //Each time on logon, update the last logon date and time for the user
+                        using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+                        {
+                            conn.Open();
+                            MySqlCommand cmd = conn.CreateCommand();
 
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                            //Sets variables and SQL command
+                            cmd.CommandText = "UPDATE user_data SET lastlogon=@lastlogon WHERE UserID=@UserID";
+                            cmd.Parameters.AddWithValue("@UserID", App.GlobalUserID);
+                            cmd.Parameters.AddWithValue("@lastlogon", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                            cmd.ExecuteNonQuery();
+                            conn.Close();
+                        }
+
+                        //Navitage to the Main Menu class
+                        this.Frame.Navigate(typeof(NavigationBar), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo()); //If input compares identically to database, proceed to main menu
+                    }
+
+                    else
+                    {
+                        login_status.Visibility = Visibility.Visible; //Otherwise display an error
+                        login_status.Text = "Error: Incorrect details";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Data check was unsuccessful.");
+                    Debug.WriteLine(ex.ToString());
                 }
 
-                //Navitage to the Main Menu class
-                this.Frame.Navigate(typeof(NavigationBar), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo()); //If input compares identically to database, proceed to main menu
             }
             else
             {
-                login_status.Visibility = Visibility.Visible; //Otherwise display an error
-                login_status.Text = "Error: Incorrect details";
+                ContentDialog errordialog = new ContentDialog();
+                errordialog.Title = "Error!";
+                errordialog.Content = "Account already exists.\nAn account with the supplied email address exists as a Google Account log-in. Please use this method to login.";
+                errordialog.CloseButtonText = "Approve";
+                errordialog.DefaultButton = ContentDialogButton.Close;
+
+                await errordialog.ShowAsync();
             }
         }
 
@@ -319,7 +370,7 @@ namespace ReviewR
         //Method checks whether the given google account's email and Sub
         //(Google unique number) are already in the database, if not then
         //a new userID is created with the given Sub and email.
-        public void OAuthSuccessCheck(string userinfoResponseContent)
+        public async void OAuthSuccessCheck(string userinfoResponseContent)
         {
             UserInfoObject Userinfodata = JsonSerializer.Deserialize<UserInfoObject>(userinfoResponseContent);
 
@@ -342,8 +393,14 @@ namespace ReviewR
             else if (foundDuplicate)
             {
                 Debug.WriteLine("OAuth current login user: A regular account with the associated email address already exists!");
-                login_status.Visibility = Visibility.Visible;
-                login_status.Text = "Google Sign-In Error: A regular account with the assoicated Google Account email already exists!";
+
+                ContentDialog errordialog = new ContentDialog();
+                errordialog.Title = "Error!";
+                errordialog.Content = "The email with the associated Google Account already exists as a regular account, hence it can't be used again! Please login through the regular account or if your forgot your credentials, reset your password.";
+                errordialog.CloseButtonText = "Approve";
+                errordialog.DefaultButton = ContentDialogButton.Close;
+
+                await errordialog.ShowAsync();
             }
             else if (!foundMatch && !foundDuplicate)
             {
@@ -372,8 +429,13 @@ namespace ReviewR
                     catch
                     {
                         Debug.WriteLine("OAuth current login user: Error! New User not created!");
-                        login_status.Visibility = Visibility.Visible;
-                        login_status.Text = "Google Sign-In Error: There has been some error logging in, please try again!\n[Error Code: OAUTH_INSERT]";
+                        ContentDialog errordialog = new ContentDialog();
+                        errordialog.Title = "Error!";
+                        errordialog.Content = "Something went wrong.\nReport this issue to the developer.\n[ERROR CODE: OAUTH_INSERT]";
+                        errordialog.CloseButtonText = "Approve";
+                        errordialog.DefaultButton = ContentDialogButton.Close;
+
+                        await errordialog.ShowAsync();
                         conn.Close();
                     }
                 }

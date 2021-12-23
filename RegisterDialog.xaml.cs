@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MySql.Data.MySqlClient;
+using System.Net.Mail; //Used to send emails
+using System.ComponentModel.DataAnnotations; //Used to check that email is real
+using System.Diagnostics; //Debug
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -54,7 +57,7 @@ namespace ReviewR
                 string password = new_password.Password; //Variable set here as it's not used in the button method
 
                 //If statement performs a server-side (pre-insert) validation to ensure data matches requirements
-                if (email.Contains("@") && NumberChar.Any(password.Contains) && SpecialChar.Any(password.Contains) && password.Length >= 5 && (password == passwordcheck) && !string.IsNullOrEmpty(passwordcheck))
+                if (new EmailAddressAttribute().IsValid(email) && email.Contains("@") && NumberChar.Any(password.Contains) && SpecialChar.Any(password.Contains) && password.Length >= 5 && (password == passwordcheck) && !string.IsNullOrEmpty(passwordcheck))
                 {
                     cmd.ExecuteNonQuery();
                     conn.Close();
@@ -73,23 +76,66 @@ namespace ReviewR
             string email = new_email.Text; //Inputs set as variables
             string passwordcheck = new_password_check.Password;
 
-            bool registerSuccess = DataInsertion(email, passwordcheck); //Run the DataValidation method
+            bool databaseDuplicate = DatabaseAccountDuplication(email);
 
-            if (registerSuccess) { //If it was true, then a success content dialog is displayed after the register is closed
-                ContentDialog successdialog = new ContentDialog();
-                successdialog.Title = "Success!";
-                successdialog.Content = "Your account has been successfully created!\nPlease login with these credentials.";
-                successdialog.CloseButtonText = "Approve";
-                successdialog.DefaultButton = ContentDialogButton.Close;
+            if (!databaseDuplicate) { //If it was true, then a success content dialog is displayed after the register is closed
 
-                register_contentdialog.Hide(); //Close the register dialog (limitation 1 at a time)
-                await successdialog.ShowAsync(); //Displays it until the close button is pressed
+                try
+                {
+                    bool dataInserted = DataInsertion(email, passwordcheck);
+
+                    if (dataInserted)
+                    {
+                        MailMessage mail = new MailMessage();
+                        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                        mail.From = new MailAddress("reviewrproject@gmail.com");
+                        mail.To.Add(email);
+                        mail.Subject = "Account has been successfully registered!";
+                        mail.Body = "Hi there,\nThank you for registering an account on the ReviewR app.\nThis email has been automatically sent as a confirmation for account creation.\nIf this action wasn't you or this email was wrongfully sent, please ignore this message.\n\nReviewR App";
+
+                        SmtpServer.Port = 587;
+                        SmtpServer.Credentials = new System.Net.NetworkCredential("reviewrproject@gmail.com", "GuyJacobee_1");
+                        SmtpServer.EnableSsl = true;
+
+                        SmtpServer.Send(mail);
+                        Debug.WriteLine("Account registration Email has been successfully sent to: " + email);
+
+                        ContentDialog successdialog = new ContentDialog();
+                        successdialog.Title = "Success!";
+                        successdialog.Content = "Your account has been successfully created!\nAn email has been sent to the registered email confirming signup.\nPlease login with these credentials.";
+                        successdialog.CloseButtonText = "Approve";
+                        successdialog.DefaultButton = ContentDialogButton.Close;
+
+                        register_contentdialog.Hide(); //Close the register dialog (limitation 1 at a time)
+                        await successdialog.ShowAsync(); //Displays it until the close button is pressed
+                    }
+
+                    else
+                    {
+                        Debug.WriteLine("Data insertion was unsuccessful. Validation failed");
+                        ContentDialog errordialog = new ContentDialog();
+                        errordialog.Title = "Error!";
+                        errordialog.Content = "Validation not passed.\nMake sure all inputs are approved.";
+                        errordialog.CloseButtonText = "Approve";
+                        errordialog.DefaultButton = ContentDialogButton.Close;
+
+                        register_contentdialog.Hide();
+                        await errordialog.ShowAsync();
+                    }
+                   
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Data insertion was unsuccessful.");
+                    Debug.WriteLine(ex.ToString());
+                }
             }
 
             else { //Otherwise the error content dialog is displayed after register is forcefully closed
                 ContentDialog errordialog = new ContentDialog();
                 errordialog.Title = "Error!";
-                errordialog.Content = "Validation not passed.\nMake sure all inputs are approved.";
+                errordialog.Content = "Account already exists.\nAn account with the supplied email address either exists as a regular account, or has been used via Google Sign-in.";
                 errordialog.CloseButtonText = "Approve";
                 errordialog.DefaultButton = ContentDialogButton.Close;
 
@@ -98,12 +144,37 @@ namespace ReviewR
             }
         }
 
+        private bool DatabaseAccountDuplication(string email) //Method for database validation
+        {
+            using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "SELECT UserID, Username, Email, Password FROM user_data WHERE Email=@email"; //Selects the email and password rows from user_data
+                cmd.Parameters.AddWithValue("@email", email); //Sets them as variables
+                cmd.Connection = conn;
+
+                MySqlDataReader login = cmd.ExecuteReader(); //Executes a read command for the table
+                if (login.Read())
+                {
+                    conn.Close(); //Close connection
+                    return true;
+                }
+                else
+                {
+                    conn.Close(); //Close connection
+                    return false;
+                }
+            }
+        }
+
         private void new_email_TextChanged(object sender, TextChangedEventArgs e) //Method which runs every time the new_email input text changes
         {
             string EmailBoxText = new_email.Text;
             string TextBoxText = new_password.Password;
 
-            if (EmailBoxText.Contains("@")) { //Checks if email input contains an @ and if it does, display tick image and collapse others
+            if (new EmailAddressAttribute().IsValid(EmailBoxText) && EmailBoxText.Contains("@")) { //Checks if email input contains an @ and if it does, display tick image and collapse others
                 new_email_neutralimg.Visibility = Visibility.Collapsed;
                 new_email_warningimg.Visibility = Visibility.Collapsed;
                 new_email_tickimg.Visibility = Visibility.Visible;

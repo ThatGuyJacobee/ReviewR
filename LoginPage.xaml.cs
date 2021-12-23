@@ -21,6 +21,8 @@ using System.Net.Http;
 using System.Text;
 using Windows.Data.Json;
 using Windows.Storage.Streams;
+using System.Text.Json; //Used for (de)serizalisation and JSON manipulation
+using System.Text.Json.Serialization; //Used as serialization library
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -184,8 +186,8 @@ namespace ReviewR
             localSettings.Values["state"] = state;
             localSettings.Values["code_verifier"] = code_verifier;
 
-            // Creates the OAuth 2.0 authorization request.
-            string authorizationRequest = string.Format("{0}?response_type=code&scope=openid%20profile&redirect_uri={1}&client_id={2}&state={3}&code_challenge={4}&code_challenge_method={5}",
+            // Creates the OAuth 2.0 authorization request. Amended by adding %20email within the request to return email value.
+            string authorizationRequest = string.Format("{0}?response_type=code&scope=openid%20profile%20email&redirect_uri={1}&client_id={2}&state={3}&code_challenge={4}&code_challenge_method={5}",
                 authorizationEndpoint,
                 System.Uri.EscapeDataString(redirectURI),
                 clientID,
@@ -300,6 +302,137 @@ namespace ReviewR
             HttpResponseMessage userinfoResponse = client.GetAsync(userInfoEndpoint).Result;
             string userinfoResponseContent = await userinfoResponse.Content.ReadAsStringAsync();
             output(userinfoResponseContent);
+
+            //After the API callback is returned, run the check event
+            OAuthSuccessCheck(userinfoResponseContent);
+        }
+
+        public partial class UserInfoObject
+        {
+            [JsonPropertyName("sub")]
+            public string Sub { get; set; }
+
+            [JsonPropertyName("email")]
+            public string Email { get; set; }
+        }
+
+        //Method checks whether the given google account's email and Sub
+        //(Google unique number) are already in the database, if not then
+        //a new userID is created with the given Sub and email.
+        public void OAuthSuccessCheck(string userinfoResponseContent)
+        {
+            UserInfoObject Userinfodata = JsonSerializer.Deserialize<UserInfoObject>(userinfoResponseContent);
+
+            Debug.WriteLine("UserInfo Object returned and deserialized");
+
+            var SubUser = Userinfodata.Sub;
+            var EmailUser = Userinfodata.Email;
+            Debug.WriteLine("Sub: " + Userinfodata.Sub);
+            Debug.WriteLine("Email: " + Userinfodata.Email);
+
+            bool foundMatch = DatabaseAccountValidation(SubUser, EmailUser); //Run the Database validation method to check if user already exists
+            bool foundDuplicate = DatabaseAccountDuplication(EmailUser); //Run the Database duplication method to check whether the user already has an normal account
+
+            if (foundMatch && !foundDuplicate)
+            {
+                Debug.WriteLine("OAuth current login user: Match Found to database!");
+                //Navitage to the Main Menu class
+                this.Frame.Navigate(typeof(NavigationBar), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+            }
+            else if (foundDuplicate)
+            {
+                Debug.WriteLine("OAuth current login user: A regular account with the associated email address already exists!");
+                login_status.Visibility = Visibility.Visible;
+                login_status.Text = "Google Sign-In Error: A regular account with the assoicated Google Account email already exists!";
+            }
+            else if (!foundMatch && !foundDuplicate)
+            {
+                Debug.WriteLine("OAuth current login user: No matches to the database or duplicate accounts!\nCreating a new UserID!");
+
+                using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+                {
+                    try
+                    {
+                        conn.Open();
+                        MySqlCommand cmd = conn.CreateCommand();
+
+                        //Selects the user_data table to insert email and password into
+                        cmd.CommandText = "INSERT INTO user_data (email, authsub, creationdate) VALUES (@email, @sub, @creationdate)";
+                        cmd.Parameters.AddWithValue("@email", EmailUser); //Sets them as variables
+                        cmd.Parameters.AddWithValue("@sub", SubUser);
+                        cmd.Parameters.AddWithValue("@creationdate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //Variable to set the creation date alongside the account.
+
+                        //If statement performs a server-side (pre-insert) validation to ensure data matches requirements
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                        Debug.WriteLine("OAuth current login user: New user has been successfully created!");
+                        //Now check again if the user is in the database by re-running the database account validation method
+                        OAuthSuccessCheck(userinfoResponseContent);
+                    }
+                    catch
+                    {
+                        Debug.WriteLine("OAuth current login user: Error! New User not created!");
+                        login_status.Visibility = Visibility.Visible;
+                        login_status.Text = "Google Sign-In Error: There has been some error logging in, please try again!\n[Error Code: OAUTH_INSERT]";
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        private bool DatabaseAccountValidation(string SubUser, string EmailUser) //Method for database validation
+        {
+            using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "SELECT UserID, Username, Email, Password FROM user_data WHERE Email=@email AND AuthSub=@sub"; //Selects the email and password rows from user_data
+                cmd.Parameters.AddWithValue("@email", EmailUser); //Sets them as variables
+                cmd.Parameters.AddWithValue("@sub", SubUser);
+                cmd.Connection = conn;
+
+                MySqlDataReader login = cmd.ExecuteReader(); //Executes a read command for the table
+                if (login.Read())
+                {
+                    Debug.WriteLine("Pre-login (Default) UserID:" + App.GlobalUserID); //Temporarily debugging
+                    App.GlobalUserID = Convert.ToInt32(login["UserID"]); //Converts into integer and sets the selected UserID as the global one for the session
+                    App.GlobalUsername = Convert.ToString(login["Username"]); //Converts into string and sets the appropirate Username as the global variable for the session
+                    conn.Close(); //Close connection
+                    Debug.WriteLine("Post-login UserID:" + App.GlobalUserID); //Temporary debugging
+                    return true;
+                }
+                else
+                {
+                    conn.Close(); //Close connection
+                    return false;
+                }
+            }
+        }
+
+        private bool DatabaseAccountDuplication(string EmailUser) //Method for database validation
+        {
+            using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+
+                cmd.CommandText = "SELECT UserID, Username, Email, Password FROM user_data WHERE Email=@email AND AuthSub IS NULL"; //Selects the email and password rows from user_data
+                cmd.Parameters.AddWithValue("@email", EmailUser); //Sets them as variables
+                cmd.Connection = conn;
+
+                MySqlDataReader login = cmd.ExecuteReader(); //Executes a read command for the table
+                if (login.Read())
+                {
+                    conn.Close(); //Close connection
+                    return true;
+                }
+                else
+                {
+                    conn.Close(); //Close connection
+                    return false;
+                }
+            }
         }
 
         /// <summary>

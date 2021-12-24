@@ -92,7 +92,7 @@ namespace ReviewR
                         mail.From = new MailAddress("reviewrproject@gmail.com");
                         mail.To.Add(email);
                         mail.Subject = "Account has been successfully registered!";
-                        mail.Body = "Hi there,\nThank you for registering an account on the ReviewR app.\nThis email has been automatically sent as a confirmation for account creation.\nIf this action wasn't you or this email was wrongfully sent, please ignore this message.\n\nReviewR App";
+                        mail.Body = "Hi there,\n\nThank you for registering an account on the ReviewR app.\nThis email has been automatically sent as a confirmation for account creation.\nIf this action wasn't you or this email was wrongfully sent, please ignore this message.\n\nReviewR App";
 
                         SmtpServer.Port = 587;
                         SmtpServer.Credentials = new System.Net.NetworkCredential("reviewrproject@gmail.com", "GuyJacobee_1");

@@ -423,6 +423,22 @@ namespace ReviewR
                         cmd.ExecuteNonQuery();
                         conn.Close();
                         Debug.WriteLine("OAuth current login user: New user has been successfully created!");
+
+                        MailMessage mail = new MailMessage();
+                        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                        mail.From = new MailAddress("reviewrproject@gmail.com");
+                        mail.To.Add(EmailUser);
+                        mail.Subject = "Account has been successfully registered!";
+                        mail.Body = "Hi there,\n\nThank you for registering an account on the ReviewR app via Google Account method.\nThis email has been automatically sent as a confirmation for account creation.\nIf this action wasn't you or this email was wrongfully sent, please ignore this message.\n\nReviewR App";
+
+                        SmtpServer.Port = 587;
+                        SmtpServer.Credentials = new System.Net.NetworkCredential("reviewrproject@gmail.com", "GuyJacobee_1");
+                        SmtpServer.EnableSsl = true;
+
+                        SmtpServer.Send(mail);
+                        Debug.WriteLine("Account registration Email has been successfully sent to: " + EmailUser);
+
                         //Now check again if the user is in the database by re-running the database account validation method
                         OAuthSuccessCheck(userinfoResponseContent);
                     }

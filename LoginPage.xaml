@@ -10,38 +10,38 @@
 
     <Grid x:Name="canvasgrid" Background="#D55E5E">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="767.5"/>
-            <ColumnDefinition Width="1152.5"/>
+            <ColumnDefinition Width="750"/>
+            <ColumnDefinition Width="1170"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="leftgrid" Grid.Column="0" Background="Black" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image x:Name="reviewr_logo" Source="Assets/ReviewR-Logo.png" Height="617" Width="617" Margin="75,108,76,355"/>
-            <TextBlock x:Name="reviewr_text" HorizontalAlignment="Center" Margin="0,730,0,0" Text="ReviewR" TextWrapping="Wrap" VerticalAlignment="Top" Height="134" Width="512" FontSize="100" TextAlignment="Center" FontWeight="Bold"/>
+        <Grid x:Name="leftgrid" Grid.Column="0" Grid.Row="0" Background="Black" HorizontalAlignment="Center" >
+            <Image x:Name="reviewr_logo" Source="Assets/ReviewR-Logo.png" Width="617" Margin="75,108,76,0" Height="617" VerticalAlignment="Top"/>
+            <TextBlock x:Name="reviewr_text" Margin="128,730,128,0" Text="ReviewR" TextWrapping="Wrap" FontSize="100" TextAlignment="Center" FontWeight="Bold" Height="134" VerticalAlignment="Top"/>
             <Image x:Name="db_status_tick" Source="Assets/Tick-Symbol.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="14,10,0,0" Height="64" Width="64" Visibility="Collapsed" />
             <Image x:Name="db_status_warning" Source="Assets/Warning-Symbol.png" Margin="10,10,687,1006" Visibility="Collapsed"/>
-            <TextBlock x:Name="database_status" HorizontalAlignment="Left" Margin="88,10,0,0" Text="db_status" TextWrapping="Wrap" VerticalAlignment="Top" Height="66" Width="668" FontSize="44" SelectionChanged="database_status_SelectionChanged"/>
+            <TextBlock x:Name="database_status" Margin="88,10,12,0" Text="db_status" TextWrapping="Wrap" FontSize="44" SelectionChanged="database_status_SelectionChanged" Height="66" VerticalAlignment="Top"/>
         </Grid>
 
-        <Grid x:Name="rightgrid" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="reviewr_description" Margin="161,50,162,884" Text="Free to use Game Review and Recommendation System" TextWrapping="Wrap" Height="146" Width="831" FontSize="48" TextAlignment="Center" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center"/>
-            <Button x:Name="login_next" Content="Next" Margin="476,598,477,390" Height="79" Width="199" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center" Click="login_next_Click"/>
-            <TextBox x:Name="email_entry" PlaceholderText="Enter Email..." TextWrapping="Wrap" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="423,326,424,697" HorizontalAlignment="Center" TextChanged="email_entry_TextChanged"/>
-            <TextBlock x:Name="enter_email" Margin="450,222,450,776" Text="Email:" TextWrapping="Wrap" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <PasswordBox x:Name="password_entry" PlaceholderText="Enter Password..." Margin="423,512,422,511" Height="57" Width="307" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center" PasswordChanged="password_entry_PasswordChanged"/>
-            <TextBlock x:Name="enter_password" Margin="450,410,449,580" Text="Password:" TextWrapping="Wrap" Height="69" Width="254" FontSize="48" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <Button x:Name="google_signin" VerticalAlignment="Stretch" Height="103" Width="411" RequestedTheme="Default" Margin="370,748,371,229" HorizontalAlignment="Center" Click="google_signin_Click">
+        <Grid x:Name="rightgrid" Grid.Column="1">
+            <TextBlock x:Name="reviewr_description" Margin="161,50,161,0" Text="Free to use Game Review and Recommendation System" TextWrapping="Wrap" Height="146" FontSize="48" TextAlignment="Center" FontWeight="Bold" Visibility="Visible" VerticalAlignment="Top"/>
+            <Button x:Name="login_next" Content="Sign In" Margin="436,495,434,0" Height="90" FontSize="36" FontWeight="Bold" Visibility="Visible" Click="login_next_Click" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <Button x:Name="forgot_password" Content="Forgot Password?" Margin="498,606,497,0" Height="48" FontSize="16" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <TextBox x:Name="email_entry" PlaceholderText="Enter Email..." TextWrapping="Wrap" Height="57" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="150,374,0,0" TextChanged="email_entry_TextChanged" VerticalAlignment="Top" HorizontalAlignment="Left" Width="370"/>
+            <TextBlock x:Name="enter_email" Margin="254,275,756,0" Text="Email:" TextWrapping="Wrap" Height="69" FontSize="48" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Top"/>
+            <PasswordBox x:Name="password_entry" PlaceholderText="Enter Password..." Margin="650,374,150,0" Height="57" FontSize="28" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" PasswordChanged="password_entry_PasswordChanged" VerticalAlignment="Top"/>
+            <TextBlock x:Name="enter_password" Margin="714,275,216,0" Text="Password:" TextWrapping="Wrap" Height="69" FontSize="48" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Top"/>
+            <Button x:Name="google_signin" VerticalAlignment="Top" Height="110" RequestedTheme="Default" Margin="348,750,347,0" HorizontalAlignment="Stretch" Click="google_signin_Click">
                 <StackPanel>
                     <Image Source="Assets/g-logo.png" Width="80" Height="80" Margin="0,0,275,0"/>
                     <TextBlock Text="SIGN IN WITH GOOGLE" Margin="100,-50,0,20" FontSize="24" FontWeight="Bold" FontFamily="Roboto Medium"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="register_account" Content="Register Account" Margin="0,886,0,91" Width="411" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center" Click="register_account_Click"/>
-            <TextBlock x:Name="login_status" HorizontalAlignment="Left" Margin="371,697,0,0" Text="login_status" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" Width="414" FontSize="24" TextAlignment="Center" Visibility="Collapsed"/>
+            <Button x:Name="register_account" Content="Register Account" Margin="380,900,379,0" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Visibility="Visible" Click="register_account_Click" Height="103" HorizontalAlignment="Stretch"/>
+            <TextBlock x:Name="login_status" Margin="378,680,378,0" Text="login_status" TextWrapping="Wrap" VerticalAlignment="Top" Height="38" FontSize="24" TextAlignment="Center" Visibility="Collapsed"/>
         </Grid>
     </Grid>
 </Page>

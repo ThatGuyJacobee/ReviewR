@@ -94,5 +94,10 @@ namespace ReviewR
         {
 
         }
+
+        private void reviewr_text_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

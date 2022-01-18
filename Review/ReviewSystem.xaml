@@ -8,22 +8,26 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="canvasgrid" Background="Black">
+    <Grid x:Name="canvasgrid" Background="#D55E5E">
         <Grid x:Name="CanvasGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Background="Black">
-                <TextBlock x:Name="ReviewSystem_text" Grid.Row="0" Text="Review System" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+                <TextBlock x:Name="ReviewSystem_text" Text="Review System" TextWrapping="NoWrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="0,65,0,65"/>
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <Button x:Name="createreview_button" Content="Create a Review" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1575,25,0,726" Click="createnew_next_Click"/>
-                <TextBox x:Name="rev_search" PlaceholderText="Enter a query to search for a review..." TextWrapping="Wrap" Width="1155" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Left" Margin="30,25,0,726" TextChanged="rev_search_TextChanged"/>
-                <Button x:Name="addfilters_button" Content="Add Filters" Height="79" Width="301" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1225,25,0,726"/>
-                <ListView x:Name="reviewsearch_list" SelectionMode="None" IsItemClickEnabled="True" ItemClick="reviewsearch_list_ItemClick" Margin="30,140,44,30" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark">
+                <Button x:Name="createreview_button" Content="Create a Review" FontSize="36" FontWeight="Bold" Click="createnew_next_Click" Margin="0,30,30,30" VerticalAlignment="Stretch" Width="300" HorizontalAlignment="Right"/>
+                <TextBox x:Name="rev_search" PlaceholderText="Enter a query to search for a review..." TextWrapping="Wrap" Height="80" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" TextChanged="rev_search_TextChanged" Margin="30,30,690,30"/>
+                <Button x:Name="addfilters_button" Content="Add Filters" FontSize="36" FontWeight="Bold" Margin="0,30,360,30" VerticalAlignment="Stretch" Width="300" HorizontalAlignment="Right" />
+            </Grid>
+
+            <Grid Grid.Row="2" Background="#D55E5E">
+                <ListView x:Name="reviewsearch_list" SelectionMode="None" IsItemClickEnabled="True" ItemClick="reviewsearch_list_ItemClick" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark" Margin="30,0,30,30">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>

@@ -112,5 +112,10 @@ namespace ReviewR
             ContentDialog uploaddialog = new UploadAvatar();
             await uploaddialog.ShowAsync();
         }
+
+        private void accountcreated_title_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

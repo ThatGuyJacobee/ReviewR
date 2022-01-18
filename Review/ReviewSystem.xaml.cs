@@ -172,19 +172,19 @@ namespace ReviewR
             }
         }
 
-        //Set the GameID as a static long variable which I will use to request further data about the game in the game-specific pages
+        //Set the ReviewSpecificID as a static int variable which I will use to request further data about the game in the review-specific pages
         public static int ReviewSpecificID = 0;
 
-        //Set the Game Name as above
+        //Set the ReviewID as above
         public static int ReviewSpecificUserID = 0;
 
-        //Set the Game Name as above
+        //Set the ReviewID as above
         public static string ReviewSpecificGameName = "";
 
-        //Set the Game Name as above
+        //Set the ReviewID as above
         public static string ReviewSpecificGameTitle = "";
 
-        //Set the Game Name as above
+        //Set the ReviewID as above
         public static string ReviewSpecificDescription = "";
 
         private void reviewsearch_list_ItemClick(object sender, ItemClickEventArgs e) //When an item in List View is pressed
@@ -200,7 +200,7 @@ namespace ReviewR
             ReviewSpecificGameTitle = clickedItem.GameTitle;
             ReviewSpecificDescription = clickedItem.RevDesc;
 
-            this.Frame.Navigate(typeof(ReviewSpecificPages), null); //Switch to the game-specific page
+            this.Frame.Navigate(typeof(ReviewSpecificPages), null); //Switch to the review-specific page
         }
     }
 }

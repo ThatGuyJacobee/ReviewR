@@ -32,7 +32,7 @@
 
             <Grid Grid.Row="1" Grid.Column="1" Background="#D55E5E">
                 <Image x:Name="reviewr_logo" Source="/Assets/ReviewR-Logo.png" Height="460" VerticalAlignment="Top" Margin="70,100,70,0"/>
-                <TextBlock x:Name="reviewr_text" Text="ReviewR" TextWrapping="Wrap" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="70,586,70,100"/>
+                <TextBlock x:Name="reviewr_text" Text="ReviewR" TextWrapping="Wrap" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="70,586,70,0" Height="144" VerticalAlignment="Top"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="2" Background="#D55E5E">

@@ -131,6 +131,9 @@
     <Compile Include="NoConnection.xaml.cs">
       <DependentUpon>NoConnection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Review\ReviewEdit.xaml.cs">
+      <DependentUpon>ReviewEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Review\ReviewSpecificPages.xaml.cs">
       <DependentUpon>ReviewSpecificPages.xaml</DependentUpon>
     </Compile>
@@ -270,6 +273,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Review\ReviewEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Review\ReviewSpecificPages.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -373,6 +380,9 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

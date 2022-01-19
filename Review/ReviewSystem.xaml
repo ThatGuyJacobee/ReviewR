@@ -22,8 +22,8 @@
 
             <Grid Grid.Row="1" Background="#D55E5E">
                 <Button x:Name="createreview_button" Content="Create a Review" FontSize="36" FontWeight="Bold" Click="createnew_next_Click" Margin="0,30,30,30" VerticalAlignment="Stretch" Width="300" HorizontalAlignment="Right"/>
-                <TextBox x:Name="rev_search" PlaceholderText="Enter a query to search for a review..." TextWrapping="Wrap" Height="80" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" TextChanged="rev_search_TextChanged" Margin="30,30,690,30"/>
-                <Button x:Name="addfilters_button" Content="Add Filters" FontSize="36" FontWeight="Bold" Margin="0,30,360,30" VerticalAlignment="Stretch" Width="300" HorizontalAlignment="Right" />
+                <TextBox x:Name="rev_search" PlaceholderText="Enter a query to search for a review..." TextWrapping="Wrap" Height="80" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" TextChanged="rev_search_TextChanged" Margin="30,30,360,30"/>
+                <Button x:Name="addfilters_button" Content="Add Filters" FontSize="36" FontWeight="Bold" Margin="0,30,360,30" VerticalAlignment="Stretch" Width="300" HorizontalAlignment="Right" Visibility="Collapsed"/>
             </Grid>
 
             <Grid Grid.Row="2" Background="#D55E5E">

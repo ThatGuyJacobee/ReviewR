@@ -50,7 +50,7 @@ namespace ReviewR
                     conn.Open();
                     MySqlCommand cmd = conn.CreateCommand();
 
-                    //Selects the user_data table to insert email and password into
+                    //Selects the review_data table to insert a new review into
                     cmd.CommandText = "INSERT INTO review_data (userid, revgameid, revgame, revtitle, revdesc) VALUES (@userid, @revgameid, @revgame, @revtitle, @revdesc)";
                     cmd.Parameters.AddWithValue("@userid", userid); //Sets them as variables
                     cmd.Parameters.AddWithValue("@revgameid", revgameid);

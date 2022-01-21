@@ -26,6 +26,20 @@
                 <TextBlock x:Name="reviewedgame_text" Text="&lt;$ReviewedGame&gt;" TextWrapping="Wrap" Height="134" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="42,175,41,521"/>
                 <TextBlock x:Name="reviewtitle_text" Text="&lt;$ReviewTitle&gt;" TextWrapping="Wrap" FontSize="65" TextAlignment="Center" FontWeight="Bold" Margin="42,309,41,345"/>
                 <TextBlock x:Name="reviewdescription_text" Text="&lt;$ReviewDescription&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="42,481,41,41"/>
+
+                <TextBlock x:Name="voting_total" Text="&lt;$num&gt;" FontSize="65" FontWeight="Bold" Margin="1538,77,108,650" TextAlignment="Right"/>
+                <Image x:Name="no_upvote" Source="/Assets/NoVote.png" HorizontalAlignment="Left" Height="100" Margin="1810,10,0,0" VerticalAlignment="Top" Width="100"/>
+                <Image x:Name="upvote" Source="/Assets/Voted.png" HorizontalAlignment="Left" Height="100" Margin="1810,10,0,0" VerticalAlignment="Top" Width="100" Visibility="Collapsed"/>
+                <Image x:Name="no_downvote" Source="/Assets/NoVote.png" HorizontalAlignment="Left" Height="100" Margin="1810,140,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <CompositeTransform Rotation="180"/>
+                    </Image.RenderTransform>
+                </Image>
+                <Image x:Name="downvote" Source="/Assets/Voted.png" HorizontalAlignment="Left" Height="100" Margin="1810,140,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+                    <Image.RenderTransform>
+                        <CompositeTransform Rotation="180"/>
+                    </Image.RenderTransform>
+                </Image>
             </Grid>
         </Grid>
     </Grid>

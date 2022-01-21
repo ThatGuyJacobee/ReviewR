@@ -27,6 +27,7 @@
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <AppInstallerUri>C:\Users\jmart\Desktop</AppInstallerUri>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <PackageCertificateKeyFile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -254,8 +255,10 @@
     <Content Include="Assets\AppIcon\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\g-logo.png" />
     <Content Include="Assets\Neutral-Symbol.png" />
+    <Content Include="Assets\NoVote.png" />
     <Content Include="Assets\ReviewR-Logo.png" />
     <Content Include="Assets\Tick-Symbol.png" />
+    <Content Include="Assets\Voted.png" />
     <Content Include="Assets\Warning-Symbol.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -377,6 +380,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Roboto-Medium.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReviewR.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

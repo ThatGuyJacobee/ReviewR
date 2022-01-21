@@ -69,6 +69,80 @@ namespace ReviewR
                     Debug.WriteLine(ex);
                 }
             }
+
+            //Checking if the UserID has already voted on this ReviewID
+            using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "SELECT VoteID, VoteType FROM review_votes WHERE UserID=@userid AND ReviewID=@reviewid"; //Selects the voteid and type where the current user's userid and reviewid matches
+                    cmd.Parameters.AddWithValue("@userid", App.GlobalUserID); //Sets them as variables
+                    cmd.Parameters.AddWithValue("@reviewid", ReviewSystem.ReviewSpecificID); //Sets them as variables
+                    cmd.Connection = conn;
+
+                    MySqlDataReader votingcheck = cmd.ExecuteReader();
+
+                    if (votingcheck.Read())
+                    {
+                        //If it finds then a vote must already exist
+                        var VoteID = Convert.ToInt32(votingcheck["VoteID"]);
+                        var VoteType = Convert.ToString(votingcheck["VoteType"]);
+
+                        if (VoteType == "Upvote")
+                        {
+                            no_upvote.Visibility = Visibility.Collapsed;
+                            upvote.Visibility = Visibility.Visible;
+                        }
+
+                        else if (VoteType == "Downvote")
+                        {
+                            no_downvote.Visibility = Visibility.Collapsed;
+                            downvote.Visibility = Visibility.Visible;
+                        }
+                    }
+
+                    else
+                    {
+                        //If it can't find a match, then a vote for this review id doesn't exist, so a new voteid is made which is set to default neutral vote
+                        try
+                        {
+                            DataInsertion();
+                        }
+
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine(ex);
+                        }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+            }
+        }
+
+        private void DataInsertion() //Method for inserting a new voteid
+        {
+            using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+
+                //Selects the review_votes table to insert the values into and create a new voteid
+                cmd.CommandText = "INSERT INTO review_votes (ReviewID, UserID, VoteType) VALUES (@reviewid, @userid, @votetype)";
+                cmd.Parameters.AddWithValue("@reviewid", ReviewSystem.ReviewSpecificID); //Sets them as variables
+                cmd.Parameters.AddWithValue("@userid", App.GlobalUserID);
+                cmd.Parameters.AddWithValue("@votetype", "Neutral");
+
+                //Submits the insertiton command and closes connection
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
         }
 
         private bool DataDeletion()

@@ -35,8 +35,8 @@
                         <DataTemplate>
                             <Grid>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding GameID}"></TextBlock>
-                                    <TextBlock Text="{Binding GameName}"></TextBlock>
+                                    <TextBlock Text="{Binding GameID}" FontSize="20" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding GameName}" FontSize="26" FontWeight="Bold"></TextBlock>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>

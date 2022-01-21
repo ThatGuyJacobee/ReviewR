@@ -32,6 +32,12 @@ namespace ReviewR
             this.Loaded += Page_Loaded;
         }
 
+        //Set the ReviewID as above
+        public static int VotingID = 0;
+
+        //Set the ReviewID as above
+        public static string VoteType = "";
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             usernamereview_text.Text = "Review ID: " + ReviewSystem.ReviewSpecificID;
@@ -88,8 +94,8 @@ namespace ReviewR
                     if (votingcheck.Read())
                     {
                         //If it finds then a vote must already exist
-                        var VoteID = Convert.ToInt32(votingcheck["VoteID"]);
-                        var VoteType = Convert.ToString(votingcheck["VoteType"]);
+                        VotingID = Convert.ToInt32(votingcheck["VoteID"]);
+                        VoteType = Convert.ToString(votingcheck["VoteType"]);
 
                         if (VoteType == "Upvote")
                         {
@@ -216,6 +222,68 @@ namespace ReviewR
                 errordialog.DefaultButton = ContentDialogButton.Close;
 
                 await errordialog.ShowAsync(); //Displays it until the close button is pressed
+            }
+        }
+
+        private void no_upvote_Click(object sender, RoutedEventArgs e)
+        {
+            if (VoteType == "Neutral")
+            {
+                no_upvote.Visibility = Visibility.Collapsed;
+                upvote.Visibility = Visibility.Visible;
+
+                VoteType = "Upvote";
+            }
+
+            else if (VoteType == "Downvote")
+            {
+                downvote.Visibility = Visibility.Collapsed;
+                no_downvote.Visibility = Visibility.Visible;
+                upvote.Visibility = Visibility.Visible;
+
+                VoteType = "Upvote";
+            }
+        }
+
+        private void no_downvote_Click(object sender, RoutedEventArgs e)
+        {
+            if (VoteType == "Neutral")
+            {
+                no_downvote.Visibility = Visibility.Collapsed;
+                downvote.Visibility = Visibility.Visible;
+
+                VoteType = "Downvote";
+            }
+
+            else if (VoteType == "Upvote")
+            {
+                upvote.Visibility = Visibility.Collapsed;
+                no_upvote.Visibility = Visibility.Visible;
+                downvote.Visibility = Visibility.Visible;
+
+                VoteType = "Downvote";
+            }
+        }
+
+        private void upvote_Click(object sender, RoutedEventArgs e)
+        {
+            if (VoteType == "Upvote")
+            {
+                upvote.Visibility = Visibility.Collapsed;
+                no_upvote.Visibility = Visibility.Visible;
+
+                VoteType = "Neutral";
+            }
+        }
+
+        private void downvote_Click(object sender, RoutedEventArgs e)
+        {
+            if (VoteType == "Downvote")
+            {
+                downvote.Visibility = Visibility.Collapsed;
+                no_downvote.Visibility = Visibility.Visible;
+
+                VoteType = "Neutral";
             }
         }
     }

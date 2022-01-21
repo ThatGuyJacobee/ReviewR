@@ -28,18 +28,30 @@
                 <TextBlock x:Name="reviewdescription_text" Text="&lt;$ReviewDescription&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="42,481,41,41"/>
 
                 <TextBlock x:Name="voting_total" Text="&lt;$num&gt;" FontSize="65" FontWeight="Bold" Margin="1538,77,108,650" TextAlignment="Right"/>
-                <Image x:Name="no_upvote" Source="/Assets/NoVote.png" HorizontalAlignment="Left" Height="100" Margin="1810,10,0,0" VerticalAlignment="Top" Width="100"/>
-                <Image x:Name="upvote" Source="/Assets/Voted.png" HorizontalAlignment="Left" Height="100" Margin="1810,10,0,0" VerticalAlignment="Top" Width="100" Visibility="Collapsed"/>
-                <Image x:Name="no_downvote" Source="/Assets/NoVote.png" HorizontalAlignment="Left" Height="100" Margin="1810,140,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5">
-                    <Image.RenderTransform>
-                        <CompositeTransform Rotation="180"/>
-                    </Image.RenderTransform>
-                </Image>
-                <Image x:Name="downvote" Source="/Assets/Voted.png" HorizontalAlignment="Left" Height="100" Margin="1810,140,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
-                    <Image.RenderTransform>
-                        <CompositeTransform Rotation="180"/>
-                    </Image.RenderTransform>
-                </Image>
+
+                <Button x:Name="no_upvote" Width="125" Height="125" Margin="1785,10,0,0" VerticalAlignment="Top" Click="no_upvote_Click">
+                    <Image x:Name="no_upvoteimg" Source="/Assets/NoVote.png" Height="100" VerticalAlignment="Top" Width="100"/>
+                </Button>
+
+                <Button x:Name="upvote" Width="125" Height="125" Margin="1785,10,0,0" VerticalAlignment="Top" Visibility="Collapsed" Click="upvote_Click">
+                    <Image x:Name="upvoteimg" Source="/Assets/Voted.png" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+                </Button>
+
+                <Button x:Name="no_downvote" Width="125" Height="125" Margin="1785,150,0,0" VerticalAlignment="Top" Click="no_downvote_Click">
+                    <Image x:Name="no_downvoteimg" Source="/Assets/NoVote.png" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <CompositeTransform Rotation="180"/>
+                        </Image.RenderTransform>
+                    </Image>
+                </Button>
+
+                <Button x:Name="downvote" Width="125" Height="125" Margin="1785,150,0,0" VerticalAlignment="Top" Visibility="Collapsed" Click="downvote_Click">
+                    <Image x:Name="downvoteimg" Source="/Assets/Voted.png" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <CompositeTransform Rotation="180"/>
+                        </Image.RenderTransform>
+                    </Image>
+                </Button>
             </Grid>
         </Grid>
     </Grid>

@@ -33,32 +33,35 @@ namespace ReviewR
         {
             var email = PasswordResetDialog.ResetEmail;
 
-            //Generate a random 8-digit number as the token
-            Random rnd = new Random();
-            int Token = rnd.Next(10000000, 99999999);
-            Debug.WriteLine("Generated reset token: " + Token);
-
-            bool EmailSuccess = SendEmailToken(Token);
-
-            if (EmailSuccess)
+            if(PasswordResetDialog.emailsent == false)
             {
-                Debug.WriteLine("Email sent successfully.");
-                bool DBSuccess = InsertTokenDB(Token);
+                //Generate a random 8-digit number as the token
+                Random rnd = new Random();
+                int Token = rnd.Next(10000000, 99999999);
+                Debug.WriteLine("Generated reset token: " + Token);
 
-                if (DBSuccess)
+                bool EmailSuccess = SendEmailToken(Token);
+
+                if (EmailSuccess)
                 {
-                    Debug.WriteLine("Successfully inserted token into database.");
-                }
+                    Debug.WriteLine("Email sent successfully.");
+                    PasswordResetDialog.emailsent = true;
+                    bool DBSuccess = InsertTokenDB(Token);
 
+                    if (DBSuccess)
+                    {
+                        Debug.WriteLine("Successfully inserted token into database.");
+                    }
+
+                    else
+                    {
+                        Debug.WriteLine("Error inserting token into database.");
+                    }
+                }
                 else
                 {
-                    Debug.WriteLine("Error inserting token into database.");
+                    Debug.WriteLine("Email wasn't sent successfully.");
                 }
-            }
-
-            else
-            {
-                Debug.WriteLine("Email wasn't sent successfully.");
             }
         }
 
@@ -128,6 +131,15 @@ namespace ReviewR
         private static string ResetToken = "";
 
         private async void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            //Reset the EmailSuccess to false, and reload the dialog which will ensure that a new token is generated and sent to email
+            PasswordResetDialog.emailsent = false;
+            passwordtoken_contentdialog.Hide(); //Fix to first close the dialog before opening (otherwise error as only 1 can be opened at a time)
+            ContentDialog passwordtokendialog = new PasswordTokenDialog();
+            await passwordtokendialog.ShowAsync();
+        }
+
+        private async void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             var InputToken = enter_token.Text;
 

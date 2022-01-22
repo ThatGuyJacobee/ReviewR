@@ -37,6 +37,7 @@ namespace ReviewR
         }
 
         public static string ResetEmail = "";
+        public static bool emailsent = false;
 
         private async void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

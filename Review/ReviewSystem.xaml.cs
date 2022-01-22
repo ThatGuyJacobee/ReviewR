@@ -52,7 +52,7 @@ namespace ReviewR
 
             else
             {
-                Debug.WriteLine("Review Fetching unsuccessful!");
+                Debug.WriteLine("Review Fetching Unsuccessful!");
             }
         }
 
@@ -73,7 +73,7 @@ namespace ReviewR
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "SELECT ReviewID, UserID, RevGame, RevTitle, RevDesc FROM review_data ORDER BY ReviewID DESC LIMIT 10"; //Selects the email and password rows from user_data
+                cmd.CommandText = "SELECT ReviewID, UserID, RevGame, RevTitle, RevDesc FROM review_data ORDER BY ReviewID DESC LIMIT 25"; //Selects the email and password rows from user_data
                 cmd.Connection = conn;
 
                 MySqlDataReader reviewfetch = cmd.ExecuteReader(); //Executes a read command for the table

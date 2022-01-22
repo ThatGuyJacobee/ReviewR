@@ -39,6 +39,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <TextBlock x:Name="notfound_text" Text="No matching reviews found to user..." TextWrapping="Wrap" FontSize="40" TextAlignment="Center" FontWeight="Bold" Height="141" VerticalAlignment="Top" Margin="68,186,67,0" Visibility="Collapsed"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1" Background="#D55E5E">

@@ -132,6 +132,9 @@
     <Compile Include="NoConnection.xaml.cs">
       <DependentUpon>NoConnection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProfileSpecificPages.xaml.cs">
+      <DependentUpon>ProfileSpecificPages.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Review\ReviewEdit.xaml.cs">
       <DependentUpon>ReviewEdit.xaml</DependentUpon>
     </Compile>
@@ -273,6 +276,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="NoConnection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProfileSpecificPages.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

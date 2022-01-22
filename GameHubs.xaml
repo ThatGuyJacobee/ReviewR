@@ -42,6 +42,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <TextBlock x:Name="start_text" Text="Search for a game to return results..." TextWrapping="Wrap" FontSize="50" TextAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,50,0,0" Width="1314" Height="141" VerticalAlignment="Top"/>
+                <TextBlock x:Name="notfound_text" Text="No matching reviews to query found..." TextWrapping="Wrap" FontSize="50" TextAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,50,0,0" Width="1314" Height="141" VerticalAlignment="Top" Visibility="Collapsed"/>
             </Grid>
         </Grid>
     </Grid>

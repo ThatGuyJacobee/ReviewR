@@ -8,7 +8,38 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="canvasgrid" Background="Black">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="profilepage_text" Grid.Row="0" Text="Profile Pages" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="0,65,0,65"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#D55E5E">
+                <TextBox x:Name="profile_search" PlaceholderText="Enter a query to search for a game's hub..." TextWrapping="Wrap" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="30,30,360,30" TextChanged="profile_search_TextChanged"/>
+                <Button x:Name="myprofile_button" Content="My Profile" Height="79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1589,30,30,31" HorizontalAlignment="Stretch" Click="myprofile_button_Click" />
+            </Grid>
+
+            <Grid Grid.Row="2" Background="#D55E5E">
+                <ListView x:Name="profile_list" SelectionMode="None" IsItemClickEnabled="True" ItemClick="profile_list_ItemClick" Margin="30,0,30,30" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding UserID}" FontSize="20" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding Username}" FontSize="26" FontWeight="Bold"></TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <TextBlock x:Name="notfound_text" Text="No matching reviews to query found..." TextWrapping="Wrap" FontSize="50" TextAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,50,0,0" Width="1314" Height="141" VerticalAlignment="Top" Visibility="Collapsed"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

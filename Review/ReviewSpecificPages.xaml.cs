@@ -33,9 +33,6 @@ namespace ReviewR
         }
 
         //Set the ReviewID as above
-        public static int VotingID = 0;
-
-        //Set the ReviewID as above
         public static string VoteType = "";
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -94,7 +91,6 @@ namespace ReviewR
                     if (votingcheck.Read())
                     {
                         //If it finds then a vote must already exist
-                        VotingID = Convert.ToInt32(votingcheck["VoteID"]);
                         VoteType = Convert.ToString(votingcheck["VoteType"]);
 
                         if (VoteType == "Upvote")
@@ -130,6 +126,7 @@ namespace ReviewR
                     Debug.WriteLine(ex);
                 }
             }
+            UpdateVoteCount();
         }
 
         private void DataInsertion() //Method for inserting a new voteid
@@ -148,6 +145,9 @@ namespace ReviewR
                 //Submits the insertiton command and closes connection
                 cmd.ExecuteNonQuery();
                 conn.Close();
+
+                //Set the local VoteType to neutral since it's a new voteid
+                VoteType = "Neutral";
             }
         }
 
@@ -225,6 +225,70 @@ namespace ReviewR
             }
         }
 
+        private void UpdateVoteCount()
+        {
+            using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "SELECT COUNT(VoteType) FROM review_votes WHERE ReviewID=@reviewid AND VoteType=@upvote";
+
+                    cmd.Parameters.AddWithValue("@upvote", "Upvote");
+                    cmd.Parameters.AddWithValue("@downvote", "Downvote");
+                    cmd.Parameters.AddWithValue("@reviewid", ReviewSystem.ReviewSpecificID); //Sets them as variables
+                    cmd.Connection = conn;
+
+                    //Get a total count of upvotes
+                    var UpvoteCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    Debug.WriteLine("Total upvotes: " + UpvoteCount);
+
+                    cmd.CommandText = "SELECT COUNT(VoteType) FROM review_votes WHERE ReviewID=@reviewid AND VoteType=@downvote";
+
+                    //Get a total count of downvotes
+                    var DownvoteCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    Debug.WriteLine("Total downvotes: " + DownvoteCount);
+
+                    var TotalCount = UpvoteCount - DownvoteCount;
+                    Debug.WriteLine("Final overall vote count: " + TotalCount);
+
+                    voting_total.Text = TotalCount.ToString();
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+            }
+        }
+
+        private void UpdateVoteType()
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    //Sets variables and SQL command
+                    cmd.CommandText = "UPDATE review_votes SET VoteType=@votetype WHERE UserID=@userid AND ReviewID=@reviewid";
+                    cmd.Parameters.AddWithValue("@votetype", VoteType);
+                    cmd.Parameters.AddWithValue("@userid", App.GlobalUserID);
+                    cmd.Parameters.AddWithValue("@reviewid", ReviewSystem.ReviewSpecificID); //Sets them as variables
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+
         private void no_upvote_Click(object sender, RoutedEventArgs e)
         {
             if (VoteType == "Neutral")
@@ -233,6 +297,8 @@ namespace ReviewR
                 upvote.Visibility = Visibility.Visible;
 
                 VoteType = "Upvote";
+                UpdateVoteType();
+                UpdateVoteCount();
             }
 
             else if (VoteType == "Downvote")
@@ -242,6 +308,8 @@ namespace ReviewR
                 upvote.Visibility = Visibility.Visible;
 
                 VoteType = "Upvote";
+                UpdateVoteType();
+                UpdateVoteCount();
             }
         }
 
@@ -253,6 +321,8 @@ namespace ReviewR
                 downvote.Visibility = Visibility.Visible;
 
                 VoteType = "Downvote";
+                UpdateVoteType();
+                UpdateVoteCount();
             }
 
             else if (VoteType == "Upvote")
@@ -262,6 +332,8 @@ namespace ReviewR
                 downvote.Visibility = Visibility.Visible;
 
                 VoteType = "Downvote";
+                UpdateVoteType();
+                UpdateVoteCount();
             }
         }
 
@@ -273,6 +345,8 @@ namespace ReviewR
                 no_upvote.Visibility = Visibility.Visible;
 
                 VoteType = "Neutral";
+                UpdateVoteType();
+                UpdateVoteCount();
             }
         }
 
@@ -284,6 +358,8 @@ namespace ReviewR
                 no_downvote.Visibility = Visibility.Visible;
 
                 VoteType = "Neutral";
+                UpdateVoteType();
+                UpdateVoteCount();
             }
         }
     }

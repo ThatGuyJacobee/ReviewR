@@ -132,6 +132,15 @@
     <Compile Include="NoConnection.xaml.cs">
       <DependentUpon>NoConnection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PasswordChangeDialog.xaml.cs">
+      <DependentUpon>PasswordChangeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordResetDialog.xaml.cs">
+      <DependentUpon>PasswordResetDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordTokenDialog.xaml.cs">
+      <DependentUpon>PasswordTokenDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProfileSpecificPages.xaml.cs">
       <DependentUpon>ProfileSpecificPages.xaml</DependentUpon>
     </Compile>
@@ -276,6 +285,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="NoConnection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasswordChangeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasswordResetDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasswordTokenDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

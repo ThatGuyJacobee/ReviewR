@@ -90,6 +90,13 @@ namespace ReviewR
 
         }
 
+        private async void forgot_password_Click(object sender, RoutedEventArgs e)
+        {
+            //When the Forgot button is clicked, display the Reset Password Content Dialog
+            ContentDialog passwordreset = new PasswordResetDialog();
+            await passwordreset.ShowAsync();
+        }
+
         private bool DataValidation(string email, string pass) //Method for database validation
         {
             using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
@@ -387,6 +394,21 @@ namespace ReviewR
             if (foundMatch && !foundDuplicate)
             {
                 Debug.WriteLine("OAuth current login user: Match Found to database!");
+
+                //Each time on logon, update the last logon date and time for the user
+                using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    //Sets variables and SQL command
+                    cmd.CommandText = "UPDATE user_data SET lastlogon=@lastlogon WHERE UserID=@UserID";
+                    cmd.Parameters.AddWithValue("@UserID", App.GlobalUserID);
+                    cmd.Parameters.AddWithValue("@lastlogon", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
                 //Navitage to the Main Menu class
                 this.Frame.Navigate(typeof(NavigationBar), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
             }

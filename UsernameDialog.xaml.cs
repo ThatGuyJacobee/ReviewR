@@ -22,9 +22,6 @@ namespace ReviewR
 {
     public sealed partial class UsernameDialog : ContentDialog
     {
-        //Uses the static Connection String that was set in the Main App Class (private)
-        private static string ConnectionString = App.ConnectionString;
-
         public UsernameDialog()
         {
             this.InitializeComponent();
@@ -33,7 +30,7 @@ namespace ReviewR
 
         private bool UsernameInsertion(string userid, string username) //Method for database validation
         {
-            using (MySqlConnection conn = new MySqlConnection(ConnectionString)) //Uses private connection string
+            using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();

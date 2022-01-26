@@ -160,11 +160,13 @@ namespace ReviewR
                     conn.Open();
                     MySqlCommand cmd = conn.CreateCommand();
 
-                    cmd.CommandText = "DELETE FROM review_data WHERE ReviewID=@reviewid"; //Selects the email and password rows from user_data
+                    cmd.CommandText = "DELETE FROM review_votes WHERE ReviewID=@reviewid"; //Deletes the VoteID in the review_votes table
                     cmd.Parameters.AddWithValue("@reviewid", ReviewSystem.ReviewSpecificID); //Sets them as variables
-                    cmd.Connection = conn;
+                    cmd.ExecuteScalar();
 
-                    cmd.ExecuteNonQuery();
+                    cmd.CommandText = "DELETE FROM review_data WHERE ReviewID=@reviewid"; //Deletes the ReviewID in the review_data table
+
+                    cmd.ExecuteScalar();
                     conn.Close();
                     return true;
                 }
@@ -187,13 +189,13 @@ namespace ReviewR
             ContentDialog checkdialog = new ContentDialog();
             checkdialog.Title = "Delete Review with ID: " + ReviewSystem.ReviewSpecificID;
             checkdialog.Content = "Are you sure that you wish to delete this review?\n\nWarning: This action is irreversible!";
-            //checkdialog.PrimaryButtonText = "Cancel";
+            checkdialog.PrimaryButtonText = "Cancel";
             checkdialog.CloseButtonText = "Approve";
             checkdialog.DefaultButton = ContentDialogButton.Close;
 
             await checkdialog.ShowAsync(); //Displays it until the close button is pressed
 
-            //Added a parameter which runs on close button close to restart the app
+            //Added a parameter runs to delete the review if approve button is pressed
             bool datadeletion = DataDeletion();
             checkdialog.CloseButtonCommandParameter = datadeletion;
 
@@ -204,7 +206,7 @@ namespace ReviewR
                 ContentDialog successdialog = new ContentDialog();
                 successdialog.Title = "Success!";
                 successdialog.Content = "The review with the ID " + ReviewSystem.ReviewSpecificID + " has been deleted!";
-                checkdialog.PrimaryButtonText = "Cancel";
+                //successdialog.PrimaryButtonText = "Cancel";
                 successdialog.CloseButtonText = "Approve";
                 successdialog.DefaultButton = ContentDialogButton.Close;
 

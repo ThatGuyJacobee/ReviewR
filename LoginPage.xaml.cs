@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System.Diagnostics; //Debug
 using Windows.Storage; //Storage and below required for Google OAuth 2.0 Login
 using Windows.Security.Cryptography;

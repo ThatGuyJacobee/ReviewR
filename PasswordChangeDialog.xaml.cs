@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System.Net.Mail; //Used to send emails
 using System.ComponentModel.DataAnnotations; //Used to check that email is real
 using System.Diagnostics; //Debug

@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using Windows.Web.Http; //For POST method
 using System.Threading.Tasks; //For POST method
 using Windows.Storage.Streams;
@@ -29,7 +29,7 @@ namespace ReviewR
     sealed partial class App : Application
     {
         //Create a global method which can be inherited by any class to create a connection to the database
-        private static string connectionString = "server=86.163.198.87;database=reviewr;uid=root;pwd=Martyniak_13;SSL-mode=none;";
+        private static string connectionString = "server=86.163.198.87;database=reviewr;uid=root;pwd=Martyniak_13;";
 
         public static string ConnectionString { get => connectionString; set => connectionString = value; }
 

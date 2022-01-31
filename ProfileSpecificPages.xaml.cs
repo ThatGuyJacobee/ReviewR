@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System.Collections.ObjectModel; //Used to notify listview values when objects are changed
 using System.Diagnostics; //Debug
 using Windows.UI.Xaml.Media.Imaging; //For using image to URL links

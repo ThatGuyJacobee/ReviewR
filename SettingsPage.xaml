@@ -44,9 +44,9 @@
 
             <Grid Grid.Row="1" Grid.Column="1" Background="#D55E5E">
                 <TextBlock x:Name="username_title" Text="&lt;$username&gt;" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Height="120" VerticalAlignment="Top" Margin="0,50,0,0" Width="600"/>
-                <Button x:Name="account_details" Content="Account Edit" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center" Margin="0,260,0,0" Height="120" Width="386"/>
-                <Button x:Name="account_avatar" Content="Select Avatar" Margin="0,435,0,0" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Visibility="Visible" Click="account_avatar_Click" HorizontalAlignment="Center" Height="120" Width="386"/>
-                <Button x:Name="account_bio" Content="Adjust profile" Margin="0,610,0,0" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center" Height="120" Width="386"/>
+                <Image x:Name="user_avatar" Source="/Assets/ReviewR-Logo.png" Height="250" VerticalAlignment="Top" Margin="30,175,30,0"/>
+                <Button x:Name="account_edit" Content="Account Edit" FontSize="36" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center" Height="120" Width="386" Click="account_edit_Click" Margin="0,465,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="profile_preview" Content="My Profile Page" Margin="0,615,0,0" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Center" Height="120" Width="386" Click="profile_preview_Click"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="2" Background="#D55E5E">

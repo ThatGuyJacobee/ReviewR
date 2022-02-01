@@ -45,7 +45,7 @@
                 <TextBlock x:Name="username_title" Text="&lt;$username&gt;" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Height="120" VerticalAlignment="Top" Margin="0,30,0,0" Width="600"/>
                 <Image x:Name="user_avatar" Source="/Assets/ReviewR-Logo.png" Height="250" VerticalAlignment="Top" Margin="30,170,30,0"/>
                 <TextBlock x:Name="profilebio_text" Text="&lt;$ProfileBio&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="42,560,41,30"/>
-                <TextBlock x:Name="lastonline_text" Text="&lt;$LastOnline&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="42,450,41,300"/>
+                <TextBlock x:Name="lastonline_text" Text="&lt;$LastOnline&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="0,450,0,0" HorizontalAlignment="Center" Width="1177" Height="80" VerticalAlignment="Top"/>
             </Grid>
         </Grid>
     </Grid>

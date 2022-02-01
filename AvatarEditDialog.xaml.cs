@@ -15,24 +15,88 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Web.Http; //For POST method
 using System.Threading.Tasks; //For POST method
 using System.Diagnostics; //Debug
+using MySqlConnector;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace ReviewR
 {
-    public sealed partial class UploadAvatar : ContentDialog
+    public sealed partial class AvatarEditDialog : ContentDialog
     {
-        public UploadAvatar()
+        public AvatarEditDialog()
         {
             this.InitializeComponent();
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+
         }
 
-        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            bool avataredit = DefaultUpdateReview();
+
+            if (avataredit)
+            {
+                ContentDialog successdialog = new ContentDialog();
+                successdialog.Title = "Success!";
+                successdialog.Content = "Your account avatar has been changed successfully!\nYou may have to refresh the page to see effect.";
+                successdialog.CloseButtonText = "Approve";
+                successdialog.DefaultButton = ContentDialogButton.Close;
+
+                avataredit_contentdialog.Hide();
+                await successdialog.ShowAsync(); //Displays it until the close button is pressed
+
+                //Added a parameter which runs on close button close to return to original edit dialog
+                ContentDialog returnchoose = new SettingsChooseDialog();
+                returnchoose.CloseButtonCommandParameter = await returnchoose.ShowAsync();
+            }
+
+            else
+            {
+                //Display an content dialog which states the error - blackbox testing
+                ContentDialog errordialog = new ContentDialog();
+                errordialog.Title = "Error!";
+                errordialog.Content = "Database update was unsuccessful. This may be an issue on the program side, please try again. If you encounter the error constantly create a bug report.\n\n[Error Code: UPDATE_FAILURE_DB]";
+                errordialog.CloseButtonText = "Approve";
+                errordialog.DefaultButton = ContentDialogButton.Close;
+
+                avataredit_contentdialog.Hide();
+                await errordialog.ShowAsync(); //Display it until user presses the accept button
+                errordialog.CloseButtonCommandParameter = await avataredit_contentdialog.ShowAsync();
+            }
+        }
+
+        private void ContentDialog_CloseButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+            
+        }
+
+        private bool DefaultUpdateReview()
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    //Sets variables and SQL command
+                    cmd.CommandText = "UPDATE user_data SET UserAvatar=@avatar WHERE UserID=@userid";
+                    cmd.Parameters.AddWithValue("@avatar", "");
+                    cmd.Parameters.AddWithValue("@userid", App.GlobalUserID);
+
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                return false;
+            }
         }
 
         public async Task ImgurUploadAPI()

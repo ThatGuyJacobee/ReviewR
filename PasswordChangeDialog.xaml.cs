@@ -16,6 +16,7 @@ using MySqlConnector;
 using System.Net.Mail; //Used to send emails
 using System.ComponentModel.DataAnnotations; //Used to check that email is real
 using System.Diagnostics; //Debug
+using Windows.ApplicationModel.Core;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -65,12 +66,14 @@ namespace ReviewR
 
                     ContentDialog successdialog = new ContentDialog();
                     successdialog.Title = "Success!";
-                    successdialog.Content = "Your password has been changed and an email has been sent. You may now return to the login page to login.";
+                    successdialog.Content = "Your password has been changed and an email has been sent. You will now return to the login page after an app restart for security purposes.";
                     successdialog.CloseButtonText = "Next";
                     successdialog.DefaultButton = ContentDialogButton.Close;
 
                     passwordchange_contentdialog.Hide(); //Close the register dialog (limitation 1 at a time)
                     await successdialog.ShowAsync(); //Displays it until the close button is pressed
+
+                    successdialog.CloseButtonCommandParameter = await CoreApplication.RequestRestartAsync("App restarted to update a user's password.");
                 }
 
                 else

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using MySqlConnector;
 using System.Collections.ObjectModel; //Used to notify listview values when objects are changed
 using System.Diagnostics; //Debug
+using Windows.UI.Xaml.Media.Imaging; //For using image to URL links
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -51,7 +52,7 @@ namespace ReviewR
                 MySqlCommand cmd = conn.CreateCommand();
 
                 //Sets variables and SQL command
-                cmd.CommandText = "SELECT lastlogon, creationdate FROM user_data WHERE UserID=@UserID";
+                cmd.CommandText = "SELECT lastlogon, creationdate, useravatar, email FROM user_data WHERE UserID=@UserID";
                 cmd.Parameters.AddWithValue("@UserID", App.GlobalUserID);
 
                 MySqlDataReader details = cmd.ExecuteReader();
@@ -60,9 +61,16 @@ namespace ReviewR
                 {
                     var lastlogon = Convert.ToString(details["lastlogon"]);
                     var creationdate = Convert.ToString(details["creationdate"]);
+                    var useravatar = Convert.ToString(details["useravatar"]);
+                    PasswordResetDialog.ResetEmail = Convert.ToString(details["email"]);
 
                     lastlogon_date.Text = lastlogon;
                     accountcreated_date.Text = creationdate;
+
+                    if (useravatar != "")
+                    {
+                        user_avatar.Source = new BitmapImage(new Uri(useravatar));
+                    }
 
                     conn.Close();
                 }
@@ -112,16 +120,55 @@ namespace ReviewR
 
         }
 
-        private async void account_avatar_Click(object sender, RoutedEventArgs e)
-        {
-            //When the Register Account button is clicked, display the Register Content Dialog
-            ContentDialog uploaddialog = new UploadAvatar();
-            await uploaddialog.ShowAsync();
-        }
-
         private void accountcreated_title_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private async void account_edit_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog usersettingschoice = new SettingsChooseDialog();
+            
+            await usersettingschoice.ShowAsync();
+        }
+
+        private void profile_preview_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+                    notfound_text.Visibility = Visibility.Collapsed;
+
+                    cmd.CommandText = "SELECT UserID, Username, UserBio, UserAvatar, LastLogon FROM user_data WHERE UserID=@userid"; //Searches for usernames and returns the needed values
+                    cmd.Parameters.AddWithValue("@userid", App.GlobalUserID);
+                    cmd.Connection = conn;
+
+                    MySqlDataReader reviewfetch = cmd.ExecuteReader(); //Executes a read command for the table
+                    if (reviewfetch.Read())
+                    {
+                        //Set results as variables
+                        ProfilePages.ProfileSpecificUserID = Convert.ToInt32(reviewfetch["UserID"]);
+                        ProfilePages.ProfileSpecificUsername = Convert.ToString(reviewfetch["Username"]);
+                        ProfilePages.ProfileSpecificUserBio = Convert.ToString(reviewfetch["UserBio"]);
+                        ProfilePages.ProfileSpecificUserAvatar = Convert.ToString(reviewfetch["UserAvatar"]);
+                        ProfilePages.ProfileSpecificLastLogon = Convert.ToString(reviewfetch["LastLogon"]);
+                        Debug.WriteLine("User ID: " + ProfilePages.ProfileSpecificUserID);
+                        Debug.WriteLine("Username : " + ProfilePages.ProfileSpecificUsername);
+                        Debug.WriteLine("User Bio: " + ProfilePages.ProfileSpecificUserBio);
+                        Debug.WriteLine("User Avatar : " + ProfilePages.ProfileSpecificUserAvatar);
+                        Debug.WriteLine("Last Logon : " + ProfilePages.ProfileSpecificLastLogon);
+
+                        this.Frame.Navigate(typeof(ProfileSpecificPages), null); //Switch to the profile-specific page
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
     }
 }

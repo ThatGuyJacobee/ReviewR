@@ -126,8 +126,14 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AccountEditDialog.xaml.cs">
+      <DependentUpon>AccountEditDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AvatarEditDialog.xaml.cs">
+      <DependentUpon>AvatarEditDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="NoConnection.xaml.cs">
       <DependentUpon>NoConnection.xaml</DependentUpon>
@@ -199,11 +205,11 @@
     <Compile Include="SearchFeature.xaml.cs">
       <DependentUpon>SearchFeature.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingsChooseDialog.xaml.cs">
+      <DependentUpon>SettingsChooseDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UploadAvatar.xaml.cs">
-      <DependentUpon>UploadAvatar.xaml</DependentUpon>
     </Compile>
     <Compile Include="UsernameDialog.xaml.cs">
       <DependentUpon>UsernameDialog.xaml</DependentUpon>
@@ -284,6 +290,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AccountEditDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AvatarEditDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NoConnection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -376,11 +390,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsPage.xaml">
+    <Page Include="SettingsChooseDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UploadAvatar.xaml">
+    <Page Include="SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

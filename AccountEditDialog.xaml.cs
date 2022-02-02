@@ -58,6 +58,7 @@ namespace ReviewR
         {
             //Added a parameter which runs on close button close to return to original edit dialog
             ContentDialog returnchoose = new SettingsChooseDialog();
+            accountedit_contentdialog.Hide();
             await returnchoose.ShowAsync();
         }
 

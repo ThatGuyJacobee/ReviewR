@@ -28,9 +28,12 @@ namespace ReviewR
             this.InitializeComponent();
         }
 
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-
+            //Added a parameter which runs on close button close to return to original edit dialog
+            ContentDialog returnchoose = new SettingsChooseDialog();
+            avataredit_contentdialog.Hide();
+            await returnchoose.ShowAsync();
         }
 
         private async void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

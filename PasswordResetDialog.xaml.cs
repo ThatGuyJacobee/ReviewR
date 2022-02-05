@@ -90,7 +90,7 @@ namespace ReviewR
                     await errordialog.ShowAsync();
 
                     //Ensure the reset dialog reappears after accepting error dialog
-                    ContentDialog passwordresetdialog = new UsernameDialog();
+                    ContentDialog passwordresetdialog = new PasswordResetDialog();
                     errordialog.CloseButtonCommandParameter = await passwordresetdialog.ShowAsync();
                 }
             }

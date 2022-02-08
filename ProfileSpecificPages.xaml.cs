@@ -43,7 +43,7 @@ namespace ReviewR
             username_title.Text = ProfilePages.ProfileSpecificUsername + " [" + ProfilePages.ProfileSpecificUserID + "]";
             profilebio_text.Text = ProfilePages.ProfileSpecificUserBio;
 
-            if (ProfilePages.ProfileSpecificUserAvatar != "")
+            if (ProfilePages.ProfileSpecificUserAvatar != "" && Uri.IsWellFormedUriString(ProfilePages.ProfileSpecificUserAvatar, UriKind.Absolute))
             {
                 user_avatar.Source = new BitmapImage(new Uri(ProfilePages.ProfileSpecificUserAvatar));
             }

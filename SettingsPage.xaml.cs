@@ -67,7 +67,7 @@ namespace ReviewR
                     lastlogon_date.Text = lastlogon;
                     accountcreated_date.Text = creationdate;
 
-                    if (useravatar != "")
+                    if (useravatar != "" && Uri.IsWellFormedUriString(useravatar, UriKind.Absolute)) //Added check to ensure URL is valid
                     {
                         user_avatar.Source = new BitmapImage(new Uri(useravatar));
                     }

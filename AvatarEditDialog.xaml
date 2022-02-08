@@ -23,7 +23,7 @@
         </RichTextBlock>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="OR" VerticalAlignment="Top" Width="29" Margin="0,115,0,0" FontSize="20" FontWeight="Bold"/>
 
-        <TextBox x:Name="enter_imglink" HorizontalAlignment="Center" VerticalAlignment="Top" Width="498" PlaceholderText="Enter a link to an image..."  Margin="0,70,0,0"/>
+        <TextBox x:Name="enter_imglink" HorizontalAlignment="Center" VerticalAlignment="Top" Width="498" PlaceholderText="Enter a link to an image..."  Margin="0,70,0,0" TextChanged="enter_imglink_TextChanged"/>
         <Button Content="Upload custom avatar..." Click="FileNameButton_Click" Margin="307,149,0,0" VerticalAlignment="Top" Width="191"/>
         <TextBlock x:Name="uploadedimage_text" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Awaiting file upload..." VerticalAlignment="Top" Width="300" Margin="0,155,0,0"/>
     </Grid>

@@ -11,8 +11,8 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using MySqlConnector;
 using Windows.UI.Xaml.Navigation;
+using MySqlConnector;
 using System.Collections.ObjectModel; //Used to notify listview values when objects are changed
 using System.Diagnostics; //Debug
 
@@ -23,9 +23,9 @@ namespace ReviewR
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RecommendationSystem : Page
+    public sealed partial class RecCalibration : Page
     {
-        public RecommendationSystem()
+        public RecCalibration()
         {
             this.InitializeComponent();
             //Waits till page is fully loaded before running the event
@@ -34,24 +34,16 @@ namespace ReviewR
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
-            {
-                conn.Open();
-                MySqlCommand cmd = conn.CreateCommand();
+            calhelp_description.Visibility = Visibility.Visible;
+            startrec_button.Visibility = Visibility.Visible;
+        }
 
-                //Sets variables and SQL command
-                cmd.CommandText = "SELECT RecID FROM recommend_data WHERE UserID=@UserID"; //Check whether the user has previously used rec system
-                cmd.Parameters.AddWithValue("@UserID", App.GlobalUserID);
+        private void startrec_button_Click(object sender, RoutedEventArgs e)
+        {
+            StartGrid.Visibility = Visibility.Collapsed; //Hide Start Grid
+            GameGrid.Visibility = Visibility.Visible; //Displaay the main Calibration Grid
 
-                MySqlDataReader details = cmd.ExecuteReader();
 
-                if (!details.Read())
-                {
-                    //Navigate to the Calibration page if a ReviewID doesn't already exist
-                    this.Frame.Navigate(typeof(RecCalibration), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
-                }
-                conn.Close();
-            }
         }
     }
 }

@@ -150,6 +150,9 @@
     <Compile Include="ProfileSpecificPages.xaml.cs">
       <DependentUpon>ProfileSpecificPages.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Recommendation\RecCalibration.xaml.cs">
+      <DependentUpon>RecCalibration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Review\ReviewEdit.xaml.cs">
       <DependentUpon>ReviewEdit.xaml</DependentUpon>
     </Compile>
@@ -170,9 +173,6 @@
     </Compile>
     <Compile Include="GetHelp.xaml.cs">
       <DependentUpon>GetHelp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Recommendation\RecSysCalibration.xaml.cs">
-      <DependentUpon>RecSysCalibration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Review\CreateReview.xaml.cs">
       <DependentUpon>CreateReview.xaml</DependentUpon>
@@ -318,6 +318,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Recommendation\RecCalibration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Review\ReviewEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -343,10 +347,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GetHelp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Recommendation\RecSysCalibration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

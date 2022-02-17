@@ -16,6 +16,7 @@ using Windows.Web.Http; //For POST method
 using System.Threading.Tasks; //For POST method
 using System.Diagnostics; //Debug
 using MySqlConnector;
+using Windows.Storage;
 
 // The Content Dialog item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -109,13 +110,13 @@ namespace ReviewR
                 {
                     // Construct the HttpClient and Uri
                     HttpClient httpClient = new HttpClient();
-                    Uri uri = new Uri("https://api.imgur.com/3/upload");
+                    Uri uri = new Uri("https://api.imgur.com/3/image");
 
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Client-ID 08297f306620602");
                     //Debug.WriteLine("Request Headers: ");
 
                     // Construct the JSON to post
-                    HttpStringContent content = new HttpStringContent("image=\"{finalimg}\"");
+                    HttpStringContent content = new HttpStringContent($"image=\"{finalimg}\"");
                     Debug.WriteLine("Request Upload: " + content);
 
                     // Post the JSON and wait for a response
@@ -155,7 +156,8 @@ namespace ReviewR
             {
                 // Application now has read/write access to the picked file
                 imgpath = file.Path;
-                var filecon = File.ReadAllBytes(imgpath);
+                var buffer = await FileIO.ReadBufferAsync(file);
+                var filecon = buffer.ToArray();
                 finalimg = Convert.ToBase64String(filecon);
 
                 await ImgurUploadAPI();

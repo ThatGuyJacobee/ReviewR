@@ -34,6 +34,12 @@ namespace ReviewR
             this.InitializeComponent();
             //Waits till page is fully loaded before running the event
             this.Loaded += Page_Loaded;
+
+            calhelp_description.Text = "Hey username! As this is your first time here, you will be required to calibrate your preferences through an algorithm before you receive personalised recommendations.\nPlease select which game platform you want to find games from and a date from which games should be searched from.";
+
+            // Set minimum to the current year and maximum to five years from now.
+            date_pick.MinYear = new DateTimeOffset(new DateTime(2005, 1, 1));
+            date_pick.MaxYear = DateTimeOffset.Now;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -42,12 +48,6 @@ namespace ReviewR
             GameGrid.Visibility = Visibility.Collapsed;
             DislikeGrid.Visibility = Visibility.Collapsed;
             LikeGrid.Visibility = Visibility.Collapsed;
-
-            //Get a total count for games to be able to do math random for random game display
-            GetCount();
-
-            //Fetch the first game in the background
-            //RandomGameFetch();
         }
 
         public partial class GameListObject
@@ -110,7 +110,7 @@ namespace ReviewR
                 //Debug.WriteLine("Request Headers: ");
 
                 // Construct the JSON to post
-                HttpStringContent content = new HttpStringContent($"where rating >= 75{LikedCategory};");
+                HttpStringContent content = new HttpStringContent($"where rating >= 1;");
                 Debug.WriteLine("Request Contents: " + content);
 
                 // Post the JSON and wait for a response
@@ -129,6 +129,7 @@ namespace ReviewR
                 TotalGameCount = Convert.ToInt32(gamelistobjects.TotalCount);
                 Debug.WriteLine($"count: {gamelistobjects.TotalCount}");
                 
+                //Perform random math for game id
                 RandomMath();
             }
             catch (Exception ex)
@@ -162,7 +163,7 @@ namespace ReviewR
                 //Debug.WriteLine("Request Headers: ");
 
                 // Construct the JSON to post
-                HttpStringContent content = new HttpStringContent($"fields id,name,genres.name,summary,platforms.name; where rating >= 75 & id = {RandomGameID}; limit 1;");
+                HttpStringContent content = new HttpStringContent($"fields id,name,genres.name,summary,platforms.name; where rating >= 75 & id = {RandomGameID} & platforms = ({UserGenres}) & first_release_date > {DateFilter}; limit 1;");
                 Debug.WriteLine("Request Contents: " + content);
 
                 // Post the JSON and wait for a response
@@ -237,31 +238,92 @@ namespace ReviewR
             }
         }
 
+        public static string UserGenres = "";
+
+        public static long DateFilter;
 
         private void startrec_button_Click(object sender, RoutedEventArgs e)
         {
-            StartGrid.Visibility = Visibility.Collapsed; //Hide Start Grid
-            GameGrid.Visibility = Visibility.Visible; //Displaay the main Calibration Grid
-            DislikeGrid.Visibility = Visibility.Visible;
-            LikeGrid.Visibility = Visibility.Visible;
-        }
+            //If none is on then don't allow the user to pass
+            if (!pc_switch.IsOn && !playstation_switch.IsOn && !xbox_switch.IsOn)
+            {
+                //Display the error requiring user to pick at least one
+                noswitch_error.Visibility = Visibility.Visible;
 
-        public static string LikedCategory = "";
+                DateTimeOffset dateTimeOffset = DateTimeOffset.Parse(Convert.ToString(date_pick.Date));
+
+                DateFilter = dateTimeOffset.ToUnixTimeMilliseconds();
+                Debug.WriteLine("Unix calc result: " + DateFilter);
+            }
+
+            else
+            {
+                StartGrid.Visibility = Visibility.Collapsed; //Hide Start Grid
+                GameGrid.Visibility = Visibility.Visible; //Displaay the main Calibration Grid
+                DislikeGrid.Visibility = Visibility.Visible;
+                LikeGrid.Visibility = Visibility.Visible;
+
+                if (pc_switch.IsOn && playstation_switch.IsOn && xbox_switch.IsOn)
+                {
+                    UserGenres = "6,9,48,167,12,49,169";
+                }
+
+                else if (!pc_switch.IsOn && playstation_switch.IsOn && xbox_switch.IsOn)
+                {
+                    UserGenres = "9,48,167,12,49,169";
+                }
+
+                else if (!pc_switch.IsOn && !playstation_switch.IsOn && xbox_switch.IsOn)
+                {
+                    UserGenres = "12,49,169";
+                }
+
+                else if (pc_switch.IsOn && !playstation_switch.IsOn && xbox_switch.IsOn)
+                {
+                    UserGenres = "6,12,49,169";
+                }
+
+                else if (pc_switch.IsOn && !playstation_switch.IsOn && !xbox_switch.IsOn)
+                {
+                    UserGenres = "6";
+                }
+
+                //Set message to searching for game (only runs once rather than the random math)
+                game_title.Text = "Awaiting API response...";
+                game_genre.Text = "...";
+                game_type.Text = "...";
+                game_platform.Text = "...";
+                game_summary.Text = "...";
+
+                //Get a total count for games to be able to do math random for random game display
+                GetCount();
+            }
+        }
 
         private void like_button_Click(object sender, RoutedEventArgs e)
         {
-            //Sert the Liked Category to this, which will ensure next search checks for this genre specifically
-            LikedCategory = " & genres = " + FetchedGenre;
-
             //Perform the next game random search
-            GetCount();
+            RandomMath();
+
+            //Set message to searching for game (only runs once rather than the random math)
+            game_title.Text = "Awaiting API response...";
+            game_genre.Text = "...";
+            game_type.Text = "...";
+            game_platform.Text = "...";
+            game_summary.Text = "...";
         }
 
         private void dislike_button_Click(object sender, RoutedEventArgs e)
         {
-            LikedCategory = "";
             //Perform the next game random search
-            GetCount();
+            RandomMath();
+
+            //Set message to searching for game (only runs once rather than the random math)
+            game_title.Text = "Awaiting API response...";
+            game_genre.Text = "...";
+            game_type.Text = "...";
+            game_platform.Text = "...";
+            game_summary.Text = "...";
         }
     }
 }

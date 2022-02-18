@@ -110,7 +110,7 @@ namespace ReviewR
                     //Debug.WriteLine("Request Headers: ");
 
                     // Construct the JSON to post
-                    HttpStringContent content = new HttpStringContent($"search \"{SearchQuery}\"; fields name,release_dates.human,external_games.category;");
+                    HttpStringContent content = new HttpStringContent($"search \"{SearchQuery}\"; fields name,release_dates.human,external_games.category; limit 50;");
                     Debug.WriteLine("Request Contents: " + content);
 
                     // Post the JSON and wait for a response

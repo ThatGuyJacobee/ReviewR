@@ -76,10 +76,6 @@ namespace ReviewR
                     ContentFrame.Navigate(typeof(RecommendationSystem), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
                     break;
 
-                case "search":
-                    ContentFrame.Navigate(typeof(SearchFeature), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
-                    break;
-
                 case "profile":
                     ContentFrame.Navigate(typeof(ProfilePages), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
                     break;

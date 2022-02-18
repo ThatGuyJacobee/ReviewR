@@ -27,7 +27,6 @@
                 <NavigationViewItemHeader Content="Main Features:"/>
                 <NavigationViewItem x:Uid="Reviewsys" Icon="OutlineStar" Content="Review System" Tag="revsys"/>
                 <NavigationViewItem x:Uid="Recommendsys" Icon="Library" Content="Recommendation System" Tag="recsys"/>
-                <NavigationViewItem x:Uid="Searchfeature" Icon="Zoom" Content="Search Feature" Tag="search"/>
                 <NavigationViewItemSeparator/>
                 <NavigationViewItemHeader Content="Social Features:"/>
                 <NavigationViewItem x:Uid="Profilepages" Icon="Contact" Content="Profile Pages" Tag="profile"/>

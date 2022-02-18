@@ -25,7 +25,7 @@
                 <TextBlock x:Name="recommendationcalibration_text" Grid.Row="0" Text="Recommendation Calibration" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
             </Grid>
 
-            <Grid x:Name="StartGrid" Grid.Row="1" Grid.ColumnSpan="3" Background="#D55E5E" Height="830" VerticalAlignment="Top" Visibility="Visible">
+            <Grid x:Name="StartGrid" Grid.Row="1" Grid.ColumnSpan="3" Background="#D55E5E" Height="830" VerticalAlignment="Top" Visibility="Collapsed">
                 <TextBlock x:Name="calhelp_description" Text="&lt;$caldescription&gt;" TextWrapping="Wrap" FontSize="40" TextAlignment="Center" FontWeight="Bold" Margin="68,50,67,556"/>
                 <Button x:Name="startrec_button" Content="Begin calibration activity" FontSize="50" VerticalAlignment="Stretch" FontWeight="Bold" Margin="635,589,635,100" Click="startrec_button_Click" HorizontalAlignment="Stretch"/>
                 <ToggleSwitch x:Name="pc_switch" Header="PC Windows" Margin="635,300,0,0" Width="220" Height="115" FontSize="36" FontWeight="Bold" VerticalAlignment="Top"/>
@@ -35,21 +35,28 @@
                 <DatePicker x:Name="date_pick" Margin="722,470,722,0" VerticalAlignment="Top" Height="50" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch"/>
             </Grid>
 
-            <Grid x:Name="GameGrid" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
-                <Rectangle Margin="0,100,0,100" Stroke="Black" StrokeThickness="5" Fill="Gray"/>
-                <TextBlock x:Name="game_title" Text="&lt;$gametitle&gt;" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Height="120" VerticalAlignment="Top" Margin="125,130,125,0"/>
-                <TextBlock x:Name="game_genre" Text="&lt;$gamegenre&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Height="84" VerticalAlignment="Top" Margin="60,285,682,0"/>
-                <TextBlock x:Name="game_type" Text="&lt;$gametype&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Height="84" VerticalAlignment="Top" Margin="682,285,60,0"/>
-                <TextBlock x:Name="game_platform" Text="&lt;$gameplatform&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Height="84" VerticalAlignment="Top" Margin="150,415,150,0"/>
-                <TextBlock x:Name="game_summary" Text="&lt;$gamesummary&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="60,531,60,0" Height="139" VerticalAlignment="Top"/>
+            <Grid x:Name="EndGrid" Grid.Row="1" Grid.ColumnSpan="3" Background="#D55E5E" Height="830" VerticalAlignment="Top" Visibility="Collapsed">
+                <TextBlock x:Name="finish_description" Text="The algorithm has found a match of criteria which should suit your likings. 
+                           Please head over to the recommendation landing page by pressing the button below or re-entering the recommendation system where you will be able to view a range of games recommended for you." TextWrapping="Wrap" FontSize="40" TextAlignment="Center" FontWeight="Bold" Margin="68,200,67,406"/>
+                <Button x:Name="return_button" Content="View Recommendations" FontSize="50" VerticalAlignment="Stretch" FontWeight="Bold" Margin="635,589,635,100" Click="return_button_Click" HorizontalAlignment="Stretch"/>
             </Grid>
 
-            <Grid x:Name="DislikeGrid" Grid.Row="1" Grid.Column="0" Visibility="Collapsed">
+            <Grid x:Name="GameGrid" Grid.Row="1" Grid.Column="1">
+                <Rectangle Margin="0,100,0,100" Stroke="Black" StrokeThickness="5" Fill="Gray"/>
+                <TextBlock x:Name="game_title" Text="&lt;$gametitle&gt;" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Height="120" VerticalAlignment="Top" Margin="125,130,125,0"/>
+                <TextBlock x:Name="game_genre" Text="&lt;$gamegenre&gt;" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Height="84" VerticalAlignment="Top" Margin="60,285,682,0"/>
+                <TextBlock x:Name="game_type" Text="&lt;$gametype&gt;" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Height="84" VerticalAlignment="Top" Margin="682,285,60,0"/>
+                <TextBlock x:Name="game_platform" Text="&lt;$gameplatform&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Height="100" VerticalAlignment="Top" Margin="150,400,150,0"/>
+                <TextBlock x:Name="game_summary" Text="&lt;$gamesummary&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="60,531,60,0" Height="139" VerticalAlignment="Top"/>
+                <TextBlock x:Name="game_waiting" Text="The time taken will depend on the amount of filters applied, typically 3-15secs..." TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Height="43" VerticalAlignment="Top" Margin="125,285,125,0" Visibility="Collapsed"/>
+            </Grid>
+
+            <Grid x:Name="DislikeGrid" Grid.Row="1" Grid.Column="0">
                 <Button x:Name="dislike_button" Content="👎" FontSize="150" FontWeight="Bold" Background="Gray" BorderThickness="5" BorderBrush="Black" Margin="50,275,50,275" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="dislike_button_Click"/>
             </Grid>
 
-            <Grid x:Name="LikeGrid" Grid.Row="1" Grid.Column="2" Visibility="Collapsed">
-                <Button x:Name="like_button" Content="❤️" FontSize="150" FontWeight="Bold" Background="Gray" BorderThickness="5" BorderBrush="Black" Margin="50,275,50,275" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="like_button_Click"/>
+            <Grid x:Name="LikeGrid" Grid.Row="1" Grid.Column="2">
+                <Button x:Name="like_button" Content="👍" FontSize="150" FontWeight="Bold" Background="Gray" BorderThickness="5" BorderBrush="Black" Margin="50,275,50,275" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="like_button_Click"/>
             </Grid>
         </Grid>
     </Grid>

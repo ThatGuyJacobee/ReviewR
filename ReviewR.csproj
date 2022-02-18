@@ -202,9 +202,6 @@
     <Compile Include="Review\ReviewSystem.xaml.cs">
       <DependentUpon>ReviewSystem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SearchFeature.xaml.cs">
-      <DependentUpon>SearchFeature.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SettingsChooseDialog.xaml.cs">
       <DependentUpon>SettingsChooseDialog.xaml</DependentUpon>
     </Compile>
@@ -383,10 +380,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Review\ReviewSystem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SearchFeature.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

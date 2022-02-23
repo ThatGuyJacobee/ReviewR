@@ -43,11 +43,11 @@
 
             <Grid x:Name="GameGrid" Grid.Row="1" Grid.Column="1">
                 <Rectangle Margin="0,100,0,100" Stroke="Black" StrokeThickness="5" Fill="Gray"/>
-                <TextBlock x:Name="game_title" Text="&lt;$gametitle&gt;" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Height="120" VerticalAlignment="Top" Margin="125,130,125,0"/>
-                <TextBlock x:Name="game_genre" Text="&lt;$gamegenre&gt;" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Height="84" VerticalAlignment="Top" Margin="60,285,682,0"/>
-                <TextBlock x:Name="game_type" Text="&lt;$gametype&gt;" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Height="84" VerticalAlignment="Top" Margin="682,285,60,0"/>
-                <TextBlock x:Name="game_platform" Text="&lt;$gameplatform&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Height="100" VerticalAlignment="Top" Margin="150,400,150,0"/>
-                <TextBlock x:Name="game_summary" Text="&lt;$gamesummary&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="60,531,60,0" Height="139" VerticalAlignment="Top"/>
+                <TextBlock x:Name="game_title" Text="&lt;$gametitle&gt;" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="125,130,125,580"/>
+                <TextBlock x:Name="game_genre" Text="&lt;$gamegenre&gt;" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Margin="60,285,682,461"/>
+                <TextBlock x:Name="game_type" Text="&lt;$gametype&gt;" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Margin="682,285,60,461"/>
+                <TextBlock x:Name="game_platform" Text="&lt;$gameplatform&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="150,400,150,330"/>
+                <TextBlock x:Name="game_summary" Text="&lt;$gamesummary&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="60,531,60,160"/>
                 <TextBlock x:Name="game_waiting" Text="The time taken will depend on the amount of filters applied, typically 3-15secs..." TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Height="43" VerticalAlignment="Top" Margin="125,285,125,0" Visibility="Collapsed"/>
             </Grid>
 

@@ -22,7 +22,7 @@
 
             <Grid Grid.Row="1" Background="#D55E5E">
                 <TextBox x:Name="profile_search" PlaceholderText="Enter a query to search for a game's hub..." TextWrapping="Wrap" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" Margin="30,30,360,30" TextChanged="profile_search_TextChanged"/>
-                <Button x:Name="myprofile_button" Content="My Profile" Height="79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1589,30,30,31" HorizontalAlignment="Stretch" Click="myprofile_button_Click" />
+                <Button x:Name="myprofile_button" Content="My Profile" Height="79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="0,30,30,31" HorizontalAlignment="Right" Click="myprofile_button_Click" Width="301" />
             </Grid>
 
             <Grid Grid.Row="2" Background="#D55E5E">

@@ -20,7 +20,17 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <TextBlock x:Name="username_text" Text="&lt;$GameTitle&gt;" TextWrapping="Wrap" Height="134" FontSize="100" TextAlignment="Center" FontWeight="Bold" Margin="42,10,41,686"/>
+                <TextBlock x:Name="username_text" Text="&lt;$GameTitle&gt;" TextWrapping="Wrap" FontSize="65" TextAlignment="Center" FontWeight="Bold" Margin="50,50,50,676"/>
+                <TextBlock x:Name="game_genre" Text="Game Genres: " TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="110,325,1110,351"/>
+                <TextBlock x:Name="game_platform" Text="Game Platforms: " TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="1110,325,110,351"/>
+                <Button x:Name="website_button" Content="Website Link" Height="79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="500,200,1095,547" HorizontalAlignment="Stretch" Click="website_button_Click"/>
+                <TextBlock x:Name="game_summary" Text="&lt;$gamesummary&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="60,531,60,45"/>
+                <Button x:Name="reviews_button" Content="Check for reviews" Height="79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1095,200,500,547" HorizontalAlignment="Stretch" Click="reviews_button_Click"/>
+
+                <Image x:Name="game_avatar" Source="/Assets/ReviewR-Logo.png" Margin="125,230,1295,100" Visibility="Collapsed"/>
+                <FlipView x:Name="imageslideshow" Margin="921,280,200,0" Height="400" VerticalAlignment="Top" Visibility="Collapsed">
+                    <Image Source="/Assets/ReviewR-Logo.png"/>
+                </FlipView>
             </Grid>
         </Grid>
     </Grid>

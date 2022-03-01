@@ -68,8 +68,9 @@ namespace ReviewR
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
 
+                //Check whether the user has previously used rec system
                 //Sets variables and SQL command
-                cmd.CommandText = "SELECT RecID, FinalGenre, PlatformPref FROM recommend_data WHERE UserID=@UserID"; //Check whether the user has previously used rec system
+                cmd.CommandText = "SELECT RecID, FinalGenre, PlatformPref FROM recommend_data WHERE UserID=@UserID";
                 cmd.Parameters.AddWithValue("@UserID", App.GlobalUserID);
 
                 MySqlDataReader details = cmd.ExecuteReader();

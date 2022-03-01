@@ -86,7 +86,38 @@ namespace ReviewR
             }
             else
             {
-                return;
+                Debug.WriteLine("Username is found!");
+            }
+
+            using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "SELECT UserID, IsAdmin FROM user_data WHERE UserID=@userid"; //Selects the email and password rows from user_data
+                    cmd.Parameters.AddWithValue("@userid", App.GlobalUserID); //Sets them as variables
+                    cmd.Connection = conn;
+
+                    MySqlDataReader adminread = cmd.ExecuteReader();
+
+                    if (adminread.Read())
+                    {
+                        var AdminCheck = Convert.ToString(adminread["IsAdmin"]);
+
+                        if (AdminCheck == "Administrator")
+                        {
+                            Debug.WriteLine("Admin found");
+                            administrator_text.Visibility = Visibility.Visible;
+                        }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
             }
         }
 
@@ -98,6 +129,26 @@ namespace ReviewR
         private void reviewr_text_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void review_text_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ReviewSystem), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+        }
+
+        private void recommendation_text_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(RecommendationSystem), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+        }
+
+        private void settings_text_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SettingsPage), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+        }
+
+        private void administrator_text_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AdminPanel), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
         }
     }
 }

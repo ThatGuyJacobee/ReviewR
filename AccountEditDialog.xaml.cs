@@ -69,7 +69,7 @@ namespace ReviewR
 
             if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Bio) && Bio.Length <= 2048 && Username.Length <= 15)
             {
-                bool accedit = UpdateReview(Username, Bio);
+                bool accedit = UpdateData(Username, Bio);
 
                 if (accedit)
                 {
@@ -117,7 +117,7 @@ namespace ReviewR
             }
         }
 
-        private bool UpdateReview(string Username, string Bio)
+        private bool UpdateData(string Username, string Bio)
         {
             try
             {

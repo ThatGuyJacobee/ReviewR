@@ -26,8 +26,8 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <TextBlock x:Name="newsupdates_text" Margin="110,49,111,0" Text="Recent News:" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" FontSize="65" TextAlignment="Center" FontWeight="Bold"/>
-                <ListView x:Name="newsupdates_list" Margin="50,188,50,50" BorderThickness="5" BorderBrush="Black" Background="DimGray"/>
+                <Button x:Name="settings_text" Content="Settings" Margin="100,250,100,0" FontSize="36" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Height="120" VerticalAlignment="Top" Click="settings_text_Click"/>
+                <Button x:Name="administrator_text" Content="Admin Panel" Margin="100,460,100,250" FontSize="36" FontWeight="Bold" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="administrator_text_Click"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1" Background="#D55E5E">
@@ -36,7 +36,8 @@
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="2" Background="#D55E5E">
-                <Button x:Name="guide_text" Content="How to use the app?" Margin="130,355,130,0" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Height="120"/>
+                <Button x:Name="review_text" Content="Review System" Margin="100,250,100,0" FontSize="36" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Height="120" VerticalAlignment="Top" Click="review_text_Click"/>
+                <Button x:Name="recommendation_text" Content="Recommendation System" Margin="100,460,100,0" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Height="120" Click="recommendation_text_Click"/>
             </Grid>
         </Grid>
     </Grid>

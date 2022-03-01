@@ -129,6 +129,9 @@
     <Compile Include="AccountEditDialog.xaml.cs">
       <DependentUpon>AccountEditDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminPanel.xaml.cs">
+      <DependentUpon>AdminPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -288,6 +291,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AccountEditDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

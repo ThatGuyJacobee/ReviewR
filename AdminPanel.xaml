@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="ReviewR.AdminPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ReviewR"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="canvasgrid" Background="Black">
+        <Grid x:Name="CanvasGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="Black">
+                <TextBlock x:Name="adminpanel_text" Grid.Row="0" Text="Administrator Panel" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#D55E5E">
+                <TextBlock x:Name="username_text" Text="&lt;$Welcome&gt;" TextWrapping="Wrap" FontSize="65" TextAlignment="Center" FontWeight="Bold" Margin="50,50,50,676"/>
+                <TextBlock x:Name="usercount_text" Text="Total Registrations: " TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="1189,225,225,522"/>
+                <TextBlock x:Name="user_count" Text="&lt;$RegNum&gt;" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="1193,350,227,355"/>
+                <TextBlock x:Name="reviewcount_text" Text="Total Reviews: " TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="225,225,1189,522"/>
+                <TextBlock x:Name="review_count" Text="&lt;$RegNum&gt;" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="227,350,1193,355"/>
+
+                <Image x:Name="db_status_tick" Source="Assets/Tick-Symbol.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="575,565,0,0" Height="150" Width="150"/>
+                <TextBlock x:Name="database_status" Margin="770,600,544,0" Text="DB Connection Strong" TextWrapping="Wrap" FontSize="60" Height="90" VerticalAlignment="Top"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

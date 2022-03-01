@@ -113,6 +113,36 @@ namespace ReviewR
                     myreviews_list.ItemsSource = null;
                 }
             }
+
+            using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "SELECT UserID, IsAdmin FROM user_data WHERE UserID=@userid"; //Selects the email and password rows from user_data
+                    cmd.Parameters.AddWithValue("@userid", App.GlobalUserID); //Sets them as variables
+                    cmd.Connection = conn;
+
+                    MySqlDataReader adminread = cmd.ExecuteReader();
+
+                    if (adminread.Read())
+                    {
+                        var AdminCheck = Convert.ToString(adminread["IsAdmin"]);
+
+                        if (AdminCheck == "Administrator")
+                        {
+                            admin_panel.Visibility = Visibility.Visible;
+                        }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+            }
         }
 
         private void myreviews_list_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -169,6 +199,11 @@ namespace ReviewR
             {
                 Debug.WriteLine(ex);
             }
+        }
+
+        private void admin_panel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AdminPanel), null, new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
         }
     }
 }

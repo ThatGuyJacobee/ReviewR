@@ -88,7 +88,8 @@ namespace ReviewR
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "SELECT UserID, AuthSub, Email FROM user_data WHERE UserID=@userid"; //Selects the email and password rows from user_data
+                //Selects the email, userid and authsub from user_data
+                cmd.CommandText = "SELECT UserID, AuthSub, Email FROM user_data WHERE UserID=@userid";
                 cmd.Parameters.AddWithValue("@userid", App.GlobalUserID); //Sets them as variables
                 cmd.Connection = conn;
 

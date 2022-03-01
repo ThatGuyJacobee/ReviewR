@@ -23,6 +23,7 @@
 
             <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="Black">
                 <TextBlock x:Name="settings_text" Grid.Row="0" Text="Settings &amp; Preferences" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="0,65,0,65"/>
+                <Button x:Name="admin_panel" Content="Admin Panel" FontSize="36" FontWeight="Bold" Visibility="Collapsed" Height="120" Width="386" Margin="1479,0,0,0" Click="admin_panel_Click"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="0" Background="#D55E5E">

@@ -8,11 +8,11 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="canvasgrid" Background="Black">
+    <Grid x:Name="canvasgrid" Background="#D55E5E">
         <Grid x:Name="CanvasGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Background="Black">
@@ -20,12 +20,12 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <TextBlock x:Name="username_text" Text="&lt;$GameTitle&gt;" TextWrapping="Wrap" FontSize="65" TextAlignment="Center" FontWeight="Bold" Margin="50,50,50,676"/>
-                <TextBlock x:Name="game_genre" Text="Game Genres: " TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="110,325,1110,351"/>
-                <TextBlock x:Name="game_platform" Text="Game Platforms: " TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="1110,325,110,351"/>
-                <Button x:Name="website_button" Content="Website Link" Height="79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="500,200,1095,547" HorizontalAlignment="Stretch" Click="website_button_Click"/>
-                <TextBlock x:Name="game_summary" Text="&lt;$gamesummary&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="60,531,60,45"/>
-                <Button x:Name="reviews_button" Content="Check for reviews" Height="79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="1095,200,500,547" HorizontalAlignment="Stretch" Click="reviews_button_Click"/>
+                <TextBlock x:Name="username_text" Text="&lt;$GameTitle&gt;" TextWrapping="Wrap" FontSize="65" TextAlignment="Center" FontWeight="Bold" Margin="50,50,50,0" Height="87" VerticalAlignment="Top"/>
+                <TextBlock x:Name="game_genre" Text="Game Genres: " TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="110,325,0,0" Height="155" VerticalAlignment="Top" HorizontalAlignment="Left" Width="700"/>
+                <TextBlock x:Name="game_platform" Text="Game Platforms: " TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="1110,325,0,0" Height="159" VerticalAlignment="Top" HorizontalAlignment="Left" Width="700"/>
+                <Button x:Name="website_button" Content="Website Link" Height="79" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Margin="500,200,0,0" Click="website_button_Click" Width="325"/>
+                <TextBlock x:Name="game_summary" Text="&lt;$gamesummary&gt;" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" FontWeight="Bold" Margin="60,531,0,0" Height="252" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1800"/>
+                <Button x:Name="reviews_button" Content="Check for reviews" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Margin="1095,200,0,0" Click="reviews_button_Click" Width="325" Height="79"/>
 
                 <Image x:Name="game_avatar" Source="/Assets/ReviewR-Logo.png" Margin="125,230,1295,100" Visibility="Collapsed"/>
                 <FlipView x:Name="imageslideshow" Margin="921,280,200,0" Height="400" VerticalAlignment="Top" Visibility="Collapsed">

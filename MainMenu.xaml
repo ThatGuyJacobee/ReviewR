@@ -27,7 +27,7 @@
 
             <Grid Grid.Row="1" Background="#D55E5E">
                 <Button x:Name="settings_text" Content="Settings" Margin="100,250,100,0" FontSize="36" FontWeight="Bold" Visibility="Visible" HorizontalAlignment="Stretch" Height="120" VerticalAlignment="Top" Click="settings_text_Click"/>
-                <Button x:Name="administrator_text" Content="Admin Panel" Margin="100,460,100,250" FontSize="36" FontWeight="Bold" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="administrator_text_Click"/>
+                <Button x:Name="administrator_text" Content="Admin Panel" Margin="100,460,100,0" FontSize="36" FontWeight="Bold" Visibility="Collapsed" Height="120" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="administrator_text_Click"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1" Background="#D55E5E">

@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="canvasgrid" Background="Black">
+    <Grid x:Name="canvasgrid" Background="#D55E5E">
         <Grid x:Name="CanvasGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>
@@ -17,9 +17,9 @@
 
             <Grid Grid.Row="0" Background="Black">
                 <TextBlock x:Name="reviewspecific_text" Grid.Row="0" Text="Review-Specific Page" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
-                <Button x:Name="delete_review" Content="Delete Review" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Height="80" Width="350" Visibility="Collapsed" Margin="1513,140,0,0" Click="delete_review_Click"/>
-                <Button x:Name="edit_review" Content="Edit Review" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Height="80" Width="350" Visibility="Collapsed" Margin="1513,30,0,0" Click="edit_review_Click"/>
-                <Button x:Name="author_button" Content="Author's Profile" Height="79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="100,86,1495,85" HorizontalAlignment="Stretch" Click="author_button_Click"/>
+                <Button x:Name="delete_review" Content="Delete Review" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" Margin="0,140,57,30" Click="delete_review_Click" Width="350" HorizontalAlignment="Right"/>
+                <Button x:Name="edit_review" Content="Edit Review" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Visibility="Visible" Margin="0,30,57,140" Click="edit_review_Click" Width="350" HorizontalAlignment="Right"/>
+                <Button x:Name="author_button" Content="Author's Profile" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="100,86,0,85" Click="author_button_Click" Width="325"/>
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
@@ -28,26 +28,26 @@
                 <TextBlock x:Name="reviewtitle_text" Text="&lt;$ReviewTitle&gt;" TextWrapping="Wrap" FontSize="65" TextAlignment="Center" FontWeight="Bold" Margin="42,309,41,345"/>
                 <TextBlock x:Name="reviewdescription_text" Text="&lt;$ReviewDescription&gt;" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="42,481,41,41"/>
 
-                <TextBlock x:Name="voting_total" Text="&lt;$num&gt;" FontSize="65" FontWeight="Bold" Margin="1380,93,266,634" TextAlignment="Right"/>
+                <TextBlock x:Name="voting_total" Text="0" FontSize="65" FontWeight="Bold" Margin="0,161,248,566" TextAlignment="Right" HorizontalAlignment="Right" Width="100"/>
 
-                <Button x:Name="no_upvote" Width="125" Height="125" Margin="1668,10,0,0" VerticalAlignment="Top" Click="no_upvote_Click">
-                    <Image x:Name="no_upvoteimg" Source="/Assets/NoVote.png" Height="100" VerticalAlignment="Top" Width="100"/>
+                <Button x:Name="no_upvote" Margin="0,75,75,630" VerticalAlignment="Stretch" Click="no_upvote_Click" HorizontalAlignment="Right" Width="125">
+                    <Image x:Name="no_upvoteimg" Source="/Assets/NoVote.png" Width="100"/>
                 </Button>
 
-                <Button x:Name="upvote" Width="125" Height="125" Margin="1668,10,0,0" VerticalAlignment="Top" Visibility="Collapsed" Click="upvote_Click">
-                    <Image x:Name="upvoteimg" Source="/Assets/Voted.png" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>
+                <Button x:Name="upvote" Width="125" Height="125" Margin="0,75,75,630" VerticalAlignment="Stretch" HorizontalAlignment="Right" Visibility="Collapsed" Click="upvote_Click">
+                    <Image x:Name="upvoteimg" Source="/Assets/Voted.png" Width="100"/>
                 </Button>
 
-                <Button x:Name="no_downvote" Width="125" Height="125" Margin="1668,150,0,0" VerticalAlignment="Top" Click="no_downvote_Click">
-                    <Image x:Name="no_downvoteimg" Source="/Assets/NoVote.png" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5">
+                <Button x:Name="no_downvote" Margin="0,225,75,480" VerticalAlignment="Stretch" Click="no_downvote_Click" HorizontalAlignment="Right" Width="125">
+                    <Image x:Name="no_downvoteimg" Source="/Assets/NoVote.png" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <CompositeTransform Rotation="180"/>
                         </Image.RenderTransform>
                     </Image>
                 </Button>
 
-                <Button x:Name="downvote" Width="125" Height="125" Margin="1668,150,0,0" VerticalAlignment="Top" Visibility="Collapsed" Click="downvote_Click">
-                    <Image x:Name="downvoteimg" Source="/Assets/Voted.png" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5">
+                <Button x:Name="downvote" Width="125" Height="125" Margin="0,225,75,480" VerticalAlignment="Stretch" HorizontalAlignment="Right" Visibility="Collapsed" Click="downvote_Click">
+                    <Image x:Name="downvoteimg" Source="/Assets/Voted.png" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <CompositeTransform Rotation="180"/>
                         </Image.RenderTransform>

@@ -18,7 +18,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="350"/>
                 <ColumnDefinition Width="1220"/>
-                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="Black">
@@ -28,8 +28,8 @@
             <Grid x:Name="StartGrid" Grid.Row="1" Grid.ColumnSpan="3" Background="#D55E5E" Height="830" VerticalAlignment="Top" Visibility="Collapsed">
                 <TextBlock x:Name="calhelp_description" Text="&lt;$caldescription&gt;" TextWrapping="Wrap" FontSize="40" TextAlignment="Center" FontWeight="Bold" Margin="68,50,67,556"/>
                 <Button x:Name="startrec_button" Content="Begin calibration activity" FontSize="50" VerticalAlignment="Stretch" FontWeight="Bold" Margin="635,589,635,100" Click="startrec_button_Click" HorizontalAlignment="Stretch"/>
-                <ToggleSwitch x:Name="pc_switch" Header="PC Windows" Margin="635,300,0,0" Width="220" Height="115" FontSize="36" FontWeight="Bold" VerticalAlignment="Top"/>
-                <ToggleSwitch x:Name="playstation_switch" Header="Playstation" Width="203" Height="115" FontSize="36" FontWeight="Bold" Margin="1082,300,0,0" VerticalAlignment="Top"/>
+                <ToggleSwitch x:Name="pc_switch" Header="PC Windows" Margin="420,300,0,0" Width="220" Height="115" FontSize="36" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                <ToggleSwitch x:Name="playstation_switch" Header="Playstation" Height="115" FontSize="36" FontWeight="Bold" Margin="-425,300,0,0" VerticalAlignment="Top" Width="203" HorizontalAlignment="Center"/>
                 <ToggleSwitch x:Name="xbox_switch" Header="Xbox" Width="120" Height="115" FontSize="36" FontWeight="Bold" Margin="0,300,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
                 <TextBlock x:Name="noswitch_error" Text="Error: Please select at least one platform and a date to begin the activity!" TextWrapping="Wrap" FontSize="30" TextAlignment="Center" Margin="520,523,520,257" Visibility="Collapsed"/>
                 <DatePicker x:Name="date_pick" Margin="722,470,722,0" VerticalAlignment="Top" Height="50" FontSize="20" FontWeight="Bold" HorizontalAlignment="Stretch"/>
@@ -41,7 +41,7 @@
                 <Button x:Name="return_button" Content="View Recommendations" FontSize="50" VerticalAlignment="Stretch" FontWeight="Bold" Margin="635,589,635,100" Click="return_button_Click" HorizontalAlignment="Stretch"/>
             </Grid>
 
-            <Grid x:Name="GameGrid" Grid.Row="1" Grid.Column="1">
+            <Grid x:Name="GameGrid" Grid.Row="1" Grid.Column="1" Visibility="Visible">
                 <Rectangle Margin="0,100,0,100" Stroke="Black" StrokeThickness="5" Fill="Gray"/>
                 <TextBlock x:Name="game_title" Text="&lt;$gametitle&gt;" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="125,130,125,580"/>
                 <TextBlock x:Name="game_genre" Text="&lt;$gamegenre&gt;" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Margin="60,285,682,461"/>
@@ -52,11 +52,11 @@
             </Grid>
 
             <Grid x:Name="DislikeGrid" Grid.Row="1" Grid.Column="0">
-                <Button x:Name="dislike_button" Content="👎" FontSize="150" FontWeight="Bold" Background="Gray" BorderThickness="5" BorderBrush="Black" Margin="50,275,50,275" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="dislike_button_Click"/>
+                <Button x:Name="dislike_button" Content="👎" FontSize="150" FontWeight="Bold" Background="Gray" BorderThickness="5" BorderBrush="Black" Margin="50,275,0,275" VerticalAlignment="Stretch" Click="dislike_button_Click" Width="250"/>
             </Grid>
 
             <Grid x:Name="LikeGrid" Grid.Row="1" Grid.Column="2">
-                <Button x:Name="like_button" Content="👍" FontSize="150" FontWeight="Bold" Background="Gray" BorderThickness="5" BorderBrush="Black" Margin="50,275,50,275" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="like_button_Click"/>
+                <Button x:Name="like_button" Content="👍" FontSize="150" FontWeight="Bold" Background="Gray" BorderThickness="5" BorderBrush="Black" Margin="0,275,50,275" VerticalAlignment="Stretch" HorizontalAlignment="Right" Click="like_button_Click" Width="250"/>
             </Grid>
         </Grid>
     </Grid>

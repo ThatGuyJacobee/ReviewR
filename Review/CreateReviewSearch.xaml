@@ -8,10 +8,11 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="canvasgrid" Background="Black">
+    <Grid x:Name="canvasgrid" Background="#D55E5E">
         <Grid x:Name="CanvasGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="250"/>
+                <RowDefinition Height="270"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -20,9 +21,12 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">
-                <TextBlock x:Name="step1_description" Text="Step 1: Select the game you wish to review." TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="420,56,422,684"/>
-                <TextBox x:Name="createreview_search" PlaceholderText="Enter a query to search for a game to review..." TextWrapping="Wrap" Width="837" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" HorizontalAlignment="Center" Margin="0,185,0,566" TextChanged="createreview_search_TextChanged"/>
-                <ListView x:Name="createreview_list" SelectionMode="None" IsItemClickEnabled="True" ItemClick="createreview_list_ItemClick" Margin="215,308,214,44" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark">
+                <TextBlock x:Name="step1_description" Text="Step 1: Select the game you wish to review." TextWrapping="Wrap" FontSize="50" TextAlignment="Center" FontWeight="Bold" Margin="410,40,410,150"/>
+                <TextBox x:Name="createreview_search" PlaceholderText="Enter a query to search for a game to review..." TextWrapping="Wrap" FontSize="40" RequestedTheme="Default" BorderThickness="5,5,5,5" Opacity="0.5" TextChanged="createreview_search_TextChanged" Margin="542,150,541,40"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Background="#D55E5E">
+                <ListView x:Name="createreview_list" SelectionMode="None" IsItemClickEnabled="True" ItemClick="createreview_list_ItemClick" Margin="30,30,30,30" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>

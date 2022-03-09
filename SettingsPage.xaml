@@ -28,7 +28,7 @@
 
             <Grid Grid.Row="1" Grid.Column="0" Background="#D55E5E">
                 <TextBlock x:Name="myreviews_title" Text="My Reviews:" TextWrapping="Wrap" FontSize="50" TextAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Height="67" VerticalAlignment="Top" Margin="0,50,0,0" Width="340"/>
-                <ListView x:Name="myreviews_list" SelectionMode="None" IsItemClickEnabled="False" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark" Margin="30,150,30,30">
+                <ListView x:Name="myreviews_list" SelectionMode="None" IsItemClickEnabled="True" ItemClick="myreviews_list_ItemClick" BorderThickness="5" BorderBrush="Black" Background="Gray" RequestedTheme="Dark" Margin="30,150,30,30">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>

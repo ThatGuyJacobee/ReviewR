@@ -364,5 +364,46 @@ namespace ReviewR
                 UpdateVoteCount();
             }
         }
+
+        private void author_button_Click(object sender, RoutedEventArgs e)
+        {
+            //Improvement Test No. 006 in evaulation by clients - Author profile button
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    //Searches for usernames and returns the needed values
+                    cmd.CommandText = "SELECT UserID, Username, UserBio, UserAvatar, LastLogon FROM user_data WHERE UserID=@userid";
+                    cmd.Parameters.AddWithValue("@userid", ReviewSystem.ReviewSpecificUserID);
+                    cmd.Connection = conn;
+
+                    MySqlDataReader reviewfetch = cmd.ExecuteReader(); //Executes a read command for the table
+                    if (reviewfetch.Read())
+                    {
+                        //Set results as variables
+                        ProfilePages.ProfileSpecificUserID = Convert.ToInt32(reviewfetch["UserID"]);
+                        ProfilePages.ProfileSpecificUsername = Convert.ToString(reviewfetch["Username"]);
+                        ProfilePages.ProfileSpecificUserBio = Convert.ToString(reviewfetch["UserBio"]);
+                        ProfilePages.ProfileSpecificUserAvatar = Convert.ToString(reviewfetch["UserAvatar"]);
+                        ProfilePages.ProfileSpecificLastLogon = Convert.ToString(reviewfetch["LastLogon"]);
+                        Debug.WriteLine("User ID: " + ProfilePages.ProfileSpecificUserID);
+                        Debug.WriteLine("Username : " + ProfilePages.ProfileSpecificUsername);
+                        Debug.WriteLine("User Bio: " + ProfilePages.ProfileSpecificUserBio);
+                        Debug.WriteLine("User Avatar : " + ProfilePages.ProfileSpecificUserAvatar);
+                        Debug.WriteLine("Last Logon : " + ProfilePages.ProfileSpecificLastLogon);
+
+                        this.Frame.Navigate(typeof(ProfileSpecificPages), null); //Switch to the profile-specific page
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            this.Frame.Navigate(typeof(ProfileSpecificPages), null); //Switch to the author's profile page
+        }
     }
 }

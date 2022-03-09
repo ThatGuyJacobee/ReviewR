@@ -34,8 +34,11 @@ namespace ReviewR
 
         public partial class UserReviewObject
         {
+            //Test No. 013 improvement
+            public int ReviewID { get; set; }
             public string GameName { get; set; }
             public string GameTitle { get; set; }
+            public string GameDesc { get; set; }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -55,7 +58,8 @@ namespace ReviewR
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
 
-                cmd.CommandText = "SELECT RevGame, RevTitle FROM review_data WHERE UserID=@UserID ORDER BY ReviewID DESC LIMIT 10"; //Selects the email and password rows from user_data
+                //Test No. 013 improvement to add clickable elements to listview
+                cmd.CommandText = "SELECT ReviewID, RevGame, RevTitle, RevDesc FROM review_data WHERE UserID=@UserID ORDER BY ReviewID DESC LIMIT 10"; //Selects the email and password rows from user_data
                 cmd.Parameters.AddWithValue("@UserID", ProfilePages.ProfileSpecificUserID); //Sets them as variables
                 cmd.Connection = conn;
 
@@ -66,12 +70,17 @@ namespace ReviewR
 
                     do
                     {
+                        //Test No. 013 improvement to add clickable elements to listview
+                        var ReviewID = Convert.ToInt32(reviewfetch["ReviewID"]);
                         var ReviewGame = Convert.ToString(reviewfetch["RevGame"]);
                         var ReviewTitle = Convert.ToString(reviewfetch["RevTitle"]);
-                        Debug.WriteLine("Game Reviewed: " + ReviewGame);
-                        Debug.WriteLine("Game Title: " + ReviewTitle);
+                        var ReviewDesc = Convert.ToString(reviewfetch["RevDesc"]);
+                        Debug.WriteLine("Review ID: " + ReviewID);
+                        Debug.WriteLine("Review Reviewed: " + ReviewGame);
+                        Debug.WriteLine("Review Title: " + ReviewTitle);
+                        Debug.WriteLine("Review Description: " + ReviewTitle);
 
-                        UserReviewObject add = new UserReviewObject() { GameName = ReviewGame, GameTitle = ReviewTitle };
+                        UserReviewObject add = new UserReviewObject() { ReviewID = ReviewID, GameName = ReviewGame, GameTitle = ReviewTitle, GameDesc = ReviewDesc };
                         ReviewList.Add(add); //Adds item to the temporary list
                     }
 
@@ -87,6 +96,24 @@ namespace ReviewR
                     userreviews_list.ItemsSource = null;
                 }
             }
+        }
+
+        //Test No. 013 improvement to add clickable elements to listview
+        private void userreviews_list_ItemClick(object sender, ItemClickEventArgs e) //When an item in List View is pressed
+        {
+            var clickedItem = e.ClickedItem as UserReviewObject;
+            Debug.WriteLine("Click Item ReviewID: " + clickedItem.ReviewID);
+            Debug.WriteLine("Click Item Review Name: " + clickedItem.GameName);
+            Debug.WriteLine("Click Item Review Title: " + clickedItem.GameTitle);
+
+            //Set the GameID as a static long variable
+            ReviewSystem.ReviewSpecificID = clickedItem.ReviewID;
+            ReviewSystem.ReviewSpecificUserID = ProfilePages.ProfileSpecificUserID;
+            ReviewSystem.ReviewSpecificGameName = clickedItem.GameName;
+            ReviewSystem.ReviewSpecificGameTitle = clickedItem.GameTitle;
+            ReviewSystem.ReviewSpecificDescription = clickedItem.GameDesc;
+
+            this.Frame.Navigate(typeof(ReviewSpecificPages), null); //Switch to the profile-specific page
         }
     }
 }

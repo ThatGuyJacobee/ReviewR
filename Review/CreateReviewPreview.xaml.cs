@@ -34,8 +34,8 @@ namespace ReviewR
         {
             preview_gamename.Text = "Review Game: " + CreateReviewSearch.GameSpecificGameName + " (" + CreateReviewSearch.GameSpecificGameID + ")";
             preview_username.Text = "User: " + App.GlobalUsername + " (" + App.GlobalUserID + ")";
-            preview_title.Text = CreateReviewDetails.ReviewTitle;
-            preview_description.Text = CreateReviewDetails.ReviewDescription;
+            preview_title.Text = "Review Title: " + CreateReviewDetails.ReviewTitle;
+            preview_description.Text = "Review Description: " + CreateReviewDetails.ReviewDescription;
         }
 
         //Uses the static Connection String that was set in the Main App Class (private)

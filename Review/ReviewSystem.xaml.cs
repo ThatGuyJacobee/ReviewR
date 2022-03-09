@@ -39,6 +39,7 @@ namespace ReviewR
             public string GameName { get; set; }
             public string GameTitle { get; set; }
             public string RevDesc { get; set; }
+            public string TotalCount { get; set; }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -66,6 +67,8 @@ namespace ReviewR
             this.Frame.Navigate(typeof(CreateReview), null); //When button pressed, move to create review page
         }
 
+        public static int CountReviewID;
+
         private bool DataFetch() //Method for database validation
         {
             using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
@@ -85,17 +88,22 @@ namespace ReviewR
                     {
                         //Set results as variables
                         var ReviewID = Convert.ToInt32(reviewfetch["ReviewID"]);
+                        //Test No.008 improvement from clients
+                        CountReviewID = Convert.ToInt32(reviewfetch["ReviewID"]);
                         var UserID = Convert.ToInt32(reviewfetch["UserID"]);
-                        var ReviewGame = Convert.ToString(reviewfetch["RevGame"]);
+                        var ReviewGame = Convert.ToString(reviewfetch["RevGame"]) + " [RevID: " + Convert.ToInt32(reviewfetch["ReviewID"]) + "]";
                         var ReviewTitle = Convert.ToString(reviewfetch["RevTitle"]);
                         var ReviewDesc = Convert.ToString(reviewfetch["RevDesc"]);
                         Debug.WriteLine("Review ID: " + ReviewID);
+                        Debug.WriteLine("Count Review ID: " + CountReviewID);
                         Debug.WriteLine("User ID: " + UserID);
                         Debug.WriteLine("Game Reviewed: " + ReviewGame);
                         Debug.WriteLine("Game Title: " + ReviewTitle);
                         Debug.WriteLine("Review Description: " + ReviewDesc);
+                        TotalReviewCount();
 
-                        ReviewObject add = new ReviewObject() { ReviewID = ReviewID, UserID = UserID, GameName = ReviewGame, GameTitle = ReviewTitle, RevDesc = ReviewDesc };
+                        //Test No.008 improvement from clients
+                        ReviewObject add = new ReviewObject() { ReviewID = ReviewID, UserID = UserID, GameName = ReviewGame, GameTitle = ReviewTitle, RevDesc = ReviewDesc, TotalCount = TotalRevCount };
                         ReviewList.Add(add); //Adds item to the temporary list
                     }
                     
@@ -109,6 +117,48 @@ namespace ReviewR
                 {
                     conn.Close(); //Close connection
                     return false;
+                }
+            }
+        }
+
+        public static string TotalRevCount;
+
+        private void TotalReviewCount()
+        {
+            //Test No. 008 improvement from clients to add review count in listview items
+            using (MySqlConnection conn = new MySqlConnection(App.ConnectionString)) //Uses private connection string
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = conn.CreateCommand();
+
+                    cmd.CommandText = "SELECT COUNT(VoteType) FROM review_votes WHERE ReviewID=@reviewid AND VoteType=@upvote";
+
+                    cmd.Parameters.AddWithValue("@upvote", "Upvote");
+                    cmd.Parameters.AddWithValue("@downvote", "Downvote");
+                    cmd.Parameters.AddWithValue("@reviewid", CountReviewID); //Sets them as variables
+                    cmd.Connection = conn;
+
+                    //Get a total count of upvotes
+                    var UpvoteCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    Debug.WriteLine("Total upvotes: " + UpvoteCount);
+
+                    cmd.CommandText = "SELECT COUNT(VoteType) FROM review_votes WHERE ReviewID=@reviewid AND VoteType=@downvote";
+
+                    //Get a total count of downvotes
+                    var DownvoteCount = Convert.ToInt32(cmd.ExecuteScalar());
+                    Debug.WriteLine("Total downvotes: " + DownvoteCount);
+
+                    var TCount = UpvoteCount - DownvoteCount;
+                    Debug.WriteLine("Final overall vote count: " + TCount);
+
+                    TotalRevCount = "Review Total: " + TCount;
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
                 }
             }
         }

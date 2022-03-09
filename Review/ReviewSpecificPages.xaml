@@ -19,6 +19,7 @@
                 <TextBlock x:Name="reviewspecific_text" Grid.Row="0" Text="Review-Specific Page" TextWrapping="Wrap" FontSize="75" TextAlignment="Center" FontWeight="Bold" Margin="277,65,276,65"/>
                 <Button x:Name="delete_review" Content="Delete Review" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Height="80" Width="350" Visibility="Collapsed" Margin="1513,140,0,0" Click="delete_review_Click"/>
                 <Button x:Name="edit_review" Content="Edit Review" FontSize="36" VerticalAlignment="Top" FontWeight="Bold" Height="80" Width="350" Visibility="Collapsed" Margin="1513,30,0,0" Click="edit_review_Click"/>
+                <Button x:Name="author_button" Content="Author's Profile" Height="79" FontSize="36" VerticalAlignment="Stretch" FontWeight="Bold" Margin="100,86,1495,85" HorizontalAlignment="Stretch" Click="author_button_Click"/>
             </Grid>
 
             <Grid Grid.Row="1" Background="#D55E5E">

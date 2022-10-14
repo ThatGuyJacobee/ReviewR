@@ -29,7 +29,7 @@ namespace ReviewR
     sealed partial class App : Application
     {
         //Create a global method which can be inherited by any class to create a connection to the database
-        private static string connectionString = "server=86.148.233.190;database=reviewr;uid=root;pwd=Martyniak_13;";
+        private static string connectionString = "ADD_DB_CONNECTION_STRING"; //Add connection string in the format of "server=[];database=[],uid=[],pwd=[];"
 
         public static string ConnectionString { get => connectionString; set => connectionString = value; }
 
@@ -50,7 +50,7 @@ namespace ReviewR
         public static string GlobalAccessIGDB { get => GAccessIGDB; set => GAccessIGDB = value; }
 
         //Sets value for the Client ID when making an API request
-        public static string GlobalClientidIGDB = "lcygp51ma1kkvf7ix71xlct0szpuqj";
+        public static string GlobalClientidIGDB = "ADD_IGDB_API_KEY"; //Add a IGDB API Key
 
         public class IGDBcredentials
         {
@@ -63,11 +63,13 @@ namespace ReviewR
             {
                 // Construct the HttpClient and Uri
                 HttpClient httpClient = new HttpClient();
-                Uri uri = new Uri("https://id.twitch.tv/oauth2/token?client_id=lcygp51ma1kkvf7ix71xlct0szpuqj&client_secret=m49i9n3p9roas71ij6zpps0ac50jnr&grant_type=client_credentials");
+                Uri uri = new Uri("ADD URL");
+                //Add oauth2 url following: https://id.twitch.tv/oauth2/token?client_id=ID_HERE&client_secret=SECRET_HERE&grant_type=client_credentials
 
                 // Construct the JSON to post
                 HttpStringContent content = new HttpStringContent(
-                    "https://id.twitch.tv/oauth2/token?client_id=lcygp51ma1kkvf7ix71xlct0szpuqj&client_secret=m49i9n3p9roas71ij6zpps0ac50jnr&grant_type=client_credentials");
+                    "ADD URL");
+                    //Add oauth2 url following: https://id.twitch.tv/oauth2/token?client_id=ID_HERE&client_secret=SECRET_HERE&grant_type=client_credentials
 
                 // Post the JSON and wait for a response
                 HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(

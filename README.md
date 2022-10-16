@@ -1,6 +1,8 @@
 # ReviewR
 This was my A Level Computer Science Project. First time using C# as well as Microsoft's UWP platform for app development. Received an A* grade for my NEA project.
-The app consists of two main modules, the recommendation and review systems which were the main target during the application development.
+The app consists of two main modules, the recommendation and review systems which were the main target during the application development. 
+
+Note: Any API tokens have been reset and removed, replace them with your own.
 
 ---
 # Features

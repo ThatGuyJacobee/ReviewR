@@ -223,7 +223,7 @@ namespace ReviewR
 
         }
 
-        const string clientID = "139950512543-hh4oeaddj7borputdqi9jt3ju3o9322s.apps.googleusercontent.com";
+        const string clientID = "ADD_ID";
         const string redirectURI = "reviewr.oauth2:/oauth2redirect";
         const string authorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
         const string tokenEndpoint = "https://www.googleapis.com/oauth2/v4/token";

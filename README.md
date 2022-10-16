@@ -14,6 +14,17 @@ Note: Any API tokens have been reset and removed.
 - Game Hubs which display key information about a game including socials etc.
 
 ---
+# Configuration
+There are a few changes you would need to do if you want the app to work (since I deprecated my database and reset tokens).
+
+1) Head over to your App.xaml.cs and edit line 32 with your own database connection string following the format which is uncommented.
+2) In the file, also change line 53 with your own IGDB token which can be taken from: https://api-docs.igdb.com/#account-creation.
+3) Once again in that file, change line 66 and 71 following the uncommented format, with your client id and secret.
+4) Finally, head over to LoginPage.xaml.cs and change line 226 with your own clientID which can be taken from: https://console.cloud.google.com/ 
+You MUST create an OAuth 2.0 Client ID with the Type set to "iOS" (limitation of UWP) and you MUST set the Bundle ID to "reviewr.oauth2". Then copy the link it provides into the field.
+5) Finally, compile the code in Visual Studio (or test first in the built-in VS editor) and install the app and it will work fine.
+
+---
 # License
 Do not attempt to use this as your work for your A Level coursework (or you will probably face disqualification) as it's already been graded!
 

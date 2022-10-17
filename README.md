@@ -4,7 +4,7 @@ The app consists of two main modules, the recommendation and review systems whic
 
 Note: Any API tokens have been reset and removed. 
 
-Keep in mind the application won't function as the DB and tokens have been deprecated by me (follow config below if you would like to get it to work yourself, albeit without any data). This is more just to preserve the code and open source it if anyone wants to use anything :)
+The main app can be downloaded from: [Final Build](https://github.com/ThatGuyJacobee/ReviewR/releases/tag/v1.0-final). The app will work as long as I keep the database running (and I most likely will for the long-term). Otherwise, you can also self-host it and change it to how you like! I've decided to open source it just in-case anyone wants to use it and to preserve code :)
 
 ---
 # Features
@@ -16,8 +16,15 @@ Keep in mind the application won't function as the DB and tokens have been depre
 - Game Hubs which display key information about a game including socials etc.
 
 ---
-# Configuration
-There are a few changes you would need to do if you want the app to work for yourself (since I deprecated my database and reset tokens).
+# Installation
+1) Download the .zip release folder and unzip it.
+2) Install the certificate that's within the folder: Open the certificate -> Press "Install certificate..." -> Select "Local Machine" as the store location -> Accept the UAC prompt -> Select "Place all certificate in the following store" and press "Browse..." -> Pick "Trusted Root Certificate Authorities" from the menu and press "OK" -> Press "Next" and finally "Finish".
+3) Lastly, run the .msixbundle file and press "Install". The app will then install and open. That's all, enjoy!
+
+
+---
+# Self-hosting
+This repo is now open-source for anyone to use. If you wish to host your own database, including tokens etc. to self-host the app or reuse parts of it, you must configure a few things. Keep in mind of course this is for your own entire use, meaning data won't be synced with my database so it's fresh hosting for you.
 
 1) Head over to your App.xaml.cs and edit line 32 with your own database connection string following the format which is uncommented.
 2) In the file, also change line 53 with your own IGDB token which can be taken from: https://api-docs.igdb.com/#account-creation.

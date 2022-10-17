@@ -50,7 +50,7 @@ namespace ReviewR
         public static string GlobalAccessIGDB { get => GAccessIGDB; set => GAccessIGDB = value; }
 
         //Sets value for the Client ID when making an API request
-        public static string GlobalClientidIGDB = "ADD_IGDB_API_KEY"; //Add a IGDB API Key
+        public static string GlobalClientidIGDB = "ADD_IGDB_API_KEY"; //Add a IGDB API Key - Grab the key from https://api-docs.igdb.com/#account-creation
 
         public class IGDBcredentials
         {
@@ -65,11 +65,12 @@ namespace ReviewR
                 HttpClient httpClient = new HttpClient();
                 Uri uri = new Uri("ADD URL");
                 //Add oauth2 url following: https://id.twitch.tv/oauth2/token?client_id=ID_HERE&client_secret=SECRET_HERE&grant_type=client_credentials
+				//Get ClientID and Client Secret from account management on IGDB: https://api-docs.igdb.com/#account-creation
 
                 // Construct the JSON to post
-                HttpStringContent content = new HttpStringContent(
-                    "ADD URL");
-                    //Add oauth2 url following: https://id.twitch.tv/oauth2/token?client_id=ID_HERE&client_secret=SECRET_HERE&grant_type=client_credentials
+                HttpStringContent content = new HttpStringContent("ADD URL");
+                //Add oauth2 url following: https://id.twitch.tv/oauth2/token?client_id=ID_HERE&client_secret=SECRET_HERE&grant_type=client_credentials
+				//Get ClientID and Client Secret from account management on IGDB: https://api-docs.igdb.com/#account-creation
 
                 // Post the JSON and wait for a response
                 HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(

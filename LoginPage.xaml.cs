@@ -223,7 +223,7 @@ namespace ReviewR
 
         }
 
-        const string clientID = "ADD_ID";
+        const string clientID = "ADD_ID"; //Add a Google OAuth2.0 API Key - Grab the URL from https://console.cloud.google.com/ - App MUST be set to iOS AND Bundle ID = reviewr.oauth2
         const string redirectURI = "reviewr.oauth2:/oauth2redirect";
         const string authorizationEndpoint = "https://accounts.google.com/o/oauth2/v2/auth";
         const string tokenEndpoint = "https://www.googleapis.com/oauth2/v4/token";
